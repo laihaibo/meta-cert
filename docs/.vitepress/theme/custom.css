@@ -1,0 +1,233 @@
+/* ============================================
+   Meta Cert - 金融从业资格考试备考平台
+   现代、简洁、专业的学习平台风格
+   ============================================ */
+
+:root {
+  /* 品牌色系 - 专业蓝 */
+  --vp-c-brand-1: #1a73e8;
+  --vp-c-brand-2: #1557b0;
+  --vp-c-brand-3: #0d47a1;
+  --vp-c-brand-soft: rgba(26, 115, 232, 0.14);
+
+  /* 正确/错误色系 */
+  --correct-color: #34a853;
+  --correct-bg: rgba(52, 168, 83, 0.08);
+  --correct-border: rgba(52, 168, 83, 0.3);
+  --wrong-color: #ea4335;
+  --wrong-bg: rgba(234, 67, 53, 0.08);
+  --wrong-border: rgba(234, 67, 53, 0.3);
+
+  /* 标记色系 */
+  --badge-key-bg: #fef7e0;
+  --badge-key-color: #f9a825;
+  --badge-key-border: #f9a825;
+  --badge-hot-bg: #fce4ec;
+  --badge-hot-color: #e53935;
+  --badge-hot-border: #e53935;
+
+  /* 布局 */
+  --quiz-radius: 12px;
+  --quiz-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  /* 首页 Hero */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #1a73e8 30%, #6dd5fa);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #1a73e8 50%, #6dd5fa 50%);
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+.dark {
+  --correct-color: #81c995;
+  --correct-bg: rgba(129, 201, 149, 0.12);
+  --correct-border: rgba(129, 201, 149, 0.3);
+  --wrong-color: #f28b82;
+  --wrong-bg: rgba(242, 139, 130, 0.12);
+  --wrong-border: rgba(242, 139, 130, 0.3);
+  --badge-key-bg: rgba(249, 168, 37, 0.15);
+  --badge-hot-bg: rgba(229, 57, 53, 0.15);
+}
+
+/* ============================================
+   全局排版优化
+   ============================================ */
+
+.vp-doc h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.vp-doc h2 {
+  font-weight: 600;
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2em;
+}
+
+.vp-doc p {
+  line-height: 1.8;
+}
+
+/* ============================================
+   首页卡片样式
+   ============================================ */
+
+.VPFeatures .item {
+  border-radius: var(--quiz-radius) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.VPFeatures .item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   科目入口卡片
+   ============================================ */
+
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.subject-card {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: var(--quiz-radius);
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.subject-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: var(--quiz-shadow);
+  transform: translateY(-2px);
+}
+
+.subject-card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.subject-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.subject-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.5;
+}
+
+/* ============================================
+   进度条
+   ============================================ */
+
+.progress-bar {
+  height: 6px;
+  background: var(--vp-c-divider);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.progress-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* ============================================
+   响应式调整
+   ============================================ */
+
+/* ============================================
+   移动端优化
+   ============================================ */
+
+@media (max-width: 768px) {
+  .subject-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 移动端导航优化 */
+  .VPNavBar .VPNavBarMenuLink {
+    font-size: 0.85rem;
+  }
+
+  /* 移动端内容区域 */
+  .vp-doc {
+    padding: 0 1rem;
+  }
+
+  .vp-doc h1 {
+    font-size: 1.5rem;
+  }
+
+  .vp-doc h2 {
+    font-size: 1.25rem;
+  }
+
+  .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.85rem;
+  }
+
+  .vp-doc th,
+  .vp-doc td {
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  /* 移动端 Mermaid 图表 */
+  .mermaid {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 移动端按钮触摸区域 */
+  .VPButton {
+    min-height: 44px;
+    padding: 0.65rem 1.25rem;
+  }
+
+  /* 移动端侧边栏 */
+  .VPSidebar {
+    padding: 1rem 0.75rem;
+  }
+
+  .VPSidebarItem .text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .option-item:hover {
+    border-color: var(--vp-c-divider);
+    background: var(--vp-c-bg);
+  }
+
+  .option-item:active {
+    border-color: var(--vp-c-brand-1);
+    background: var(--vp-c-brand-soft);
+  }
+
+  .btn:active {
+    opacity: 0.8;
+  }
+}

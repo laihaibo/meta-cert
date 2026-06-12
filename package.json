@@ -1,0 +1,25 @@
+{
+  "name": "meta-cert",
+  "version": "1.0.0",
+  "description": "多元从业资格学习平台",
+  "scripts": {
+    "dev": "vitepress dev docs --host 0.0.0.0",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs --host 0.0.0.0"
+  },
+  "keywords": ["finance", "exam", "certification"],
+  "author": "",
+  "license": "MIT",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.5.3",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "devDependencies": {
+    "vitepress": "2.0.0-alpha.17",
+    "vue": "^3.5.35"
+  }
+}
