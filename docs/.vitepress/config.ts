@@ -4,6 +4,7 @@ export default defineConfig({
   title: 'Meta Cert',
   description: '多元从业资格学习平台',
   lang: 'zh-CN',
+  base: '/meta-cert/',
   // Ignore dead links until all chapter pages are created by other workers
   ignoreDeadLinks: true,
   // Allow remote access
@@ -185,7 +186,7 @@ export default defineConfig({
       '/law/private/civil-procedure/': [{ text: '民事诉讼法', items: [{ text: '概述', link: '/law/private/civil-procedure/' }] }],
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/' }
+      { icon: 'github', link: 'https://github.com/laihaibo/meta-cert' }
     ],
     footer: {
       message: '多元从业资格学习平台',
