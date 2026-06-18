@@ -194,9 +194,9 @@ export default defineConfig({
     },
     search: {
       provider: 'local'
-    },
-    markdown: {
-      math: true
     }
+  },
+  markdown: {
+    math: true
   }
 })
