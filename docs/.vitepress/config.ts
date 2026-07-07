@@ -62,6 +62,13 @@ export default defineConfig({
           },
         ]
       },
+      {
+        text: '软考',
+        items: [
+          { text: '软件设计师', link: '/softdesigner/' },
+          { text: '系统架构设计师', link: '/system-architect/' },
+        ]
+      },
     ],
     sidebar: {
       '/securities/laws/': [
@@ -161,6 +168,45 @@ export default defineConfig({
             { text: '第八章 行业自律与监管', link: '/fund/pe/ch08' },
             { text: '总结与速查', link: '/fund/pe/summary' },
             { text: '题库练习', link: '/fund/pe/quiz' },
+          ]
+        }
+      ],
+      '/softdesigner/': [
+        {
+          text: '软件设计师',
+          items: [
+            { text: '概述', link: '/softdesigner/' },
+            { text: '第一章 计算机系统基础知识', link: '/softdesigner/ch01' },
+            { text: '第二章 程序设计语言基础', link: '/softdesigner/ch02' },
+            { text: '第三章 数据结构', link: '/softdesigner/ch03' },
+            { text: '第四章 操作系统基础', link: '/softdesigner/ch04' },
+            { text: '第五章 软件工程', link: '/softdesigner/ch05' },
+            { text: '第六章 面向对象分析与设计', link: '/softdesigner/ch06' },
+            { text: '第七章 数据库系统', link: '/softdesigner/ch07' },
+            { text: '第八章 信息安全知识', link: '/softdesigner/ch08' },
+            { text: '总结与速查', link: '/softdesigner/summary' },
+            { text: '题库练习', link: '/softdesigner/quiz' },
+          ]
+        }
+      ],
+      '/system-architect/': [
+        {
+          text: '系统架构设计师',
+          items: [
+            { text: '概述', link: '/system-architect/' },
+            { text: '第一章 计算机系统基本知识', link: '/system-architect/ch01' },
+            { text: '第二章 信息系统基础知识', link: '/system-architect/ch02' },
+            { text: '第三章 信息安全技术', link: '/system-architect/ch03' },
+            { text: '第四章 软件工程', link: '/system-architect/ch04' },
+            { text: '第五章 数据库设计', link: '/system-architect/ch05' },
+            { text: '第六章 系统架构设计理论', link: '/system-architect/ch06' },
+            { text: '第七章 分布式系统设计', link: '/system-architect/ch07' },
+            { text: '第八章 云计算与容器', link: '/system-architect/ch08' },
+            { text: '第九章 大数据架构', link: '/system-architect/ch09' },
+            { text: '案例分析', link: '/system-architect/case-analysis' },
+            { text: '论文写作', link: '/system-architect/essay' },
+            { text: '总结与速查', link: '/system-architect/summary' },
+            { text: '题库练习', link: '/system-architect/quiz' },
           ]
         }
       ],

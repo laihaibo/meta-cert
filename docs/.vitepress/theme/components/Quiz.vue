@@ -44,7 +44,7 @@ onMounted(async () => {
 // Filtered questions based on chapter selection
 const filteredQuestions = computed(() => {
   if (!filterChapter.value) return allQuestions.value
-  return allQuestions.value.filter(q => q.chapter === filterChapter.value)
+  return allQuestions.value.filter(q => String(q.chapter) === filterChapter.value)
 })
 
 const currentQuestion = computed(() => filteredQuestions.value[currentIndex.value])

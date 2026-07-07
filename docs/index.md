@@ -75,6 +75,18 @@ features:
   <p>卷一·公法（9科）+ 卷二·私法（9科），覆盖法考全部客观题科目</p>
 </a>
 
+<a href="/softdesigner/" class="subject-card">
+  <div class="icon">💻</div>
+  <h3>软件设计师</h3>
+  <p>计算机系统、数据结构、操作系统、软件工程、信息安全等核心知识</p>
+</a>
+
+<a href="/system-architect/" class="subject-card">
+  <div class="icon">🏗️</div>
+  <h3>系统架构设计师</h3>
+  <p>软考高级 · 综合知识、案例分析、论文写作全覆盖</p>
+</a>
+
 </div>
 
 ## 学习建议

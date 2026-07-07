@@ -1,0 +1,2252 @@
+[
+  {
+    "id": "architect-001",
+    "chapter": 1,
+    "stem": "在补码表示法中，8位二进制数11111111表示的十进制数值是：",
+    "options": [
+      "A. 255",
+      "B. -1",
+      "C. -127",
+      "D. 0"
+    ],
+    "answer": "B",
+    "analysis": "8位补码11111111：最高位为1表示负数，数值部分取反加1得00000001，即-1。8位补码范围：-128~127。补码中-0和+0合并，范围不对称。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-002",
+    "chapter": 1,
+    "stem": "Cache命中率的影响因素不包括：",
+    "options": [
+      "A. Cache容量",
+      "B. 地址映射方式",
+      "C. 主存访问速度",
+      "D. 替换算法"
+    ],
+    "answer": "C",
+    "analysis": "Cache命中率主要与容量、地址映射方式(直接/全相联/组相联)、替换算法(FIFO/LRU/LFU)、程序局部性有关。主存访问速度影响的是缺失代价(miss penalty)，不影响命中率本身。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-003",
+    "chapter": 1,
+    "stem": "RAID5的特点是：",
+    "options": [
+      "A. 条带化无冗余",
+      "B. 镜像100%冗余",
+      "C. 条带化+分布式奇偶校验",
+      "D. 双盘镜像"
+    ],
+    "answer": "C",
+    "analysis": "RAID0=条带化无冗余；RAID1=镜像(100%冗余)；RAID5=条带化+分布式奇偶校验(允许单盘故障，利用率(n-1)/n)；RAID10=镜像+条带(高可靠高性能)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-004",
+    "chapter": 1,
+    "stem": "流水线中的数据冒险(数据相关)是指：",
+    "options": [
+      "A. 分支指令导致的问题",
+      "B. 后续指令需要前序指令结果但尚未就绪",
+      "C. 硬件资源不足",
+      "D. 指令译码错误"
+    ],
+    "answer": "B",
+    "analysis": "数据冒险：后续指令依赖前序指令结果但尚未计算完成。解决：数据前推(forwarding)、指令调度(插入气泡)。控制冒险由分支指令引起，解决：延迟分支、分支预测、BTB。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-005",
+    "chapter": 1,
+    "stem": "Flynn分类法中，MIMD表示：",
+    "options": [
+      "A. 单指令流单数据流",
+      "B. 单指令流多数据流",
+      "C. 多指令流单数据流",
+      "D. 多指令流多数据流"
+    ],
+    "answer": "D",
+    "analysis": "Flynn分类法：SISD(传统串行)、SIMD(向量机/阵列处理机，并行)、MISD(少见)、MIMD(多处理器/多计算机，最通用)。现代多核CPU属于MIMD。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-006",
+    "chapter": 1,
+    "stem": "总线的异步通信方式与同步通信方式相比，主要特点是：",
+    "options": [
+      "A. 速度更快",
+      "B. 各设备独立时钟，通过应答信号联络",
+      "C. 需要统一时钟信号",
+      "D. 结构更简单"
+    ],
+    "answer": "B",
+    "analysis": "同步通信：所有设备统一时钟，速度快但灵活性差。异步通信：各设备独立时钟，通过应答(握手)信号联络，灵活性高但控制复杂。适用于异速设备。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-007",
+    "chapter": 1,
+    "stem": "中断向量表中存储的是：",
+    "options": [
+      "A. 中断服务程序的内容",
+      "B. 中断服务程序的入口地址",
+      "C. 中断优先级",
+      "D. 中断屏蔽字"
+    ],
+    "answer": "B",
+    "analysis": "中断向量=中断服务程序入口地址(段地址:偏移地址)。中断类型码(0-255)是中断向量的索引，中断向量表存储所有中断向量。8086有256个中断类型。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-008",
+    "chapter": 1,
+    "stem": "局部性原理不包括以下哪个：",
+    "options": [
+      "A. 时间局部性",
+      "B. 空间局部性",
+      "C. 逻辑局部性",
+      "D. 指令局部性"
+    ],
+    "answer": "C",
+    "analysis": "局部性原理：时间局部性(近期访问的内容可能再次访问)、空间局部性(访问某地址后附近地址也可能被访问)、指令局部性(程序大部分时间执行少量指令)。逻辑局部性不是标准术语。局部性是Cache和虚拟内存的理论基础。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-009",
+    "chapter": 1,
+    "stem": "DMA方式的特点描述正确的是：",
+    "options": [
+      "A. CPU全程控制数据传输",
+      "B. DMA控制器接管总线，仅在开始和结束时中断CPU",
+      "C. 只能传输一个字节",
+      "D. 速度最慢"
+    ],
+    "answer": "B",
+    "analysis": "I/O方式：程序查询(CPU轮询)、中断(设备就绪通知CPU)、DMA(DMA控制器接管总线，仅在首尾中断CPU，适合批量传输)、通道(更高级I/O处理，可执行通道程序)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-010",
+    "chapter": 1,
+    "stem": "虚拟存储器的理论基础是：",
+    "options": [
+      "A. 程序的时间局部性",
+      "B. 程序的空间局部性",
+      "C. 程序的局部性原理(时间+空间)",
+      "D. 程序的顺序执行"
+    ],
+    "answer": "C",
+    "analysis": "虚拟存储器基于程序局部性原理，通过请求调页/请求调段实现。使程序地址空间>物理内存，以时间(缺页中断)换空间(更大地址空间)。需要MMU硬件支持地址转换。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-011",
+    "chapter": 1,
+    "stem": "IEEE 754单精度浮点数中，阶码采用偏移码表示，偏移量为：",
+    "options": [
+      "A. 127",
+      "B. 128",
+      "C. 1023",
+      "D. 255"
+    ],
+    "answer": "A",
+    "analysis": "IEEE 754单精度(32位)：1位符号+8位阶码(偏移127)+23位尾数。双精度(64位)：1位符号+11位阶码(偏移1023)+52位尾数。移码使阶码可正可负，便于浮点数比较。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-012",
+    "chapter": 1,
+    "stem": "Cache的写回策略中，写直达(Write Through)与写回(Write Back)的区别是：",
+    "options": [
+      "A. 写直达同时写Cache和主存；写回只写Cache，替换时才写主存",
+      "B. 写回同时写两者，写直达只写Cache",
+      "C. 两者相同",
+      "D. 写直达更快"
+    ],
+    "answer": "A",
+    "analysis": "写直达(Write Through)：写Cache同时写主存，简单但总线流量大。写回(Write Back)：只写Cache，修改位(dirty bit)标记，替换时若已修改才写回主存。写回效率高但一致性复杂。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-013",
+    "chapter": 1,
+    "stem": "I/O接口的功能不包括：",
+    "options": [
+      "A. 地址译码",
+      "B. 执行程序指令",
+      "C. 数据缓冲",
+      "D. 信号转换"
+    ],
+    "answer": "B",
+    "analysis": "I/O接口功能：地址译码(识别CPU寻址)、数据缓冲(速率匹配)、信号转换(电平/格式)、中断控制、错误检测。执行程序指令是CPU的功能。接口寄存器包括数据端口、状态端口、控制端口。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-014",
+    "chapter": 1,
+    "stem": "在定点补码运算中，溢出的正确判断方法是：",
+    "options": [
+      "A. 符号位进位与最高位进位相同则溢出",
+      "B. 符号位进位与最高位进位不同则溢出",
+      "C. 只看符号位变化",
+      "D. 结果是否为0"
+    ],
+    "answer": "B",
+    "analysis": "补码溢出判断：符号位进位(CF)异或最高位进位(VF)为1时溢出。双符号位(变形补码)：01(正溢出)、10(负溢出)为溢出。单符号位补码：正+正得负或负+负得正必然溢出。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-015",
+    "chapter": 1,
+    "stem": "流水线的段数与理想加速比的关系是：",
+    "options": [
+      "A. 段数越多加速比越大，线性增长",
+      "B. 段数越多加速比越大，但有上限",
+      "C. 段数越多加速比越小",
+      "D. 段数与加速比无关"
+    ],
+    "answer": "B",
+    "analysis": "理想加速比=段数(若各段时间相等且无冒险)。实际加速比<段数，原因：流水线开销(寄存器延迟、时钟歪斜)、冒险(数据/控制/资源)导致气泡、Amdahl定律(加速比受串行部分限制)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-016",
+    "chapter": 1,
+    "stem": "计算机系统中，控制器(Control Unit)的功能是：",
+    "options": [
+      "A. 执行算术逻辑运算",
+      "B. 指令译码、时序控制、产生控制信号",
+      "C. 存储程序和数据",
+      "D. 管理I/O设备"
+    ],
+    "answer": "B",
+    "analysis": "CPU两大部件：运算器(ALU，算术逻辑运算)、控制器(取指->译码->执行，产生微操作控制信号)。控制器实现方式：硬布线(组合逻辑，速度快但复杂)、微程序(存储微指令，易修改)。现代CPU采用微程序+硬布线混合。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-017",
+    "chapter": 1,
+    "stem": "按字节编址的内存系统中，32MB内存需要多少根地址线：",
+    "options": [
+      "A. 16根",
+      "B. 20根",
+      "C. 25根",
+      "D. 32根"
+    ],
+    "answer": "C",
+    "analysis": "32MB = 32 * 2^20 = 2^5 * 2^20 = 2^25 字节，需要25根地址线。2^10=1KB(10根)，2^20=1MB(20根)，2^30=1GB(30根)。注意区分字编址与字节编址。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-018",
+    "chapter": 2,
+    "stem": "TCP/IP四层模型中，网际层对应的OSI模型层是：",
+    "options": [
+      "A. 物理层+数据链路层",
+      "B. 网络层",
+      "C. 传输层",
+      "D. 会话层+表示层"
+    ],
+    "answer": "B",
+    "analysis": "TCP/IP四层：应用层(HTTP/FTP/SMTP)、传输层(TCP/UDP)、网际层(IP/ICMP/ARP，对应OSI网络层)、网络接口层(以太网/PPP，对应OSI物理层+数据链路层)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-019",
+    "chapter": 2,
+    "stem": "IP地址172.16.0.100/255.255.0.0属于：",
+    "options": [
+      "A. A类",
+      "B. B类",
+      "C. C类",
+      "D. 私有地址"
+    ],
+    "answer": "B",
+    "analysis": "IP分类：A类(0.x.x.x，/8)、B类(10.x.x.x，/16)、C类(192.168.x.x，/24)。172.16.0.100属于B类私有地址范围(10.0.0.0/8、172.16.0.0/12、192.168.0.0/16)。子网掩码/16表明这是B类默认掩码。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-020",
+    "chapter": 2,
+    "stem": "TCP三次握手的目的是：",
+    "options": [
+      "A. 建立连接并同步序列号",
+      "B. 断开连接",
+      "C. 发送数据",
+      "D. 确认接收能力"
+    ],
+    "answer": "A",
+    "analysis": "TCP三次握手：SYN(seq=x)->SYN+ACK(seq=y,ack=x+1)->ACK(ack=y+1)。目的：(1)建立连接；(2)同步双方初始序列号(ISN)；(3)防止历史连接初始化(old duplicate SYN)。四次挥手断开连接。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-021",
+    "chapter": 2,
+    "stem": "HTTPS协议默认使用端口：",
+    "options": [
+      "A. 80",
+      "B. 443",
+      "C. 8080",
+      "D. 21"
+    ],
+    "answer": "B",
+    "analysis": "常见端口：HTTP 80、HTTPS 443、FTP 21(控制)/20(数据)、SSH 22、SMTP 25、DNS 53。HTTPS=HTTP+SSL/TLS，使用TLS加密传输。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-022",
+    "chapter": 2,
+    "stem": "以下哪种攻击属于DDoS攻击：",
+    "options": [
+      "A. SQL注入",
+      "B. SYN Flood",
+      "C. XSS跨站脚本",
+      "D. 社会工程学"
+    ],
+    "answer": "B",
+    "analysis": "DDoS(分布式拒绝服务)：通过大量请求耗尽目标资源。类型：SYN Flood(TCP半开连接)、UDP Flood、HTTP Flood(CC攻击)。SQL注入和XSS是应用层攻击。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-023",
+    "chapter": 2,
+    "stem": "OSI模型中，负责路由选择的层是：",
+    "options": [
+      "A. 物理层",
+      "B. 数据链路层",
+      "C. 网络层",
+      "D. 传输层"
+    ],
+    "answer": "C",
+    "analysis": "OSI各层功能：物理层(比特流)、数据链路层(帧/交换机)、网络层(IP地址/路由/路由器，路由选择)、传输层(TCP/UDP/端口)、会话层、表示层、应用层。路由选择是网络层的核心功能。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-024",
+    "chapter": 2,
+    "stem": "ARP协议的作用是：",
+    "options": [
+      "A. IP地址解析为MAC地址",
+      "B. MAC地址解析为IP地址",
+      "C. 域名解析为IP地址",
+      "D. 路由选择"
+    ],
+    "answer": "A",
+    "analysis": "ARP(Address Resolution Protocol)：已知IP地址，通过广播请求获取对端MAC地址。RARP：已知MAC获取IP(已被DHCP取代)。DNS：域名->IP。路由选择由路由器完成。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-025",
+    "chapter": 2,
+    "stem": "以下哪个是应用层协议：",
+    "options": [
+      "A. TCP",
+      "B. IP",
+      "C. HTTP",
+      "D. Ethernet"
+    ],
+    "answer": "C",
+    "analysis": "TCP/IP协议栈：应用层(HTTP/HTTPS/FTP/SMTP/DNS)、传输层(TCP/UDP)、网际层(IP/ARP)、网络接口层(以太网/PPP)。TCP是传输层，IP是网际层，Ethernet是网络接口层。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-026",
+    "chapter": 2,
+    "stem": "子网掩码255.255.255.0对应的CIDR表示是：",
+    "options": [
+      "A. /8",
+      "B. /16",
+      "C. /24",
+      "D. /32"
+    ],
+    "answer": "C",
+    "analysis": "子网掩码中1的个数：255.255.255.0=11111111.11111111.11111111.00000000，共24个1，即/24。255.255.0.0=/16。CIDR(无类域间路由)用/前缀长度表示网络位。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-027",
+    "chapter": 2,
+    "stem": "以下关于TCP和UDP的描述，错误的是：",
+    "options": [
+      "A. TCP提供可靠传输，UDP提供不可靠传输",
+      "B. TCP是面向连接的，UDP是无连接的",
+      "C. TCP传输效率高于UDP",
+      "D. TCP有流量控制和拥塞控制"
+    ],
+    "answer": "C",
+    "analysis": "TCP可靠但开销大(三次握手、确认重传、流量控制、拥塞控制)；UDP不可靠但高效(无连接、无确认)。TCP适用于文件传输；UDP适用于实时音视频、DNS查询。TCP传输效率低于UDP。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-028",
+    "chapter": 2,
+    "stem": "IPv4地址空间总量为：",
+    "options": [
+      "A. 2^16",
+      "B. 2^32",
+      "C. 2^64",
+      "D. 2^128"
+    ],
+    "answer": "B",
+    "analysis": "IPv4：32位地址空间，共2^32约43亿个地址。因地址耗尽引入NAT和IPv6(128位，2^128)。IPv4分类地址浪费严重，CIDR和NAT缓解了地址短缺。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-029",
+    "chapter": 2,
+    "stem": "DNS协议默认使用端口：",
+    "options": [
+      "A. 53",
+      "B. 80",
+      "C. 443",
+      "D. 25"
+    ],
+    "answer": "A",
+    "analysis": "DNS默认端口53(UDP为主，TCP为辅用于区域传输)。DNS解析：本地缓存->本地DNS->根DNS->顶级域DNS->权威DNS。记录类型：A(IPv4)、AAAA(IPv6)、CNAME(别名)、MX(邮件)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-030",
+    "chapter": 2,
+    "stem": "HTTP状态码中，表示服务器内部错误的是：",
+    "options": [
+      "A. 404",
+      "B. 500",
+      "C. 403",
+      "D. 200"
+    ],
+    "answer": "B",
+    "analysis": "HTTP状态码：1xx信息、2xx成功(200OK)、3xx重定向、4xx客户端错误(400/403/404)、5xx服务器错误(500服务器内部错误/502网关错误/503服务不可用)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-031",
+    "chapter": 2,
+    "stem": "VLAN的主要作用是：",
+    "options": [
+      "A. 提高网络速度",
+      "B. 隔离广播域，提高安全性和管理灵活性",
+      "C. 增加IP地址数量",
+      "D. 减少网络延迟"
+    ],
+    "answer": "B",
+    "analysis": "VLAN(Virtual LAN)：在物理网络上逻辑划分广播域。优点：隔离广播域(减少广播流量)、增强安全性(不同VLAN隔离)、灵活管理(逻辑分组不受物理位置限制)。VLAN间通信需要路由器/三层交换机。VLAN标签(802.1Q)4字节。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-032",
+    "chapter": 2,
+    "stem": "RARP协议的作用是：",
+    "options": [
+      "A. 已知IP地址，获取MAC地址",
+      "B. 已知MAC地址，获取IP地址",
+      "C. 路由选择",
+      "D. 域名解析"
+    ],
+    "answer": "B",
+    "analysis": "ARP：IP->MAC；RARP：MAC->IP(已被DHCP取代)。DHCP(Dynamic Host Configuration Protocol)动态分配IP地址，过程：DHCP Discover->Offer->Request->ACK(DORA)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-033",
+    "chapter": 2,
+    "stem": "TCP/IP网络中，子网掩码的作用是：",
+    "options": [
+      "A. 加密网络数据",
+      "B. 划分网络地址和主机地址，确定网络范围",
+      "C. 加速数据传输",
+      "D. 存储路由表"
+    ],
+    "answer": "B",
+    "analysis": "子网掩码(Subnet Mask)与IP地址按位与得到网络地址，确定主机所属网络。CIDR表示法：192.168.1.0/24。子网划分(Subnetting)将大网络划分为小网络，减少广播域。VLSM(可变长子网掩码)进一步优化。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-034",
+    "chapter": 2,
+    "stem": "以下哪种无线网络标准的速度最快：",
+    "options": [
+      "A. 802.11b",
+      "B. 802.11g",
+      "C. 802.11n",
+      "D. 802.11ac"
+    ],
+    "answer": "D",
+    "analysis": "WiFi标准演进：802.11b(11Mbps,2.4G)->802.11g(54Mbps,2.4G)->802.11n(600Mbps,2.4G/5G,MIMO)->802.11ac(3.5Gbps,5G,OFDM)->802.11ax(WiFi6,9.6Gbps)。802.11ac比n快。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-035",
+    "chapter": 3,
+    "stem": "信息系统生命周期的阶段顺序是：",
+    "options": [
+      "A. 规划->分析->设计->实施->运行维护",
+      "B. 设计->规划->分析->实施->运行维护",
+      "C. 规划->设计->分析->实施->运行维护",
+      "D. 分析->规划->设计->实施->运行维护"
+    ],
+    "answer": "A",
+    "analysis": "信息系统生命周期：总体规划(可行性研究/项目立项)->系统分析(需求分析/逻辑设计)->系统设计(物理设计/总体设计/详细设计)->系统实施(编码/测试/部署)->运行维护(改正性/适应性/完善性维护)。这是一个循环迭代的过程。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-036",
+    "chapter": 3,
+    "stem": "可行性研究不包括以下哪个方面：",
+    "options": [
+      "A. 技术可行性",
+      "B. 经济可行性",
+      "C. 法律可行性",
+      "D. 设计可行性"
+    ],
+    "answer": "D",
+    "analysis": "可行性研究包括：技术可行性(现有技术能否实现)、经济可行性(成本效益分析)、法律可行性(是否符合法律法规)、操作可行性(社会因素/用户接受度)。设计可行性不是标准分类。可行性研究报告是项目立项依据。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-037",
+    "chapter": 3,
+    "stem": "需求工程的主要活动不包括：",
+    "options": [
+      "A. 需求获取",
+      "B. 需求分析",
+      "C. 需求验证",
+      "D. 需求编码"
+    ],
+    "answer": "D",
+    "analysis": "需求工程活动：需求获取( interviews/问卷/观察/JAD)、需求分析(建模/DFD/UML)、需求规格说明(SRS文档)、需求验证(评审/原型验证)、需求管理(变更控制/跟踪)。需求编码是开发阶段的活动。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-038",
+    "chapter": 3,
+    "stem": "数据流图(DFD)中的数据存储(Data Store)表示：",
+    "options": [
+      "A. 处理过程",
+      "B. 数据的静态存储(文件/数据库)",
+      "C. 外部实体",
+      "D. 数据流"
+    ],
+    "answer": "B",
+    "analysis": "DFD元素：加工(圆形，数据变换)、数据流(箭头，数据传递)、数据存储(双横线，静态数据)、外部实体(矩形，系统边界外)。分层DFD：顶层(Context Diagram)->中层(0层)->底层。数据流图不反映控制流。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-039",
+    "chapter": 3,
+    "stem": "结构化设计方法(SD)的总体设计阶段，主要任务是：",
+    "options": [
+      "A. 编写程序代码",
+      "B. 将数据流图映射为软件模块结构图",
+      "C. 测试程序",
+      "D. 分析用户需求"
+    ],
+    "answer": "B",
+    "analysis": "结构化设计(Structured Design)：基于DFD的变换分析或事务分析，映射为模块结构图(SC)。变换分析：输入->变换->输出映射为三层结构(输入/变换/输出模块)。设计原则：高内聚低耦合。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-040",
+    "chapter": 3,
+    "stem": "Jackson系统开发方法(JSD)的核心思想是：",
+    "options": [
+      "A. 数据流驱动",
+      "B. 数据结构决定程序结构",
+      "C. 事件驱动",
+      "D. 状态转换驱动"
+    ],
+    "answer": "B",
+    "analysis": "JSD(Jackson System Development)：核心是数据结构映射程序结构。分析阶段建立数据结构表示(Jackson图/结构图)，设计阶段将数据结构映射为程序结构。适用于输入/输出数据结构明显的系统(报表生成、批处理)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-041",
+    "chapter": 3,
+    "stem": "企业系统规划方法(BSP)的核心是：",
+    "options": [
+      "A. 识别企业过程和数据类",
+      "B. 编写程序代码",
+      "C. 数据库设计",
+      "D. 网络规划"
+    ],
+    "answer": "A",
+    "analysis": "BSP(Business System Planning)：自上而下识别企业过程(业务活动)，识别数据类(资源)，建立两者矩阵(C/U矩阵)，确定信息系统总体架构。C/U矩阵：C(Create创建)、U(Use使用)。BSP是IBM方法。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-042",
+    "chapter": 3,
+    "stem": "UML中，用于描述系统静态结构的图是：",
+    "options": [
+      "A. 时序图",
+      "B. 用例图",
+      "C. 类图、对象图、构件图、部署图",
+      "D. 活动图"
+    ],
+    "answer": "C",
+    "analysis": "UML 2.x图分类：结构图(类图-静态结构/对象图-实例/组件图-物理结构/部署图-硬件部署)描述静态结构；行为图(用例图-功能/活动图-流程/状态机图-生命周期/时序图-时间顺序/通信图-组织结构)描述动态行为。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-043",
+    "chapter": 3,
+    "stem": "信息系统的文档不包括：",
+    "options": [
+      "A. 用户文档",
+      "B. 开发文档",
+      "C. 管理文档",
+      "D. 程序源代码"
+    ],
+    "answer": "D",
+    "analysis": "信息系统文档分三类：用户文档(用户手册/操作手册)、开发文档(需求规格/设计文档/测试报告)、管理文档(项目计划/进度报告/评审记录)。源代码是软件产品本身而非文档。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-044",
+    "chapter": 3,
+    "stem": "原型化方法的优点不包括：",
+    "options": [
+      "A. 用户可直观看到系统原型",
+      "B. 需求明确后开发效率高",
+      "C. 需求定义阶段可减少疏漏",
+      "D. 完全不需要文档"
+    ],
+    "answer": "D",
+    "analysis": "原型化方法优点：用户早期参与、需求逐步明确、降低开发风险、提高用户满意度。缺点：原型可能演变为最终系统但缺乏文档、可能忽略非功能需求、管理困难(范围蔓延)。原型分为抛弃型和演化型。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-045",
+    "chapter": 3,
+    "stem": "CMM(能力成熟度模型)将成熟度分为几个等级：",
+    "options": [
+      "A. 3级",
+      "B. 4级",
+      "C. 5级",
+      "D. 6级"
+    ],
+    "answer": "C",
+    "analysis": "CMM五级(从低到高)：初始级(Chaos)->可重复级(Repeatable)->已定义级(Defined)->已管理级(Managed)->优化级(Optimizing)。CMMI融合了CMM的不同分支，也是五级。CMM已基本被CMMI取代。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-046",
+    "chapter": 3,
+    "stem": "信息系统规划方法中，CSF(关键成功因子)法的核心是：",
+    "options": [
+      "A. 识别企业关键成功因子，确定信息需求",
+      "B. 设计数据库结构",
+      "C. 编写程序代码",
+      "D. 测试系统功能"
+    ],
+    "answer": "A",
+    "analysis": "CSF(Critical Success Factors，关键成功因素法)：识别对组织成功至关重要的少数关键因素(3-6个)，确定信息系统必须支持这些因素。由Daniel提出。与SST(战略集合变换法)都是信息系统规划方法。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-047",
+    "chapter": 3,
+    "stem": "RUP(Rational Unified Process)的核心特点不包括：",
+    "options": [
+      "A. 用例驱动",
+      "B. 以架构为中心",
+      "C. 迭代和增量",
+      "D. 严格按瀑布顺序执行"
+    ],
+    "answer": "D",
+    "analysis": "RUP特点：用例驱动(Use-Case Driven)、以架构为中心(Architecture-Centric)、迭代和增量(Iterative and Incremental)。RUP将开发分为四个阶段：初始(Inception)->细化(Elaboration)->构造(Construction)->交付(Transition)。不是严格瀑布顺序。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-048",
+    "chapter": 3,
+    "stem": "系统设计分为总体设计和详细设计。总体设计的主要任务是：",
+    "options": [
+      "A. 编写程序代码",
+      "B. 设计系统架构、模块划分、接口定义",
+      "C. 测试系统",
+      "D. 分析需求"
+    ],
+    "answer": "B",
+    "analysis": "总体设计(概要设计)：将需求转换为系统架构，包括系统架构设计(架构风格/模式选择)、模块划分(高内聚低耦合)、接口设计(模块间接口)、数据设计(数据库/数据结构)、部署设计。详细设计：具体算法、类方法、界面设计。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-049",
+    "chapter": 3,
+    "stem": "在需求分析中，DFD(数据流图)与程序流程图(Flowchart)的主要区别是：",
+    "options": [
+      "A. DFD表示数据流，程序流程图表示控制流",
+      "B. 两者相同",
+      "C. DFD用于设计，流程图用于分析",
+      "D. 流程图更先进"
+    ],
+    "answer": "A",
+    "analysis": "DFD(数据流图)：描述数据在系统中的流动和变换，不涉及控制逻辑。程序流程图(Flowchart)：描述程序执行的控制流程(顺序/分支/循环/调用)。DFD用于需求分析建模，程序流程图用于详细设计。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-050",
+    "chapter": 3,
+    "stem": "敏捷宣言(Agile Manifesto)的四项核心价值观是：",
+    "options": [
+      "A. 个体和互动高于流程和工具、工作的软件高于详尽的文档、客户合作高于合同谈判、响应变化高于遵循计划",
+      "B. 流程和工具高于个体和互动、详尽文档高于工作软件、合同谈判高于客户合作、遵循计划高于响应变化",
+      "C. 文档优先于软件",
+      "D. 计划优先于变化"
+    ],
+    "answer": "A",
+    "analysis": "敏捷宣言(2001年)：个体和互动高于流程和工具；工作的软件高于详尽的文档；客户合作高于合同谈判；响应变化高于遵循计划。12项原则补充：欢迎变化、频繁交付、业务人员与开发者合作、信任个体、面对面沟通、可运行软件是进度度量等。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-051",
+    "chapter": 3,
+    "stem": "战略数据规划方法(James Martin)中，企业的数据可分为：",
+    "options": [
+      "A. 文档类数据",
+      "B. 数据类(如客户/产品/订单)和信息类",
+      "C. 结构化数据和非结构化数据",
+      "D. 内部数据和外部数据"
+    ],
+    "answer": "B",
+    "analysis": "Martin战略数据规划：识别企业数据类(Resources/Events/Agents，资源/事件/参与者)，建立数据类与业务过程关系(C/U矩阵)。企业数据模型描述数据类及其关系，是信息系统架构的基础。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-052",
+    "chapter": 4,
+    "stem": "软件生命周期中，维护阶段花费的成本通常占：",
+    "options": [
+      "A. 10%-20%",
+      "B. 40%-60%",
+      "C. 80%-90%",
+      "D. 5%-10%"
+    ],
+    "answer": "B",
+    "analysis": "软件成本分布：维护(40%-60%，最高)>开发(30%-40%)>需求(5%-10%)>设计(10%-15%)>编码(10%-15%)。维护成本高是因为缺陷修复、环境适配、功能增强。这也是为什么强调可维护性设计和预防性维护。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-053",
+    "chapter": 4,
+    "stem": "软件开发模型中，强调风险分析的模型是：",
+    "options": [
+      "A. 瀑布模型",
+      "B. 螺旋模型",
+      "C. 原型模型",
+      "D. 增量模型"
+    ],
+    "answer": "B",
+    "analysis": "螺旋模型(Boehm)：结合瀑布和原型，每圈包含：制定计划->风险分析->实施工程->客户评估。风险驱动，适合大型复杂高风险项目。缺点：依赖风险评估 expertise，可能成本较高。喷泉模型(OO开发，迭代无间隙)、增量模型(分批交付)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-054",
+    "chapter": 4,
+    "stem": "UML中，用于描述对象间动态交互(时间顺序)的图是：",
+    "options": [
+      "A. 类图",
+      "B. 用例图",
+      "C. 时序图(顺序图)",
+      "D. 部署图"
+    ],
+    "answer": "C",
+    "analysis": "时序图(Sequence Diagram)：展示对象间消息传递的时间顺序，强调时间线。参与者、对象生命线、消息(同步/异步/返回)。协作图(通信图)展示对象交互但强调组织结构，两者可转换。活动图展示活动流程(可并行)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-055",
+    "chapter": 4,
+    "stem": "黑盒测试中等价类划分的理论依据是：",
+    "options": [
+      "A. 每个等价类中选一个测试用例即可代表整个类",
+      "B. 必须测试所有输入",
+      "C. 测试边界值",
+      "D. 测试程序内部路径"
+    ],
+    "answer": "A",
+    "analysis": "等价类划分：将输入域划分为若干等价类(有效/无效)，每个类选一个代表性测试用例。边界值分析补充边界附近测试。两者都是黑盒测试(功能测试)。白盒测试(结构测试)：语句覆盖、分支覆盖、路径覆盖。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-056",
+    "chapter": 4,
+    "stem": "白盒测试中，路径覆盖的要求是：",
+    "options": [
+      "A. 每条语句至少执行一次",
+      "B. 每个判定的真假分支都至少执行一次",
+      "C. 每条独立路径至少执行一次",
+      "D. 每个条件的所有取值都出现"
+    ],
+    "answer": "C",
+    "analysis": "覆盖强度递增：语句覆盖(最弱)>判定覆盖>条件覆盖>判定-条件覆盖>条件组合覆盖(最强，用例爆炸)>路径覆盖(每条独立路径)。路径覆盖=McCabe环路复杂度V(G)条独立路径。实际测试通常达到判定覆盖。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-057",
+    "chapter": 4,
+    "stem": "软件维护的类型中，适应性维护是指：",
+    "options": [
+      "A. 修复错误",
+      "B. 增加新功能",
+      "C. 适应环境变化(如操作系统升级)",
+      "D. 预防未来问题"
+    ],
+    "answer": "C",
+    "analysis": "维护四类型：改正性(修复缺陷，20%-25%)、适应性(适应环境变化，25%-30%)、完善性(增加功能/改进性能，50%-60%，占比最高)、预防性(预防未来问题，<5%)。软件维护是软件生命周期中最长、最昂贵的阶段。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-058",
+    "chapter": 4,
+    "stem": "CMMI的成熟度等级中，ML3(已定义级)的特征是：",
+    "options": [
+      "A. 过程不可预测",
+      "B. 项目级管理过程已定义",
+      "C. 组织级标准过程集已定义并推广",
+      "D. 使用统计等量化方法"
+    ],
+    "answer": "C",
+    "analysis": "CMMI五级：ML1初始级(过程不可预测)->ML2已管理级(项目级，有基本项目管理)->ML3已定义级(组织级，标准过程集，过程制度化)->ML4量化管理级(组织级量化目标，统计过程控制)->ML5优化级(持续改进，创新)。ML3是过程定义的关键跃迁。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-059",
+    "chapter": 4,
+    "stem": "敏捷开发方法中，Scrum框架包含的核心角色是：",
+    "options": [
+      "A. 产品负责人、Scrum Master、开发团队",
+      "B. 项目经理、开发人员、测试人员",
+      "C. 产品经理、技术经理、测试经理",
+      "D. 架构师、开发人员、测试人员"
+    ],
+    "answer": "A",
+    "analysis": "Scrum三大角色：Product Owner(产品负责人，定义产品Backlog，确定优先级)、Scrum Master(流程教练，移除障碍，保护团队)、Development Team(自组织跨职能团队，3-9人)。核心事件：Sprint(2-4周迭代)、Sprint Planning、Daily Standup、Sprint Review、Retrospective。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-060",
+    "chapter": 4,
+    "stem": "软件测试与调试(Debug)的区别是：",
+    "options": [
+      "A. 测试是为了发现错误，调试是为了定位和修复错误",
+      "B. 两者相同",
+      "C. 测试是为了证明程序正确，调试是为了改进性能",
+      "D. 测试是开发人员的事，调试是测试人员的事"
+    ],
+    "answer": "A",
+    "analysis": "测试(Testing)：运行程序发现错误，证明程序存在缺陷(不能证明没有错误，Dijkstra)。调试(Debugging)：定位错误原因，修复错误。测试由测试人员执行(黑盒为主)；调试由开发人员执行。测试策略：静态测试(评审/静态分析)、动态测试(白盒/黑盒)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-061",
+    "chapter": 4,
+    "stem": "软件质量模型中，可靠性(Reliability)的子特性不包括：",
+    "options": [
+      "A. 成熟性",
+      "B. 容错性",
+      "C. 易恢复性",
+      "D. 易理解性"
+    ],
+    "answer": "D",
+    "analysis": "ISO 25010质量模型：功能性、可靠性(成熟性/容错性/易恢复性)、易用性(易理解性/易学性/易操作性/用户错误防御性/用户界面美观性)、效率(时间特性/资源利用率)、可维护性(易分析性/易修改性/稳定性/易测试性)、可移植性(适应性/易安装性/共存性/易替换性)。易理解性属于易用性。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-062",
+    "chapter": 4,
+    "stem": "在McCall质量模型中，产品运行关注的是：",
+    "options": [
+      "A. 可维护性、可测试性、灵活性",
+      "B. 正确性、可靠性、效率、完整性、可用性",
+      "C. 可移植性、可复用性、互操作性",
+      "D. 可理解性、可修改性、可测试性"
+    ],
+    "answer": "B",
+    "analysis": "McCall三层次：产品运行(Correctness/Reliability/Efficiency/Integrity/Usability)、产品修正(Maintainability/Flexibility/Testability)、产品转移(Portability/Reusability/Interoperability)。注意与ISO 25010的区别。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-063",
+    "chapter": 4,
+    "stem": "极限编程(XP)的工程实践不包括：",
+    "options": [
+      "A. 结对编程",
+      "B. 测试驱动开发(TDD)",
+      "C. 大型设计 upfront",
+      "D. 持续集成"
+    ],
+    "answer": "C",
+    "analysis": "XP实践：结对编程、TDD(先写测试再写代码)、持续集成(多次/天)、小版本发布、客户现场(on-site customer)、重构(持续改进设计)、简单设计(最小够用)、代码集体所有权、编码规范。反对大型 upfront 设计(Big Design Up Front)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-064",
+    "chapter": 4,
+    "stem": "COCOMO模型是用于：",
+    "options": [
+      "A. 估算软件开发成本和工作量",
+      "B. 设计软件架构",
+      "C. 测试软件质量",
+      "D. 管理项目进度"
+    ],
+    "answer": "A",
+    "analysis": "COCOMO(Constructive Cost Model)：软件成本估算模型。基本COCOMO：Effort = a*(KLOC)^b。三种模式：有机(Small, a=2.4,b=1.05)、半有机(Medium, a=3.0,b=1.12)、嵌入(Large, a=3.6,b=1.20)。中间COCOMO和详细COCOMO加入成本驱动因子(15个)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-065",
+    "chapter": 4,
+    "stem": "软件过程改进模型CMM/CMMI中，一个组织要达到成熟，最关键的转折点是：",
+    "options": [
+      "A. 从ML1到ML2",
+      "B. 从ML2到ML3",
+      "C. 从ML3到ML4",
+      "D. 从ML4到ML5"
+    ],
+    "answer": "B",
+    "analysis": "从ML2到ML3是关键转折点：从项目级管理跃迁到组织级过程定义。ML2强调项目有基本管理实践；ML3要求组织建立标准过程资产(过程库、培训、评估)。统计过程控制(ML4)和持续优化(ML5)在ML3基础上才能有效实施。多数组织卡在ML2-ML3。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-066",
+    "chapter": 4,
+    "stem": "变更控制流程的核心要素不包括：",
+    "options": [
+      "A. 变更请求提交",
+      "B. 变更影响分析",
+      "C. 随意实施变更",
+      "D. 变更批准与跟踪"
+    ],
+    "answer": "C",
+    "analysis": "变更控制(Configuration Management/Change Control)：变更请求->影响分析(范围/进度/成本/质量)->CCB(变更控制委员会)审批->实施变更->验证->更新基线。核心：所有变更需经正式审批，不得随意实施。基线(Baseline)是变更的基准。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-067",
+    "chapter": 4,
+    "stem": "在软件配置管理中，基线的定义是：",
+    "options": [
+      "A. 软件开发的时间表",
+      "B. 经过正式评审批准的配置项集合，作为后续变更基准",
+      "C. 软件的成本预算",
+      "D. 测试的基准"
+    ],
+    "answer": "B",
+    "analysis": "配置管理基线：经过正式评审和批准的配置项集合，作为后续开发变更的依据。典型基线：功能基线(需求)、分配基线(设计)、产品基线(产品)。配置项(CI)：软件配置的基本单元(文档/代码/数据)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-068",
+    "chapter": 4,
+    "stem": "极限编程(XP)中，关于结对编程(Pair Programming)的正确描述是：",
+    "options": [
+      "A. 两名程序员共用一台机器，一人编码一人审查",
+      "B. 一名程序员同时负责多个模块",
+      "C. 程序员独立工作后再合并",
+      "D. 结对编程效率更低，应避免"
+    ],
+    "answer": "A",
+    "analysis": "结对编程：两名程序员共用一台机器，一人驾驶(Driver，编码)、一人导航(Navigator，审查/思考下一步)。优点：代码质量高、知识共享、减少缺陷；缺点：成本较高(两人做一人工作)。适用于复杂任务、知识传递、代码审查。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-069",
+    "chapter": 5,
+    "stem": "关系数据库中，E-R模型转换为关系模式的规则，对于m:n联系，应：",
+    "options": [
+      "A. 在任一端加入外键",
+      "B. 转换为独立的关系模式，包含两端主键",
+      "C. 忽略该联系",
+      "D. 合并到某一端"
+    ],
+    "answer": "B",
+    "analysis": "E-R转关系：实体->关系(属性变列)；1:1联系可任一端加入外键或合并；1:n联系在n端加入外键；m:n联系必须转换为独立关系(包含两端主键+联系属性作为联合主键)。1:1联系若双方都强制参与，需独立关系。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-070",
+    "chapter": 5,
+    "stem": "关系模式中，满足BCNF但可能不满足4NF的情况是：",
+    "options": [
+      "A. 存在多值依赖",
+      "B. 存在传递函数依赖",
+      "C. 存在部分函数依赖",
+      "D. 不存在冗余"
+    ],
+    "answer": "A",
+    "analysis": "范式层次：1NF(原子性)->2NF(消除部分依赖)->3NF(消除传递依赖)->BCNF(所有决定因素都是候选键)->4NF(消除多值依赖MVD)。BCNF处理函数依赖，4NF处理多值依赖。如：一门课有多个参考书(多值依赖)，需拆分为两个关系满足4NF。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-071",
+    "chapter": 5,
+    "stem": "SQL中，用于删除表中所有数据但保留表结构的命令是：",
+    "options": [
+      "A. DROP TABLE",
+      "B. DELETE FROM table",
+      "C. TRUNCATE TABLE",
+      "D. ALTER TABLE"
+    ],
+    "answer": "C",
+    "analysis": "TRUNCATE：DDL，快速清空表(释放数据页)，不触发触发器，不可回滚(隐式提交)。DELETE：DML，逐行删除，可带WHERE，可回滚，触发DELETE触发器。DROP：删除整个表结构+数据。TRUNCATE适合清空大数据量表。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-072",
+    "chapter": 5,
+    "stem": "事务的隔离级别中，可防止脏读的是：",
+    "options": [
+      "A. Read Uncommitted",
+      "B. Read Committed",
+      "C. Repeatable Read",
+      "D. Serializable"
+    ],
+    "answer": "B",
+    "analysis": "SQL标准四级隔离：Read Uncommitted(允许脏读/不可重复读/幻读)->Read Committed(禁止脏读，InnoDB默认)->Repeatable Read(禁止脏读+不可重复读，InnoDB默认RR通过MVCC+Next-Key Locking实际也防止幻读)->Serializable(最高，完全可串行化，性能最低)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-073",
+    "chapter": 5,
+    "stem": "数据库索引类型中，B+树索引的特点是：",
+    "options": [
+      "A. 非叶节点存数据",
+      "B. 非叶节点只存索引关键字，叶节点存全量数据且有兄弟指针",
+      "C. 不支持范围查询",
+      "D. 高度通常比B树高"
+    ],
+    "answer": "B",
+    "analysis": "B+树：非叶节点(索引节点)只存分隔符(关键字)，叶节点存全量数据且有兄弟指针(便于范围扫描)。B+树高度通常比B树更低(因非叶节点不含数据，能容纳更多键)。B+树是数据库索引(MySQL InnoDB)首选。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-074",
+    "chapter": 5,
+    "stem": "数据库设计中，概念结构设计的任务是：",
+    "options": [
+      "A. 设计物理存储结构",
+      "B. 建立E-R模型，独立于DBMS",
+      "C. 编写SQL代码",
+      "D. 设计用户界面"
+    ],
+    "answer": "B",
+    "analysis": "数据库设计三阶段：概念结构设计(E-R模型，独立于DBMS和机器)、逻辑结构设计(E-R转关系模式，特定DBMS)、物理结构设计(存储结构/索引/分区)。概念设计关注数据本身，忽略实现细节。E-R图：实体、属性、联系。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-075",
+    "chapter": 5,
+    "stem": "关系数据库中，聚集函数COUNT(*)与COUNT(column)的区别是：",
+    "options": [
+      "A. 两者相同",
+      "B. COUNT(*)统计所有行(含NULL)，COUNT(column)只统计非NULL",
+      "C. COUNT(*)不统计NULL",
+      "D. COUNT(column)统计NULL"
+    ],
+    "answer": "B",
+    "analysis": "聚集函数：COUNT(*)统计所有行；COUNT(column)统计指定列非NULL行数。SUM/AVG/MIN/MAX忽略NULL值。GROUP BY分组，HAVING过滤分组(WHERE过滤原始行)。注意：WHERE子句不能使用聚集函数。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-076",
+    "chapter": 5,
+    "stem": "嵌入式SQL中，游标(Cursor)的作用是：",
+    "options": [
+      "A. 提高查询速度",
+      "B. 处理SQL集合操作与宿主语言单记录处理的鸿沟",
+      "C. 加密数据",
+      "D. 存储过程"
+    ],
+    "answer": "B",
+    "analysis": "嵌入式SQL(Pro*C/JDBC/ODBC)将SQL嵌入宿主语言(C/Java)。核心问题：SQL集合操作vs宿主语言单记录处理。游标(Cursor)用于遍历查询结果集：DECLARE->OPEN->FETCH(逐行)->CLOSE。显式游标和隐式游标(INSERT/UPDATE/DELETE)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-077",
+    "chapter": 5,
+    "stem": "以下哪个不是数据库并发控制的方法：",
+    "options": [
+      "A. 封锁(Locking)",
+      "B. 时间戳排序(Timestamp)",
+      "C. 多版本并发控制(MVCC)",
+      "D. 数据加密"
+    ],
+    "answer": "D",
+    "analysis": "并发控制三种基本方法：封锁(排他锁X锁/共享锁S锁，两阶段锁2PL)、时间戳排序(每个事务分配时间戳，冲突时回滚)、MVCC(多版本，读写不阻塞，如PostgreSQL/MySQL RR级别)。数据加密是安全技术，不是并发控制方法。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-078",
+    "chapter": 5,
+    "stem": "数据仓库与操作型数据库的关键区别，数据仓库是：",
+    "options": [
+      "A. 面向事务(OLTP)",
+      "B. 面向主题，集成历史数据，用于分析(OLAP)",
+      "C. 实时更新",
+      "D. 高度规范化"
+    ],
+    "answer": "B",
+    "analysis": "数据仓库特征(Inmon)：面向主题(Subject-oriented)、集成(Integrated)、非易失(Non-volatile，只增不改)、时变(Time-variant)。OLTP(联机事务处理，操作型DB)vs OLAP(联机分析处理，数据仓库)。数据仓库通常反范式化(星型/雪花模型)以优化查询性能。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-079",
+    "chapter": 5,
+    "stem": "数据库的三级模式结构中，外模式/模式映像的作用是：",
+    "options": [
+      "A. 提高存储效率",
+      "B. 保证数据的逻辑独立性(模式变化不影响外模式)",
+      "C. 提高查询速度",
+      "D. 保证物理独立性"
+    ],
+    "answer": "B",
+    "analysis": "三级模式：外模式(用户视图/子模式)、模式(全局逻辑结构/概念模式)、内模式(物理存储结构)。两级映射：外模式-模式映射(逻辑独立性，模式变化只需修改映射)、模式-内模式映射(物理独立性，存储变化不影响逻辑结构)。数据独立性是数据库核心优势。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-080",
+    "chapter": 5,
+    "stem": "SQL的HAVING子句与WHERE子句的主要区别是：",
+    "options": [
+      "A. HAVING用于分组后过滤，WHERE用于分组前过滤",
+      "B. 两者相同",
+      "C. WHERE用于分组后过滤",
+      "D. HAVING只能用于SELECT"
+    ],
+    "answer": "A",
+    "analysis": "WHERE：在GROUP BY之前过滤原始行，不能使用聚集函数。HAVING：在GROUP BY之后过滤分组结果，可使用聚集函数。执行顺序：FROM->WHERE->GROUP BY->HAVING->SELECT->ORDER BY。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-081",
+    "chapter": 5,
+    "stem": "关系代数中，自然连接(Natural Join)与等值连接(Theta Join)的区别是：",
+    "options": [
+      "A. 自然连接自动按相同属性名连接，结果去重；等值连接需指定条件，不去重",
+      "B. 两者完全相同",
+      "C. 等值连接更快",
+      "D. 自然连接不能用于多个关系"
+    ],
+    "answer": "A",
+    "analysis": "关系连接：笛卡尔积->选择(等值条件)得到等值连接(Theta Join)。自然连接：等值连接的特例，自动按同名属性连接，结果中去掉重复列。外连接(LEFT/RIGHT/FULL OUTER JOIN)：保留不满足连接条件的元组，用NULL填充。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-082",
+    "chapter": 5,
+    "stem": "在数据库恢复技术中，Write-Ahead Logging(WAL)协议的核心规则是：",
+    "options": [
+      "A. 先写数据，后写日志",
+      "B. 先写日志(Log)，后写数据",
+      "C. 只写日志不写数据",
+      "D. 日志和数据同时写"
+    ],
+    "answer": "B",
+    "analysis": "WAL(预写日志)：任何数据修改必须先写日志文件，再写数据库缓冲区(进而写磁盘)。保证故障恢复时可通过日志Redo已提交事务(重做)、Undo未提交事务(撤销)。日志文件包含：事务ID、操作类型、数据项旧值和新值。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-083",
+    "chapter": 5,
+    "stem": "数据库设计中的反规范化(Denormalization)的主要目的是：",
+    "options": [
+      "A. 减少数据冗余",
+      "B. 提高查询性能(减少连接操作)",
+      "C. 提高数据一致性",
+      "D. 简化数据库设计"
+    ],
+    "answer": "B",
+    "analysis": "规范化(第三范式/BCNF)：消除冗余、避免异常，但查询需要多表连接(性能低)。反规范化：适度增加冗余(如添加冗余列、派生列、合并表)，减少连接，提高查询性能。常用于数据仓库(星型模型)、报表系统。代价：增加维护成本(更新异常风险)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-084",
+    "chapter": 6,
+    "stem": "软件架构风格中，管道-过滤器(Pipes and Filters)风格的典型应用是：",
+    "options": [
+      "A. Web应用",
+      "B. 编译器、UNIX Shell命令管道",
+      "C. 数据库系统",
+      "D. 实时控制系统"
+    ],
+    "answer": "B",
+    "analysis": "管道-过滤器(数据流风格)：每个过滤器独立进行数据变换，输入输出通过管道连接。优点：构件独立可重用；缺点：不适合交互式系统，批处理性质，共享数据开销大。典型应用：编译器(词法分析->语法分析->语义分析->代码生成)、UNIX shell管道(|)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-085",
+    "chapter": 6,
+    "stem": "C/S架构与B/S架构的典型区别，B/S架构的特点是：",
+    "options": [
+      "A. 需要安装客户端",
+      "B. 通过浏览器访问，零客户端维护",
+      "C. 只能用于局域网",
+      "D. 安全性更高"
+    ],
+    "answer": "B",
+    "analysis": "B/S(Browser/Server)：浏览器作为客户端，无需安装，服务器集中部署。优点：部署成本低、维护简单、跨平台；缺点：交互相对简单、安全性依赖HTTPS、性能受网络影响。C/S：专用客户端，功能丰富但部署维护成本高。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-086",
+    "chapter": 6,
+    "stem": "设计模式中，单例模式(Singleton)的适用场景是：",
+    "options": [
+      "A. 需要创建大量对象",
+      "B. 需要确保一个类只有一个实例(如日志、配置管理器、连接池)",
+      "C. 需要复杂的对象创建逻辑",
+      "D. 需要解耦抽象与实现"
+    ],
+    "answer": "B",
+    "analysis": "单例模式确保类只有一个实例并提供全局访问。应用：日志对象、配置管理器、线程池、数据库连接池、ID生成器。实现要点：私有构造器、静态实例、线程安全(双重检查锁定/静态内部类)。注意：单例增加全局状态，测试困难。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-087",
+    "chapter": 6,
+    "stem": "MVC模式中，Controller的作用是：",
+    "options": [
+      "A. 存储数据",
+      "B. 处理用户输入，协调Model和View",
+      "C. 显示用户界面",
+      "D. 执行业务逻辑"
+    ],
+    "answer": "B",
+    "analysis": "MVC(Model-View-Controller)：Model(数据/业务逻辑)、View(用户界面/显示)、Controller(输入处理/协调)。Vue/React是MVC/MVVM变体。Controller接收用户输入，更新Model，通知View刷新。优点：关注点分离。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-088",
+    "chapter": 6,
+    "stem": "SOA(面向服务架构)的核心技术是：",
+    "options": [
+      "A. 对象序列化",
+      "B. Web Service/ESB(企业服务总线)",
+      "C. 数据库连接池",
+      "D. 缓存技术"
+    ],
+    "answer": "B",
+    "analysis": "SOA核心：服务(Service，自包含、可复用、松耦合)、ESB(Enterprise Service Bus，服务间通信中间件，提供服务路由/转换/编排)、服务注册/发现(UDDI/WSDL)。微服务是SOA的轻量化演进(去ESB、细粒度、独立部署)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-089",
+    "chapter": 6,
+    "stem": "以下哪个不属于GoF创建型设计模式：",
+    "options": [
+      "A. 单例模式",
+      "B. 工厂方法模式",
+      "C. 观察者模式",
+      "D. 建造者模式"
+    ],
+    "answer": "C",
+    "analysis": "GoF 23种设计模式：创建型(单例、工厂方法、抽象工厂、建造者、原型，关注对象创建)、结构型(适配器、桥接、组合、装饰、外观、享元、代理，关注类/对象组合)、行为型(观察者、策略、命令、迭代器、模板方法、状态、责任链、中介者、备忘录、解释器、访问者、状态，关注对象间通信)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-090",
+    "chapter": 6,
+    "stem": "软件架构设计中，架构模式与设计模式的区别是：",
+    "options": [
+      "A. 架构模式关注子系统/系统级结构，设计模式关注类/对象级解决方案",
+      "B. 两者没有区别",
+      "C. 架构模式比设计模式更简单",
+      "D. 设计模式比架构模式更抽象"
+    ],
+    "answer": "A",
+    "analysis": "架构模式(Architectural Pattern)：系统级结构决策，如分层架构、管道-过滤器、C/S、B/S、微服务、事件驱动架构。设计模式(Design Pattern)：类/对象级解决方案，如单例、工厂、观察者。架构模式是更高层次的抽象。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-091",
+    "chapter": 6,
+    "stem": "微服务架构的核心特征不包括：",
+    "options": [
+      "A. 单一职责，服务细粒度",
+      "B. 独立部署和扩展",
+      "C. 所有服务共享一个数据库",
+      "D. 技术异构(多语言/多框架)"
+    ],
+    "answer": "C",
+    "analysis": "微服务核心：单一职责(每个服务一个业务能力)、独立部署/扩展(容器化/Docker/K8s)、去中心化治理(技术异构)、去中心化数据管理(每个服务私有数据库，通过API访问)、容错性设计(熔断/降级/限流)、高度自动化(DevOps)。与SOA的区别：粒度、治理方式、ESB。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-092",
+    "chapter": 6,
+    "stem": "RESTful API设计中，HTTP方法GET与POST的主要区别(语义上)是：",
+    "options": [
+      "A. GET不安全，POST安全",
+      "B. GET是幂等的，用于获取资源；POST是非幂等的，用于创建资源",
+      "C. 两者完全相同",
+      "D. GET可携带数据体(body)"
+    ],
+    "answer": "B",
+    "analysis": "HTTP方法语义：GET(获取资源，幂等，安全，可缓存，参数在URL)、POST(创建资源，非幂等，不可缓存，数据在body)、PUT(完整更新，幂等)、DELETE(删除，幂等)。安全：不会修改服务器状态(GET/HEAD/OPTIONS)。幂等：多次执行效果相同。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-093",
+    "chapter": 6,
+    "stem": "CAP定理指出，分布式系统最多同时满足以下哪三个特性中的两个：",
+    "options": [
+      "A. 一致性(C)、可用性(A)、分区容错性(P)",
+      "B. 一致性(C)、原子性(A)、持久性(P)",
+      "C. 性能(P)、可用性(A)、一致性(C)",
+      "D. 安全性(S)、可用性(A)、性能(P)"
+    ],
+    "answer": "A",
+    "analysis": "CAP(Consistency-Availability-Partition tolerance)：分区容错性(P)在分布式系统中是必须的(网络不可靠)，所以实际选择是CP(如ZooKeeper/etcd，强一致)或AP(如Cassandra/Dynamo，高可用)。BASE理论：Basically Available(基本可用)、Soft state(软状态)、Eventually consistent(最终一致)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-094",
+    "chapter": 6,
+    "stem": "在软件架构设计中，服务粒度划分的原则通常是：",
+    "options": [
+      "A. 粒度越大越好，减少服务数量",
+      "B. 粒度适中，遵循单一职责原则，避免过细或过粗",
+      "C. 粒度越小越好，提高灵活性",
+      "D. 粒度与性能无关"
+    ],
+    "answer": "B",
+    "analysis": "微服务粒度：过粗(分布式单体，失去微服务优势)、过细(服务爆炸，运维复杂，网络开销大)。原则：单一职责(一个服务一个业务能力)、团队自治(Conway定律)、独立部署、数据自治。参考领域驱动设计(DDD)的限界上下文(Bounded Context)划分。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-095",
+    "chapter": 6,
+    "stem": "事件驱动架构(Event-Driven Architecture, EDA)的核心组件是：",
+    "options": [
+      "A. 事件生产者、事件消费者、事件通道/代理",
+      "B. 数据库、应用服务器、客户端",
+      "C. 请求、响应、会话",
+      "D. 输入、处理、输出"
+    ],
+    "answer": "A",
+    "analysis": "EDA核心：事件生产者(Event Producer，检测/产生事件)、事件消费者(Event Consumer，响应事件)、事件通道(Event Channel/Broker，如Kafka/RabbitMQ)。优点：松耦合、异步通信、可扩展性。模式：事件通知(简单通知)、事件携带状态传输(EDC，携带数据)、事件溯源(Event Sourcing，存储事件序列重建状态)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-096",
+    "chapter": 6,
+    "stem": "DDD(领域驱动设计)中，限界上下文(Bounded Context)的作用是：",
+    "options": [
+      "A. 定义微服务的部署边界",
+      "B. 明确领域模型的语义边界，同一概念在不同上下文可能有不同含义",
+      "C. 定义数据库分片策略",
+      "D. 限制服务调用次数"
+    ],
+    "answer": "B",
+    "analysis": "DDD核心：限界上下文(Bounded Context)是领域模型的语义边界，同一术语在不同上下文可能代表不同概念(如Product在销售上下文和库存上下文不同)。通过上下文映射图(Context Mapping)定义上下文间关系。限界上下文是微服务划分的重要依据。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-097",
+    "chapter": 6,
+    "stem": "在分布式系统中，服务发现(Service Discovery)的作用是：",
+    "options": [
+      "A. 监控服务性能",
+      "B. 动态获取服务实例的网络地址(IP+端口)，支持动态扩缩容",
+      "C. 负载均衡",
+      "D. 服务熔断"
+    ],
+    "answer": "B",
+    "analysis": "服务发现：解决微服务架构中服务实例动态变化(扩缩容/故障/部署)导致的地址查找问题。模式：客户端发现(如Eureka)+负载均衡(Ribbon)、服务端发现(如K8s Service)。注册中心：Eureka/Nacos/Consul/K8s API Server。流程：服务注册->健康检查->服务发现->负载均衡。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-098",
+    "chapter": 6,
+    "stem": "熔断器模式(Circuit Breaker)的目的是：",
+    "options": [
+      "A. 加速服务调用",
+      "B. 防止故障级联，快速失败(Fail-Fast)，给下游服务恢复时间",
+      "C. 缓存数据",
+      "D. 负载均衡"
+    ],
+    "answer": "B",
+    "analysis": "熔断器模式(容错设计)：监控调用失败率，失败超过阈值则熔断(跳闸)，直接返回降级响应而非继续调用(防止级联故障)。三种状态：闭合(正常)、打开(熔断，快速失败)、半开(试探恢复)。实现：Resilience4j/Sentinel/Hystrix。配合降级、限流、舱壁隔离。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-099",
+    "chapter": 6,
+    "stem": "Lambda架构的核心思想是：",
+    "options": [
+      "A. 使用单一批处理系统",
+      "B. 批处理层(Batch Layer)+速度层(Speed Layer)+服务层(Serving Layer)，兼顾准确性和低延迟",
+      "C. 仅使用流处理",
+      "D. 仅使用关系数据库"
+    ],
+    "answer": "B",
+    "analysis": "Lambda架构：批处理层(预计算全量数据，结果准确但延迟高)、速度层(实时处理新数据，结果近似但延迟低)、服务层(合并批处理结果和速度层结果，响应查询)。Kappa架构简化Lambda：仅用流处理(全量数据重放)，用Kafka存储历史数据。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-100",
+    "chapter": 6,
+    "stem": "CQRS(命令查询责任分离)模式的核心思想是：",
+    "options": [
+      "A. 使用同一个模型处理读写操作",
+      "B. 将命令(写操作)和查询(读操作)分离到不同的模型和数据存储",
+      "C. 只读模型",
+      "D. 只写模型"
+    ],
+    "answer": "B",
+    "analysis": "CQRS(Command Query Responsibility Segregation)：命令(Command，写操作，更新状态)和查询(Query，读操作，返回数据)使用不同的模型和数据存储。写模型(Command Model)处理业务逻辑；读模型(Query Model)通常是反规范化的物化视图(如Elasticsearch/Redis)，优化查询性能。事件溯源(Event Sourcing)常与CQRS结合。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-101",
+    "chapter": 7,
+    "stem": "信息安全三要素(CIA三元组)是：",
+    "options": [
+      "A. 机密性、完整性、可用性",
+      "B. 保密性、完整性、可用性",
+      "C. 机密性、完整性、审计性",
+      "D. 保密性、完整性、可控性"
+    ],
+    "answer": "A",
+    "analysis": "CIA：Confidentiality(机密性/保密性，只有授权方能访问)、Integrity(完整性，数据未被未授权篡改)、Availability(可用性，授权方能及时访问)。扩展：不可否认性(Non-repudiation)、可审计性(Accountability)、可靠性(Reliability)。CIA是信息安全的核心目标。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-102",
+    "chapter": 7,
+    "stem": "以下哪种攻击属于主动攻击：",
+    "options": [
+      "A. 窃听(Eavesdropping)",
+      "B. 流量分析(Traffic Analysis)",
+      "C. 篡改数据(Tampering)",
+      "D. 截获数据"
+    ],
+    "answer": "C",
+    "analysis": "被动攻击：窃听、流量分析(不改变数据，难检测)。主动攻击：篡改数据、伪造身份、重放攻击(Replay)、拒绝服务(DDoS)、恶意软件。主动攻击可检测但难预防，被动攻击难检测但可通过加密预防。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-103",
+    "chapter": 7,
+    "stem": "AES加密算法的分组长度是：",
+    "options": [
+      "A. 64位",
+      "B. 128位",
+      "C. 192位",
+      "D. 256位"
+    ],
+    "answer": "B",
+    "analysis": "AES(Rijndael)：固定分组128位(16字节)。密钥长度可变：128位(10轮)、192位(12轮)、256位(14轮)。取代DES成为美国联邦标准(NIST,2001)。SM4(国密)：分组128位，密钥128位。DES分组64位(已淘汰)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-104",
+    "chapter": 7,
+    "stem": "RSA算法基于的数学难题是：",
+    "options": [
+      "A. 离散对数问题",
+      "B. 大整数分解问题",
+      "C. 椭圆曲线离散对数",
+      "D. 背包问题"
+    ],
+    "answer": "B",
+    "analysis": "RSA：基于大整数分解难题(给定n=p*q，求p和q困难)。公钥(n,e)，私钥(n,d)。加密：c=m^e mod n；解密：m=c^d mod n。ECC(椭圆曲线)：基于椭圆曲线离散对数，密钥更短(256位ECC约等于3072位RSA)。SM2(国密)：基于ECC。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-105",
+    "chapter": 7,
+    "stem": "数字签名的功能不包括：",
+    "options": [
+      "A. 身份认证",
+      "B. 数据加密",
+      "C. 完整性验证",
+      "D. 不可否认性"
+    ],
+    "answer": "B",
+    "analysis": "数字签名：发送方用私钥对消息摘要签名，接收方用公钥验证。提供：身份认证(验证发送方)、完整性(数据未被篡改)、不可否认性(发送方不能抵赖)。注意：签名不等于加密。签名是私钥签名+公钥验证；加密是公钥加密+私钥解密。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-106",
+    "chapter": 7,
+    "stem": "X.509证书的签发机构是：",
+    "options": [
+      "A. 用户自己",
+      "B. CA(证书颁发机构)",
+      "C. 操作系统",
+      "D. 浏览器"
+    ],
+    "answer": "B",
+    "analysis": "X.509证书由CA(证书颁发机构，如VeriSign/Let's Encrypt)签发。证书包含：版本、序列号、签名算法、颁发者、有效期、主体(域名/IP)、主体公钥、CA签名。SSL/TLS握手：服务器发送证书，客户端验证CA签名和有效期。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-107",
+    "chapter": 7,
+    "stem": "防火墙技术中，应用层网关(代理防火墙)的特点是：",
+    "options": [
+      "A. 工作在网络层，速度快",
+      "B. 工作在应用层，深度检查应用层协议",
+      "C. 无法检查应用层内容",
+      "D. 只过滤IP地址"
+    ],
+    "answer": "B",
+    "analysis": "防火墙类型：包过滤(网络层，基于IP/端口，速度快但不理解应用层)、状态检测(跟踪连接状态)、应用层网关/代理(应用层，深度检查HTTP/FTP内容，最安全但最慢)、NGFW(下一代防火墙，集成IPS/AV/应用识别)。防火墙工作在网络边界。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-108",
+    "chapter": 7,
+    "stem": "SQL注入攻击的本质是：",
+    "options": [
+      "A. 数据库服务器故障",
+      "B. 将用户输入拼接到SQL语句中执行，欺骗数据库执行恶意SQL",
+      "C. 数据库密码泄露",
+      "D. 网络传输被窃听"
+    ],
+    "answer": "B",
+    "analysis": "SQL注入原理：应用程序将用户输入直接拼接到SQL语句(字符串拼接)，攻击者输入恶意SQL(如' OR '1'='1)改变原语句逻辑。防御：参数化查询(PreparedStatement，最有效)、ORM框架、输入校验、最小权限原则。OWASP Top 10中注入类长期排名第一。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-109",
+    "chapter": 7,
+    "stem": "Kerberos协议的核心是：",
+    "options": [
+      "A. 公钥基础设施(PKI)",
+      "B. 对称密钥+可信第三方(KDC)的认证协议",
+      "C. 生物特征识别",
+      "D. 防火墙认证"
+    ],
+    "answer": "B",
+    "analysis": "Kerberos：基于对称密钥的认证协议，使用KDC(Key Distribution Center，密钥分发中心)。流程：AS(认证服务器)发放TGT->TGS(票据授予服务器)发放服务票据->访问服务。使用时间戳防止重放攻击。Windows域认证基于Kerberos。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-110",
+    "chapter": 7,
+    "stem": "风险评估中，威胁、脆弱性和风险的关系是：",
+    "options": [
+      "A. 风险=脆弱性+威胁",
+      "B. 风险=脆弱性x威胁x资产价值",
+      "C. 风险=脆弱性-威胁",
+      "D. 风险与威胁无关"
+    ],
+    "answer": "B",
+    "analysis": "风险三要素：资产(Asset)、威胁(Threat，如黑客/自然灾害)、脆弱性(Vulnerability，弱点)。风险=脆弱性x威胁x资产价值。风险管理过程：资产识别->威胁识别->脆弱性识别->风险分析->风险处置(规避/转移/减轻/接受)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-111",
+    "chapter": 7,
+    "stem": "以下哪个属于VPN(Virtual Private Network)的协议：",
+    "options": [
+      "A. HTTP",
+      "B. PPTP/L2TP/IPsec/SSL VPN",
+      "C. FTP",
+      "D. SMTP"
+    ],
+    "answer": "B",
+    "analysis": "VPN协议：PPTP(最早，不推荐)、L2TP/IPsec(L2TP隧道+IPsec加密，常用)、SSL VPN(浏览器即可，无需客户端，基于TLS)、OpenVPN(开源，基于SSL/TLS)。VPN作用：在公共网络上建立安全隧道，提供机密性、完整性、身份认证。IPsec工作在网络层(L3 VPN)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-112",
+    "chapter": 7,
+    "stem": "入侵检测系统(IDS)的类型中，基于网络的NIDS和基于主机的HIDS的区别是：",
+    "options": [
+      "A. NIDS监控单个主机，HIDS监控网络流量",
+      "B. NIDS监控网络流量，HIDS监控单个主机的日志和活动",
+      "C. 两者相同",
+      "D. HIDS监控网络流量"
+    ],
+    "answer": "B",
+    "analysis": "IDS类型：NIDS(Network IDS，如Snort，在网络关键节点监听流量，检测网络攻击)、HIDS(Host-based IDS，如OSSEC，监控单个主机的系统日志/文件完整性/进程活动)。IPS(Intrusion Prevention System)是主动阻断的IDS。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-113",
+    "chapter": 7,
+    "stem": "安全审计的主要作用是：",
+    "options": [
+      "A. 预防攻击",
+      "B. 记录安全事件，用于检测、分析和追溯",
+      "C. 加密数据",
+      "D. 阻止访问"
+    ],
+    "answer": "B",
+    "analysis": "安全审计：记录和审查系统活动日志，检测入侵、追溯攻击、合规检查。审计内容：登录/注销、文件访问、系统配置变更、网络连接。审计日志应：不可篡改、可追溯、完整记录时间戳/用户/IP/操作。SIEM(Security Information and Event Management)集中管理安全日志。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-114",
+    "chapter": 7,
+    "stem": "以下哪种不是对称加密算法：",
+    "options": [
+      "A. AES",
+      "B. SM4",
+      "C. RSA",
+      "D. 3DES"
+    ],
+    "answer": "C",
+    "analysis": "对称加密(单钥)：加密解密同一密钥。AES(128/192/256位，Rijndael)、SM4(国密，128位)、3DES(168位)、DES(56位，已淘汰)。非对称加密(双钥)：RSA(大数分解)、ECC(椭圆曲线)/SM2(国密)。对称加密快但密钥分发难；非对称慢但密钥分发安全。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-115",
+    "chapter": 7,
+    "stem": "公钥基础设施(PKI)的核心组件不包括：",
+    "options": [
+      "A. CA(证书颁发机构)",
+      "B. RA(注册机构)",
+      "C. CRL(证书吊销列表)/OCSP",
+      "D. 防火墙"
+    ],
+    "answer": "D",
+    "analysis": "PKI组件：CA(Certificate Authority，签发/管理证书)、RA(Registration Authority，验证身份并提交CA)、证书库(存储/发布证书)、CRL(证书吊销列表)/OCSP(在线证书状态协议)、密钥备份与恢复、证书使用端。PKI为SSL/TLS、数字签名、VPN等提供信任基础。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-116",
+    "chapter": 7,
+    "stem": "网络安全模型中，PDR模型的核心要素是：",
+    "options": [
+      "A. 防护、检测、响应",
+      "B. 物理安全、数据安全、运行安全",
+      "C. 预防、检测、恢复",
+      "D. 防火墙、IDS、杀毒软件"
+    ],
+    "answer": "A",
+    "analysis": "PDR(Protection-Detection-Response)：防护(防火墙/ACL/加密/访问控制)、检测(IDS/审计/异常检测)、响应(应急处理/恢复/取证)。PPDR增加Policy(安全策略)和Recovery(恢复)。PDR核心：安全是动态过程，检测是关键(防护不可能100%)。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-117",
+    "chapter": 7,
+    "stem": "在零信任安全架构(Zero Trust)中，核心理念是：",
+    "options": [
+      "A. 内网即信任区，无需额外验证",
+      "B. 永不信任，始终验证，每次访问都需要认证授权",
+      "C. 仅边界需要防护",
+      "D. 用户认证一次即可访问所有资源"
+    ],
+    "answer": "B",
+    "analysis": "零信任(Zero Trust，NIST SP 800-207)：永不信任，始终验证(Never Trust, Always Verify)。原则：所有访问者(内部/外部)都不可信、最小权限原则、Assume breach(假设已被入侵)、持续验证(每次访问)。实现：身份认证(SSO/MFA)+授权(ABAC/PBAC)+微分段+持续监控。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-118",
+    "chapter": 8,
+    "stem": "以下哪个是国际标准化组织：",
+    "options": [
+      "A. IEEE",
+      "B. ISO",
+      "C. GB",
+      "D. ITU"
+    ],
+    "answer": "B",
+    "analysis": "标准化组织：ISO(国际标准化组织，International)、IEC(国际电工委员会)、ITU(国际电信联盟，电信标准)、IEEE(电气电子工程师学会，学术/行业标准，如802.x系列)、W3C(万维网联盟，Web标准)。国家标准：GB(中国国标)、ANSI(美国)、BSI(英国)。ISO/IEC联合发布信息技术的国际标准。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-119",
+    "chapter": 8,
+    "stem": "我国国家标准代号GB/T表示：",
+    "options": [
+      "A. 强制性国家标准",
+      "B. 推荐性国家标准",
+      "C. 行业标准",
+      "D. 地方标准"
+    ],
+    "answer": "B",
+    "analysis": "中国标准体系：强制性国家标准(GB，必须执行)、推荐性国家标准(GB/T，自愿采用)、国家标准化指导性文件(GB/Z)、行业标准(QB机械/SJ电子/YD通信等)、地方标准(DB+省代码)、企业标准(Q/企业代码)。GB/T 25000.51是系统与软件质量要求和评价标准。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-120",
+    "chapter": 8,
+    "stem": "软件著作权保护期限是：",
+    "options": [
+      "A. 10年",
+      "B. 25年",
+      "C. 作者终生加死后50年(法人为首次发表后50年)",
+      "D. 永久保护"
+    ],
+    "answer": "C",
+    "analysis": "中国著作权法：软件著作权保护期，自然人：终生加死后50年；法人/组织：首次发表后50年(创作完成后50年未发表不受保护)。著作权自作品完成之日起自动产生(自愿登记)。发明专利保护期20年(申请日起算)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-121",
+    "chapter": 8,
+    "stem": "以下哪个不受著作权保护：",
+    "options": [
+      "A. 源代码",
+      "B. 文档",
+      "C. 算法思想",
+      "D. 界面设计"
+    ],
+    "answer": "C",
+    "analysis": "著作权保护范围：表达形式(代码/文档/界面设计)。不保护：思想/算法/方法/概念(可通过发明专利保护)、操作方法、事实。著作权自动产生；专利权需申请授权。软件著作权保护代码；发明专利申请保护算法/方法(需新颖性创造性实用性)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-122",
+    "chapter": 8,
+    "stem": "计算机软件的发明专利申请条件是：",
+    "options": [
+      "A. 只要开发完成即可",
+      "B. 新颖性、创造性、实用性",
+      "C. 必须公开发表",
+      "D. 必须产业化"
+    ],
+    "answer": "B",
+    "analysis": "软件相关专利：作为发明专利保护(技术方案)。条件：新颖性(未见公开)、创造性(非显而易见性，突出的实质性特点和显著进步)、实用性(可制造或使用)。软件专利难点：需体现技术效果(解决技术问题)。纯算法/数学方法不能专利。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-123",
+    "chapter": 8,
+    "stem": "以下关于商业秘密的描述，正确的是：",
+    "options": [
+      "A. 商业秘密不需要采取保密措施",
+      "B. 商业秘密是不为公众所知、具有商业价值、权利人采取保密措施的技术信息/经营信息",
+      "C. 商业秘密保护期限固定为10年",
+      "D. 商业秘密自动公开"
+    ],
+    "answer": "B",
+    "analysis": "商业秘密三要素：秘密性(不为公众所知)、价值性(具有商业价值)、保密性(权利人采取保密措施)。保护期限：只要满足三要素就一直保护(不固定期限)。反不正当竞争法保护。商业秘密泄露途径：内部泄密、竞争对手刺探、不当公开。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-124",
+    "chapter": 8,
+    "stem": "ISO/IEC 12207标准是：",
+    "options": [
+      "A. 信息安全标准",
+      "B. 软件生命周期过程标准",
+      "C. 网络协议标准",
+      "D. 数据库标准"
+    ],
+    "answer": "B",
+    "analysis": "ISO/IEC 12207：软件生命周期过程标准(Software Life Cycle Processes)。定义：主要过程(获取/供应/开发/运作/维护)、支持过程(文档/配置/质量/验证/联合评审/审计/问题解决/易用性)、组织过程(管理/基础设施/改进/人力资源)。是我国等同采用GB/T 8566。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-125",
+    "chapter": 8,
+    "stem": "以下哪个属于强制性国家标准：",
+    "options": [
+      "A. GB/T 25000.51(软件质量)",
+      "B. GB 18030(汉字编码，必须执行)",
+      "C. GB/T 8566(软件生命周期)",
+      "D. GB/Z 24001(指南)"
+    ],
+    "answer": "B",
+    "analysis": "强制性国家标准(GB代号)：涉及安全、健康、环保、经济管理的必须执行。如GB 18030(汉字编码标准，强制)、GB 17859(计算机信息系统安全保护等级划分)、GB/T(推荐性)。行业标准/地方标准不得与GB矛盾。违反GB可能承担法律责任。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-126",
+    "chapter": 8,
+    "stem": "WTO/TBT协定中，技术法规与标准的关系是：",
+    "options": [
+      "A. 技术法规是强制的，标准是自愿的",
+      "B. 标准是强制的，技术法规是自愿的",
+      "C. 两者都强制",
+      "D. 两者都自愿"
+    ],
+    "answer": "A",
+    "analysis": "WTO/TBT(技术性贸易壁垒协定)：技术法规(Technical Regulation，强制执行)、标准(Standard，自愿采用，如ISO/IEC标准)、合格评定程序。原则：非歧视(最惠国待遇/国民待遇)、必要性(贸易限制不超过保护目标所需)、国际标准优先、透明度(提前通报)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-127",
+    "chapter": 8,
+    "stem": "软件著作权登记的作用是：",
+    "options": [
+      "A. 著作权自动产生的必要条件",
+      "B. 著作权权属的初步证明，便于维权和交易",
+      "C. 软件获得专利的前提",
+      "D. 软件可以合法使用"
+    ],
+    "answer": "B",
+    "analysis": "软件著作权：自作品完成之日起自动产生，登记不是强制要件。但登记可作为权属初步证明(维权时)、软件企业税收优惠(双软认证)、企业资质申请、软件产品登记、质押融资。中国版权保护中心(CPCC)负责登记。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-128",
+    "chapter": 8,
+    "stem": "专利权的地域性是指：",
+    "options": [
+      "A. 全世界统一保护",
+      "B. 专利权只在授权国境内有效，各国独立审批",
+      "C. 专利权永久有效",
+      "D. 专利权可以自动跨国转让"
+    ],
+    "answer": "B",
+    "analysis": "知识产权地域性：专利权、商标权只在授权国境内有效(各国独立审查授权)。著作权自动国际保护(伯尔尼公约)。PCT(专利合作条约)简化多国申请流程(国际阶段+国家阶段)。专利优先权：首次申请后12个月内再申请其他成员国，以首次申请日为申请日。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-129",
+    "chapter": 8,
+    "stem": "商标的有效期和续展规定是：",
+    "options": [
+      "A. 10年，期满前6个月内续展，可无限续展",
+      "B. 20年，不可续展",
+      "C. 50年，可续展一次",
+      "D. 永久有效"
+    ],
+    "answer": "A",
+    "analysis": "商标：有效期10年(自核准注册日起算)。续展：期满前12个月内办理，宽展期6个月(需额外费用)。续展次数不限，每次10年。商标注册需：申请书、商标图样、类别(尼斯分类，45类)。驰名商标可跨类保护。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-130",
+    "chapter": 8,
+    "stem": "以下关于开放源代码(Open Source)软件著作权和许可的描述，正确的是：",
+    "options": [
+      "A. 开源软件没有著作权",
+      "B. 开源软件受著作权保护，通过开源许可证授权使用",
+      "C. 开源软件可随意商用且闭源",
+      "D. 开源软件可以随意修改后闭源发布"
+    ],
+    "answer": "B",
+    "analysis": "开源软件：作者保留著作权，通过开源许可证(GPL/BSD/MIT/Apache等)授予使用权限。GPL(copyleft，修改后必须开源)；MIT/BSD/Apache(宽松，允许闭源商用)。违反许可证=著作权侵权。开源不等于无版权。商业软件使用开源组件需注意许可证合规。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-131",
+    "chapter": 8,
+    "stem": "GB/T 8566-2007《信息技术 软件生存周期过程》将软件生命周期分为：",
+    "options": [
+      "A. 3个过程",
+      "B. 5个过程",
+      "C. 17个过程(5类)",
+      "D. 20个过程"
+    ],
+    "answer": "C",
+    "analysis": "GB/T 8566(等同ISO/IEC 12207)：软件生命周期分为17个过程，5类：主要过程(5个：获取/供应/开发/运作/维护)、支持过程(8个：文档/配置/质量保证/验证/联合评审/审计/问题解决/易用性)、组织过程(4个：管理/基础设施/人力资源/改进)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-132",
+    "chapter": 8,
+    "stem": "IEEE 1471(ISO/IEC 42010)标准是：",
+    "options": [
+      "A. 软件测试标准",
+      "B. 软件架构描述的国际标准",
+      "C. 网络协议标准",
+      "D. 数据库设计标准"
+    ],
+    "answer": "B",
+    "analysis": "IEEE 1471/ISO/IEC 42010：Systems and software engineering -- Architecture description。定义架构描述的标准框架：涉众(Viewpoint)、视图(View)、模型(Model)。规范架构文档的内容和结构。是软件架构设计的国际标准。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-133",
+    "chapter": 8,
+    "stem": "信息安全管理体系(ISMS)的国际标准是：",
+    "options": [
+      "A. ISO 9001",
+      "B. ISO 27001",
+      "C. ISO 14001",
+      "D. ISO 45001"
+    ],
+    "answer": "B",
+    "analysis": "管理体系标准族：ISO 9001(质量管理)、ISO 27001(信息安全/ISMS)、ISO 14001(环境管理)、ISO 45001(职业健康安全)、ISO 22301(业务连续性管理)。ISO 27001基于PDCA循环：规划->实施->检查->改进。认证周期三年，每年监督审核。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-134",
+    "chapter": 8,
+    "stem": "敏捷宣言的原则中，关于文档的正确描述是：",
+    "options": [
+      "A. 详尽文档比可运行软件更重要",
+      "B. 工作的软件高于详尽的文档，但不排斥文档",
+      "C. 完全不需要文档",
+      "D. 文档越少越好"
+    ],
+    "answer": "B",
+    "analysis": "敏捷宣言价值观：工作的软件高于详尽的文档。敏捷原则：最重要的是通过早期和持续交付高价值软件使客户满意；欢迎需求变化；频繁交付可运行软件；业务人员与开发者全天候合作；围绕 motivated individuals 构建项目；面对面交谈是最佳沟通方式；可运行软件是进度主要度量；持续关注技术卓越和良好设计；简洁(最大化未做工作)是本质；自组织团队。不是完全不要文档。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-135",
+    "chapter": 9,
+    "stem": "系统架构设计师论文写作中，摘要的正确描述是：",
+    "options": [
+      "A. 越详细越好，篇幅无限制",
+      "B. 应简明扼要概括论文主要内容(通常200-300字)，包括问题、方法、结果",
+      "C. 摘要与正文可以完全无关",
+      "D. 摘要只写背景，不写结果"
+    ],
+    "answer": "B",
+    "analysis": "论文结构：摘要(概括主要内容，约200-400字，独立成篇，包含问题背景、方法/架构、结果/效果)、关键词(3-5个)、正文(提出问题->分析问题->解决方案/架构设计->实施效果->总结)。摘要应让读者快速了解论文核心。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-136",
+    "chapter": 9,
+    "stem": "论文写作中，关于真实性的正确描述是：",
+    "options": [
+      "A. 可以编造项目经验",
+      "B. 应基于实际项目经验，但可适当进行技术升华和总结",
+      "C. 必须完全照搬项目文档",
+      "D. 真实性不重要，文笔好就行"
+    ],
+    "answer": "B",
+    "analysis": "论文要求基于实际项目经验(真实性是基本要求)，但可以适当进行技术升华(总结提炼、理论分析、架构设计回顾)。编造项目经验风险极高(评审专家可能质疑细节)。应突出个人在项目中的实际贡献。技术升华：从实践中总结经验，上升为方法论/架构模式。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-137",
+    "chapter": 9,
+    "stem": "系统架构设计师论文的选题范围通常包括：",
+    "options": [
+      "A. 仅限理论分析",
+      "B. 软件架构设计、数据库设计、系统安全、项目管理、新技术应用等",
+      "C. 仅限编程实现",
+      "D. 仅限硬件设计"
+    ],
+    "answer": "B",
+    "analysis": "论文选题方向(系统架构设计师)：软件架构设计(微服务/分布式/云原生)、数据库设计与优化、系统安全设计、性能优化、遗留系统架构重构、新技术应用(云原生/AI/大数据)、项目管理(大型项目架构决策)。选题应结合实际项目，突出架构设计能力。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "architect-138",
+    "chapter": 9,
+    "stem": "论文正文中，关于问题描述(背景介绍)的要求是：",
+    "options": [
+      "A. 不需要写问题，直接写方案",
+      "B. 清晰描述项目的背景、目标、约束条件和面临的挑战",
+      "C. 只写技术细节",
+      "D. 只写团队组成"
+    ],
+    "answer": "B",
+    "analysis": "正文结构：(1)项目背景(业务背景、项目规模、技术挑战、约束条件)；(2)需求分析(功能/非功能需求)；(3)架构设计(架构风格、分层、关键模块、技术选型、设计决策及权衡)；(4)实施与效果(关键实现、性能/质量效果、遇到的问题及解决)；(5)总结(收获、不足、展望)。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-139",
+    "chapter": 9,
+    "stem": "论文写作中，关于图表使用的正确描述是：",
+    "options": [
+      "A. 不需要图表，纯文字描述即可",
+      "B. 适当使用架构图、流程图、类图等，并编号和标注",
+      "C. 图表越多越好",
+      "D. 只能使用系统自动生成的截图"
+    ],
+    "answer": "B",
+    "analysis": "论文图表：架构图(分层/部署)、UML图(类图/时序图/部署图)、流程图、数据流图等。要求：图中有编号(如图1)、图题、图中文字清晰(黑白可读)。避免：纯截图(不清晰/不可调整)、无标注的图、过多截图堆砌。UML图比屏幕截图更专业。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-140",
+    "chapter": 9,
+    "stem": "论文评审中，关于深度和广度的要求是：",
+    "options": [
+      "A. 越浅越好，让外行也能看懂",
+      "B. 要有足够的深度(技术细节/设计决策/权衡分析)，同时兼顾广度(系统整体)",
+      "C. 只需要罗列技术名词",
+      "D. 只关注技术，不写业务"
+    ],
+    "answer": "B",
+    "analysis": "论文深度：技术细节(架构决策原因、技术选型权衡、遇到的难题及解决方案)、设计模式应用、性能优化策略。广度：系统整体架构、各模块关系、业务与技术结合。避免：罗列技术名词无实质、只描述现象不深入分析、纯理论无实践。评审关注：架构设计能力、问题分析能力、技术深度、表达能力。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-141",
+    "chapter": 9,
+    "stem": "论文写作中，关于论文字数的要求，一般建议：",
+    "options": [
+      "A. 越多越好，不少于5000字",
+      "B. 控制在2000-3000字(近十年趋势)",
+      "C. 字数没有限制",
+      "D. 越短越好，500字足够"
+    ],
+    "answer": "B",
+    "analysis": "论文要求：近年来趋势是2000-3000字左右(也有要求4000字的情况，以当年考试大纲为准)。要求在有限篇幅内充分展示架构设计能力和技术深度。结构：摘要(200-300字)+正文(2000-2500字)。避免冗长和堆砌。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-142",
+    "chapter": 9,
+    "stem": "论文中，关于参考文献的引用规范，正确的是：",
+    "options": [
+      "A. 不需要参考文献",
+      "B. 应引用权威文献(标准/教材/经典论文)，格式规范",
+      "C. 引用越多越好",
+      "D. 可以随意引用网络博客"
+    ],
+    "answer": "B",
+    "analysis": "参考文献：引用权威文献(学术论文、国家标准、经典教材、官方文档)。格式规范(GB/T 7714或IEEE格式)。作用：证明论据权威性、显示知识深度、方便评审追溯。避免：过多引用、引用不权威来源、引用与论文无关的文献。网络博客可信度较低。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-143",
+    "chapter": 9,
+    "stem": "论文正文中，关于架构设计描述的要求，正确的是：",
+    "options": [
+      "A. 只列出架构图即可，无需文字说明",
+      "B. 详细描述架构风格选择依据、关键模块设计、技术选型权衡",
+      "C. 只描述使用了什么技术，不解释为什么",
+      "D. 架构设计不重要，重点在代码实现"
+    ],
+    "answer": "B",
+    "analysis": "架构设计描述是论文核心：(1)架构风格选择及依据(为什么选微服务而非单体)；(2)系统分层/模块划分；(3)关键模块详细设计(类图/时序图)；(4)技术选型及权衡(为什么选Redis而非Memcached)；(5)非功能需求满足(性能/可用性/安全性/可扩展性)。应图文并茂。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-144",
+    "chapter": 9,
+    "stem": "论文写作中，关于理论联系实际的正确理解是：",
+    "options": [
+      "A. 越多理论越好，不需要实践",
+      "B. 理论指导和实践验证相结合，架构设计基于理论但服务于实际项目",
+      "C. 只写实践，不需要理论",
+      "D. 理论越深奥越好"
+    ],
+    "answer": "B",
+    "analysis": "理论联系实际：架构设计既要有理论依据(架构模式/设计模式/质量模型)，又要联系实际项目(具体场景、约束条件、实际效果)。避免：(1)纯理论堆砌无实践；(2)纯实践描述无理论升华；(3)理论脱离实际(架构模式生搬硬套)。应体现：理论指导实践，实践验证和丰富理论。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-145",
+    "chapter": 9,
+    "stem": "系统架构设计师论文常见的评审扣分点不包括：",
+    "options": [
+      "A. 项目背景真实性问题(虚构项目)",
+      "B. 架构设计深度不足(只列技术不分析)",
+      "C. 论文结构清晰，逻辑严密",
+      "D. 图表不规范或缺失"
+    ],
+    "answer": "C",
+    "analysis": "常见扣分点：(1)项目背景虚假/过于简单；(2)架构设计浅(只列技术名，无设计决策/权衡分析)；(3)理论脱离实际(纯理论或纯实践)；(4)图表不规范(无编号/模糊/纯截图)；(5)字数严重不足或超限；(6)摘要不合格(过长/过短/与正文脱节)；(7)关键词不准确。结构清晰逻辑严密是加分项。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-146",
+    "chapter": 9,
+    "stem": "论文选题时，关于小题大做原则的正确理解是：",
+    "options": [
+      "A. 题目越大越好，涵盖越多技术",
+      "B. 选择一个具体的技术点或架构问题深入分析，而非泛泛而谈",
+      "C. 题目越小越好，只写一个函数",
+      "D. 题目大小无所谓"
+    ],
+    "answer": "B",
+    "analysis": "小题大做：选择一个具体的技术点或架构问题深入分析。例如：不要写基于微服务的电商系统，而要写某电商系统中订单服务的微服务拆分与数据一致性保障。具体题目才能展示深度。避免泛泛而谈云计算/大数据/AI这类大题目。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-147",
+    "chapter": 9,
+    "stem": "论文中，关于个人贡献的正确描述是：",
+    "options": [
+      "A. 夸大个人作用，忽略团队",
+      "B. 客观描述个人在项目中的实际贡献(架构设计/关键技术决策)",
+      "C. 只写团队成绩，不提个人",
+      "D. 个人贡献与论文质量无关"
+    ],
+    "answer": "B",
+    "analysis": "论文要求客观描述个人在项目中的实际贡献。架构设计师的论文应突出：架构设计(架构风格/模式选择)、技术选型决策、关键模块设计、性能优化方案、技术难点攻关。避免：(1)夸大个人(团队项目写成个人英雄)；(2)只描述团队成果不提个人角色；(3)贡献与论文主题脱节。评审关注个人架构设计能力。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-148",
+    "chapter": 9,
+    "stem": "论文中，关于新技术应用(如云原生/AI/大数据)的描述要求是：",
+    "options": [
+      "A. 列举新技术名词即可",
+      "B. 说明新技术的适用场景、解决的问题、与传统方案的对比、实际应用效果",
+      "C. 新技术一定优于传统技术",
+      "D. 只描述新技术，不提项目背景"
+    ],
+    "answer": "B",
+    "analysis": "新技术应用描述要求：(1)适用场景(为什么需要新技术)；(2)解决的问题(传统方案的痛点)；(3)与传统方案的对比(权衡分析)；(4)实际应用效果(性能提升/成本降低/效率提高，最好有数据支撑)。避免：只列技术名词、盲目追新(新技术不一定适合)、脱离项目实际。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-149",
+    "chapter": 9,
+    "stem": "论文总结部分的作用是：",
+    "options": [
+      "A. 重复正文内容",
+      "B. 总结论文主要工作，提炼经验教训，展望未来改进方向",
+      "C. 引入新的内容",
+      "D. 不需要总结"
+    ],
+    "answer": "B",
+    "analysis": "总结部分：(1)回顾论文主要工作(架构设计要点)；(2)提炼经验教训(遇到了什么问题，如何解决，收获是什么)；(3)展望未来(架构改进方向、新技术应用计划)。总结应简洁有力，与摘要呼应，避免引入新内容或重复正文细节。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "architect-150",
+    "chapter": 9,
+    "stem": "论文写作中，关于语言表达的要求，正确的是：",
+    "options": [
+      "A. 使用大量专业术语堆砌，越复杂越好",
+      "B. 语言通顺、逻辑清晰、专业术语使用准确，避免口语化",
+      "C. 使用口语化表达，越通俗越好",
+      "D. 语言表达不重要，技术内容正确即可"
+    ],
+    "answer": "B",
+    "analysis": "论文语言要求：(1)专业术语使用准确(如微服务而非微服务架构(若上下文已明确))；(2)逻辑清晰(段落衔接、层次分明)；(3)避免口语化(如搞/弄/很牛)；(4)避免冗长句子；(5)图表编号清晰。技术内容正确是基础，但语言表达影响评审印象。",
+    "isKey": true,
+    "type": "single"
+  }
+]
