@@ -63,6 +63,7 @@ export default defineConfig({
         ]
       },
       { text: '软件设计师', link: '/softdesigner/' },
+      { text: '人工智能训练师', link: '/ai-trainer/' },
     ],
     sidebar: {
       '/securities/laws/': [
