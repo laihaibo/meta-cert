@@ -189,9 +189,9 @@ export default defineConfig({
           text: '三级/高级工 · 人工智能训练师',
           items: [
             { text: '概述', link: '/ai-trainer/' },
-            { text: '第一章 深度学习基础', link: '/ai-trainer/ch01' },
-            { text: '第二章 模型优化与部署', link: '/ai-trainer/ch02' },
-            { text: '第三章 业务场景应用', link: '/ai-trainer/ch03' },
+            { text: '第一章 职业道德与法律法规', link: '/ai-trainer/ch01' },
+            { text: '第二章 智能训练基础', link: '/ai-trainer/ch02' },
+            { text: '第三章 模型训练与调优', link: '/ai-trainer/ch03' },
             { text: '总结与速查', link: '/ai-trainer/summary' },
             { text: '题库练习', link: '/ai-trainer/quiz' },
           ]
