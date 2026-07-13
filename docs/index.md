@@ -87,6 +87,12 @@ features:
   <p>软考高级 · 综合知识、案例分析、论文写作全覆盖</p>
 </a>
 
+<a href="/ai-trainer/level-5/" class="subject-card">
+  <div class="icon">🤖</div>
+  <h3>人工智能训练师</h3>
+  <p>五级/初级工至一级/高级技师全覆盖 · 数据标注 · 模型训练 · 业务分析</p>
+</a>
+
 </div>
 
 ## 学习建议

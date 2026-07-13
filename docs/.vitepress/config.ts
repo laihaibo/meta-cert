@@ -69,6 +69,16 @@ export default defineConfig({
           { text: '系统架构设计师', link: '/system-architect/' },
         ]
       },
+      {
+        text: '人工智能训练师',
+        items: [
+          { text: '五级/初级工', link: '/ai-trainer/level-5/' },
+          { text: '四级/中级工', link: '/ai-trainer/level-4/' },
+          { text: '三级/高级工', link: '/ai-trainer/level-3/' },
+          { text: '二级/技师', link: '/ai-trainer/level-2/' },
+          { text: '一级/高级技师', link: '/ai-trainer/level-1/' },
+        ]
+      },
     ],
     sidebar: {
       '/securities/laws/': [
@@ -207,6 +217,72 @@ export default defineConfig({
             { text: '论文写作', link: '/system-architect/essay' },
             { text: '总结与速查', link: '/system-architect/summary' },
             { text: '题库练习', link: '/system-architect/quiz' },
+          ]
+        }
+      ],
+      // 人工智能训练师
+      '/ai-trainer/level-5/': [
+        {
+          text: '五级/初级工 · 人工智能训练师',
+          items: [
+            { text: '概述', link: '/ai-trainer/level-5/' },
+            { text: '第一章 人工智能概述', link: '/ai-trainer/level-5/ch01' },
+            { text: '第二章 数据标注', link: '/ai-trainer/level-5/ch02' },
+            { text: '第三章 模型训练基础', link: '/ai-trainer/level-5/ch03' },
+            { text: '总结与速查', link: '/ai-trainer/level-5/summary' },
+            { text: '题库练习', link: '/ai-trainer/level-5/quiz' },
+          ]
+        }
+      ],
+      '/ai-trainer/level-4/': [
+        {
+          text: '四级/中级工 · 人工智能训练师',
+          items: [
+            { text: '概述', link: '/ai-trainer/level-4/' },
+            { text: '第一章 数据预处理与特征工程', link: '/ai-trainer/level-4/ch01' },
+            { text: '第二章 模型训练与调优', link: '/ai-trainer/level-4/ch02' },
+            { text: '第三章 模型评估与验证', link: '/ai-trainer/level-4/ch03' },
+            { text: '总结与速查', link: '/ai-trainer/level-4/summary' },
+            { text: '题库练习', link: '/ai-trainer/level-4/quiz' },
+          ]
+        }
+      ],
+      '/ai-trainer/level-3/': [
+        {
+          text: '三级/高级工 · 人工智能训练师',
+          items: [
+            { text: '概述', link: '/ai-trainer/level-3/' },
+            { text: '第一章 深度学习基础', link: '/ai-trainer/level-3/ch01' },
+            { text: '第二章 模型优化与部署', link: '/ai-trainer/level-3/ch02' },
+            { text: '第三章 业务场景应用', link: '/ai-trainer/level-3/ch03' },
+            { text: '总结与速查', link: '/ai-trainer/level-3/summary' },
+            { text: '题库练习', link: '/ai-trainer/level-3/quiz' },
+          ]
+        }
+      ],
+      '/ai-trainer/level-2/': [
+        {
+          text: '二级/技师 · 人工智能训练师',
+          items: [
+            { text: '概述', link: '/ai-trainer/level-2/' },
+            { text: '第一章 职业道德与法律法规', link: '/ai-trainer/level-2/ch01' },
+            { text: '第二章 业务分析与设计', link: '/ai-trainer/level-2/ch02' },
+            { text: '第三章 模型优化与评估', link: '/ai-trainer/level-2/ch03' },
+            { text: '总结与速查', link: '/ai-trainer/level-2/summary' },
+            { text: '题库练习', link: '/ai-trainer/level-2/quiz' },
+          ]
+        }
+      ],
+      '/ai-trainer/level-1/': [
+        {
+          text: '一级/高级技师 · 人工智能训练师',
+          items: [
+            { text: '概述', link: '/ai-trainer/level-1/' },
+            { text: '第一章 行业标准与前沿技术', link: '/ai-trainer/level-1/ch01' },
+            { text: '第二章 复杂业务建模', link: '/ai-trainer/level-1/ch02' },
+            { text: '第三章 团队管理与项目策划', link: '/ai-trainer/level-1/ch03' },
+            { text: '总结与速查', link: '/ai-trainer/level-1/summary' },
+            { text: '题库练习', link: '/ai-trainer/level-1/quiz' },
           ]
         }
       ],
