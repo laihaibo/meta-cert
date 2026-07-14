@@ -2,11 +2,12 @@
 import { ref, computed, onMounted, watch } from 'vue'
 
 interface QuizQuestion {
+  id?: string
   stem: string
   options: string[]
   answer: string
   analysis: string
-  chapter?: string
+  chapter?: string | number
   isKey?: boolean
   isHot?: boolean
 }
@@ -21,10 +22,44 @@ const currentIndex = ref(0)
 const selected = ref<number | null>(null)
 const showResult = ref(false)
 const score = ref(0)
+const answers = ref<Map<number, number | null>>(new Map())  // user's answers
 const filterChapter = ref<string>('')
 const chapters = ref<string[]>([])
+const bookmarks = ref<Set<string>>(new Set())  // bookmarked question IDs
+const showBookmarkOnly = ref(false)
+const storageKey = 'quiz_progress_' + (props.dataUrl || 'inline')
 
-// Load questions from props or JSON file
+// ---- localStorage helpers ----
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(storageKey)
+    if (raw) {
+      const data = JSON.parse(raw)
+      score.value = data.score || 0
+      currentIndex.value = data.currentIndex || 0
+      if (data.answers) answers.value = new Map(data.answers)
+      if (data.bookmarks) bookmarks.value = new Set(data.bookmarks)
+    }
+  } catch { /* ignore corrupt data */ }
+}
+
+function saveProgress() {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify({
+      score: score.value,
+      currentIndex: currentIndex.value,
+      answers: Array.from(answers.value.entries()),
+      bookmarks: Array.from(bookmarks.value),
+      savedAt: Date.now()
+    }))
+  } catch { /* quota exceeded, ignore */ }
+}
+
+function clearProgress() {
+  try { localStorage.removeItem(storageKey) } catch { /* ignore */ }
+}
+
+// ---- Load questions ----
 onMounted(async () => {
   if (props.questions && props.questions.length > 0) {
     allQuestions.value = props.questions
@@ -37,21 +72,34 @@ onMounted(async () => {
     }
   }
   // Extract unique chapters
-  const chapterSet = new Set(allQuestions.value.map(q => q.chapter).filter(Boolean))
-  chapters.value = Array.from(chapterSet) as string[]
+  const chapterSet = new Set(allQuestions.value.map(q => String(q.chapter)).filter(Boolean))
+  chapters.value = Array.from(chapterSet)
+  // Restore progress from localStorage
+  loadProgress()
 })
 
-// Filtered questions based on chapter selection
+// ---- Filtering ----
 const filteredQuestions = computed(() => {
-  if (!filterChapter.value) return allQuestions.value
-  return allQuestions.value.filter(q => String(q.chapter) === filterChapter.value)
+  let qs = allQuestions.value
+  if (filterChapter.value) {
+    qs = qs.filter(q => String(q.chapter) === filterChapter.value)
+  }
+  if (showBookmarkOnly.value) {
+    qs = qs.filter(q => bookmarks.value.has(getQuestionId(q)))
+  }
+  return qs
 })
 
 const currentQuestion = computed(() => filteredQuestions.value[currentIndex.value])
 const totalQuestions = computed(() => filteredQuestions.value.length)
 
+function getQuestionId(q: QuizQuestion, idx?: number): string {
+  return q.id || `q${idx ?? currentIndex.value}`
+}
+
 const optionLabels = ['A', 'B', 'C', 'D', 'E', 'F']
 
+// ---- Interaction ----
 function selectOption(index: number) {
   if (showResult.value) return
   selected.value = index
@@ -60,22 +108,41 @@ function selectOption(index: number) {
 function submitAnswer() {
   if (selected.value === null) return
   showResult.value = true
+  answers.value.set(currentIndex.value, selected.value)
   if (optionLabels[selected.value] === currentQuestion.value.answer) {
     score.value++
   }
+  saveProgress()
 }
 
 function nextQuestion() {
   if (currentIndex.value < totalQuestions.value - 1) {
     currentIndex.value++
-    selected.value = null
-    showResult.value = false
+    restoreStateForCurrent()
+    saveProgress()
   }
 }
 
 function prevQuestion() {
   if (currentIndex.value > 0) {
     currentIndex.value--
+    restoreStateForCurrent()
+    saveProgress()
+  }
+}
+
+function jumpToQuestion(idx: number) {
+  currentIndex.value = idx
+  restoreStateForCurrent()
+  saveProgress()
+}
+
+function restoreStateForCurrent() {
+  const prev = answers.value.get(currentIndex.value)
+  if (prev !== undefined && prev !== null) {
+    selected.value = prev
+    showResult.value = true
+  } else {
     selected.value = null
     showResult.value = false
   }
@@ -86,6 +153,8 @@ function resetQuiz() {
   selected.value = null
   showResult.value = false
   score.value = 0
+  answers.value.clear()
+  clearProgress()
 }
 
 function isCorrect(index: number): boolean {
@@ -96,12 +165,42 @@ function isWrong(index: number): boolean {
   return showResult.value && selected.value === index && optionLabels[index] !== currentQuestion.value?.answer
 }
 
+function toggleBookmark() {
+  const id = getQuestionId(currentQuestion.value, currentIndex.value)
+  if (bookmarks.value.has(id)) {
+    bookmarks.value.delete(id)
+  } else {
+    bookmarks.value.add(id)
+  }
+  saveProgress()
+}
+
+function isBookmarked(): boolean {
+  return bookmarks.value.has(getQuestionId(currentQuestion.value, currentIndex.value))
+}
+
+// ---- Progress stats ----
+const answeredCount = computed(() => answers.value.size)
+const accuracy = computed(() => {
+  if (answeredCount.value === 0) return 0
+  let correct = 0
+  answers.value.forEach((ans, idx) => {
+    const q = filteredQuestions.value[idx]
+    if (q && optionLabels[ans!] === q.answer) correct++
+  })
+  return Math.round((correct / answeredCount.value) * 100)
+})
+
 // Reset index when filter changes
-watch(filterChapter, () => {
+watch([filterChapter, showBookmarkOnly], () => {
   currentIndex.value = 0
   selected.value = null
   showResult.value = false
-  score.value = 0
+})
+
+// On first load, restore current question state
+watch(allQuestions, () => {
+  if (allQuestions.value.length > 0) restoreStateForCurrent()
 })
 </script>
 
@@ -112,14 +211,22 @@ watch(filterChapter, () => {
       <div class="quiz-info">
         <span class="quiz-progress">{{ currentIndex + 1 }} / {{ totalQuestions }}</span>
         <span class="quiz-score">得分: {{ score }}</span>
+        <span class="quiz-accuracy" v-if="answeredCount > 0">正确率: {{ accuracy }}%</span>
       </div>
 
-      <!-- Chapter filter -->
-      <div class="quiz-filter" v-if="chapters.length > 1">
-        <select v-model="filterChapter" class="chapter-select">
-          <option value="">全部章节</option>
-          <option v-for="ch in chapters" :key="ch" :value="ch">{{ ch }}</option>
-        </select>
+      <div class="quiz-controls">
+        <!-- Chapter filter -->
+        <div class="quiz-filter" v-if="chapters.length > 1">
+          <select v-model="filterChapter" class="chapter-select">
+            <option value="">全部章节</option>
+            <option v-for="ch in chapters" :key="ch" :value="ch">{{ ch }}</option>
+          </select>
+        </div>
+
+        <!-- Bookmark toggle -->
+        <button class="btn btn-icon" :class="{ active: showBookmarkOnly }" @click="showBookmarkOnly = !showBookmarkOnly" :title="showBookmarkOnly ? '显示全部' : '只看收藏'">
+          ★
+        </button>
       </div>
     </div>
 
@@ -130,11 +237,16 @@ watch(filterChapter, () => {
 
     <!-- Question card -->
     <div class="question-card" v-if="currentQuestion">
-      <!-- Badges -->
-      <div class="question-badges">
-        <span v-if="currentQuestion.isKey" class="badge badge-key">重点</span>
-        <span v-if="currentQuestion.isHot" class="badge badge-hot">高频</span>
-        <span v-if="currentQuestion.chapter" class="badge badge-chapter">{{ currentQuestion.chapter }}</span>
+      <!-- Badges + Bookmark -->
+      <div class="question-top-row">
+        <div class="question-badges">
+          <span v-if="currentQuestion.isKey" class="badge badge-key">重点</span>
+          <span v-if="currentQuestion.isHot" class="badge badge-hot">高频</span>
+          <span v-if="currentQuestion.chapter" class="badge badge-chapter">{{ currentQuestion.chapter }}</span>
+        </div>
+        <button class="btn-bookmark" :class="{ active: isBookmarked() }" @click="toggleBookmark" :title="isBookmarked() ? '取消收藏' : '收藏本题'">
+          {{ isBookmarked() ? '★' : '☆' }}
+        </button>
       </div>
 
       <!-- Stem -->
@@ -190,6 +302,37 @@ watch(filterChapter, () => {
       <button v-else class="btn btn-success" @click="resetQuiz">
         重新开始
       </button>
+      <button class="btn btn-ghost" @click="resetQuiz" title="清除答题记录">
+        清除记录
+      </button>
+    </div>
+
+    <!-- Question navigator (dots) -->
+    <div class="quiz-navigator">
+      <div class="navigator-title">题目导航 (已答 {{ answeredCount }}/{{ totalQuestions }})</div>
+      <div class="navigator-dots">
+        <button
+          v-for="(q, idx) in filteredQuestions"
+          :key="idx"
+          class="nav-dot"
+          :class="{
+            current: idx === currentIndex,
+            answered: answers.value.has(idx),
+            correct: answers.value.has(idx) && optionLabels[answers.value.get(idx)!] === q.answer,
+            wrong: answers.value.has(idx) && optionLabels[answers.value.get(idx)!] !== q.answer,
+            bookmarked: bookmarks.value.has(getQuestionId(q, idx))
+          }"
+          @click="jumpToQuestion(idx)"
+          :title="`第 ${idx + 1} 题`"
+        >
+          {{ idx + 1 }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Bookmark count -->
+    <div class="bookmark-info" v-if="bookmarks.size > 0">
+      <span>已收藏 {{ bookmarks.size }} 题</span>
     </div>
   </div>
 
@@ -213,6 +356,8 @@ watch(filterChapter, () => {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .quiz-info {
@@ -226,6 +371,31 @@ watch(filterChapter, () => {
   font-weight: 600;
   color: var(--vp-c-brand-1);
 }
+
+.quiz-accuracy {
+  font-weight: 600;
+  color: var(--vp-c-brand-2);
+}
+
+.quiz-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.15s ease;
+}
+
+.btn-icon:hover { border-color: var(--vp-c-brand-1); }
+.btn-icon.active { background: var(--vp-c-brand-1); color: #fff; }
 
 .chapter-select {
   padding: 0.35rem 0.75rem;
@@ -252,14 +422,18 @@ watch(filterChapter, () => {
   transition: width 0.3s ease;
 }
 
-.question-card {
-  margin-bottom: 1rem;
+.question-card { margin-bottom: 1rem; }
+
+.question-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
 }
 
 .question-badges {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
 }
 
 .badge {
@@ -287,6 +461,19 @@ watch(filterChapter, () => {
   color: var(--vp-c-brand-1);
   border: 1px solid var(--vp-c-brand-1);
 }
+
+.btn-bookmark {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--vp-c-text-3);
+  transition: color 0.15s;
+  padding: 0 0.25rem;
+}
+
+.btn-bookmark:hover { color: var(--vp-c-brand-1); }
+.btn-bookmark.active { color: #f59e0b; }
 
 .question-stem {
   font-size: 1.05rem;
@@ -352,29 +539,12 @@ watch(filterChapter, () => {
   flex-shrink: 0;
 }
 
-.option-item.selected .option-label {
-  background: var(--vp-c-brand-1);
-  color: #fff;
-}
+.option-item.selected .option-label { background: var(--vp-c-brand-1); color: #fff; }
+.option-item.correct .option-label { background: var(--correct-color); color: #fff; }
+.option-item.wrong .option-label { background: var(--wrong-color); color: #fff; }
 
-.option-item.correct .option-label {
-  background: var(--correct-color);
-  color: #fff;
-}
-
-.option-item.wrong .option-label {
-  background: var(--wrong-color);
-  color: #fff;
-}
-
-.option-text {
-  flex: 1;
-}
-
-.option-icon {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
+.option-text { flex: 1; }
+.option-icon { font-size: 1.1rem; font-weight: 700; }
 
 .analysis-box {
   margin-top: 1rem;
@@ -402,6 +572,7 @@ watch(filterChapter, () => {
   justify-content: center;
   gap: 0.75rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -414,39 +585,63 @@ watch(filterChapter, () => {
   transition: all 0.15s ease;
 }
 
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary { background: var(--vp-c-brand-1); color: #fff; border-color: var(--vp-c-brand-1); }
+.btn-primary:hover:not(:disabled) { background: var(--vp-c-brand-2); }
+
+.btn-secondary { background: var(--vp-c-bg); color: var(--vp-c-text-1); }
+.btn-secondary:hover:not(:disabled) { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
+
+.btn-success { background: var(--correct-color); color: #fff; border-color: var(--correct-color); }
+.btn-success:hover:not(:disabled) { opacity: 0.9; }
+
+.btn-ghost { background: transparent; color: var(--vp-c-text-3); font-size: 0.8rem; }
+.btn-ghost:hover { color: var(--vp-c-text-1); }
+
+/* Question navigator */
+.quiz-navigator {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vp-c-divider);
 }
 
-.btn-primary {
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  border-color: var(--vp-c-brand-1);
+.navigator-title {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  margin-bottom: 0.5rem;
 }
 
-.btn-primary:hover:not(:disabled) {
-  background: var(--vp-c-brand-2);
+.navigator-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
 }
 
-.btn-secondary {
+.nav-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  transition: all 0.15s ease;
 }
 
-.btn-secondary:hover:not(:disabled) {
-  border-color: var(--vp-c-brand-1);
-  color: var(--vp-c-brand-1);
-}
+.nav-dot:hover { border-color: var(--vp-c-brand-1); transform: scale(1.1); }
+.nav-dot.current { background: var(--vp-c-brand-1); color: #fff; border-color: var(--vp-c-brand-1); }
+.nav-dot.answered.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-color); }
+.nav-dot.answered.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-color); }
+.nav-dot.bookmarked { box-shadow: 0 0 0 2px #f59e0b; }
 
-.btn-success {
-  background: var(--correct-color);
-  color: #fff;
-  border-color: var(--correct-color);
-}
-
-.btn-success:hover:not(:disabled) {
-  opacity: 0.9;
+.bookmark-info {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  text-align: center;
 }
 
 .quiz-empty {
@@ -458,56 +653,13 @@ watch(filterChapter, () => {
 }
 
 @media (max-width: 768px) {
-  .quiz-container {
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 8px;
-  }
-
-  .quiz-header {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-  }
-
-  .question-stem {
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-
-  .option-item {
-    padding: 0.75rem;
-    min-height: 48px;
-    font-size: 0.9rem;
-  }
-
-  .option-label {
-    width: 32px;
-    height: 32px;
-    font-size: 0.85rem;
-  }
-
-  .quiz-actions {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .btn {
-    padding: 0.65rem 1rem;
-    font-size: 0.95rem;
-    min-height: 44px;
-    flex: 1;
-    min-width: 100px;
-  }
-
-  .chapter-select {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .analysis-box {
-    padding: 0.75rem;
-  }
+  .quiz-container { padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+  .quiz-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  .question-stem { font-size: 0.95rem; line-height: 1.7; }
+  .option-item { padding: 0.75rem; font-size: 0.9rem; }
+  .option-label { width: 28px; height: 28px; font-size: 0.8rem; }
+  .quiz-actions { flex-wrap: wrap; gap: 0.5rem; }
+  .btn { padding: 0.6rem 0.9rem; font-size: 0.85rem; }
+  .nav-dot { width: 26px; height: 26px; font-size: 0.65rem; }
 }
 </style>
