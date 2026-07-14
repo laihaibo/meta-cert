@@ -5,10 +5,11 @@ export default defineConfig({
   description: '多元从业资格学习平台',
   lang: 'zh-CN',
   base: '/meta-cert/',
+  head: [
+    ['script', { src: 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js' }]
+  ],
   // Ignore dead links until all chapter pages are created by other workers
   ignoreDeadLinks: true,
-  // Allow remote access
-  host: '0.0.0.0',
   themeConfig: {
     logo: '/logo.svg',
     nav: [
@@ -62,8 +63,16 @@ export default defineConfig({
           },
         ]
       },
-      { text: '软件设计师', link: '/softdesigner/' },
-      { text: '人工智能训练师', link: '/ai-trainer/' },
+      {
+        text: '软考',
+        items: [
+          { text: '软件设计师', link: '/softdesigner/' },
+        ]
+      },
+      {
+        text: '人工智能训练师',
+        link: '/ai-trainer/',
+      },
     ],
     sidebar: {
       '/securities/laws/': [
@@ -230,6 +239,21 @@ export default defineConfig({
     }
   },
   markdown: {
-    math: true
+    math: true,
+    config(md) {
+      // Custom fence renderer for mermaid diagrams
+      const defaultRender = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options)
+      }
+      md.renderer.rules.fence = function (tokens, idx, options, env, self) {
+        const token = tokens[idx]
+        if (token.info.trim() === 'mermaid') {
+          const code = token.content.trim()
+          const id = `mermaid-${idx}-${Date.now()}`
+          return `<pre class="mermaid" id="${id}">${code}</pre>`
+        }
+        return defaultRender(tokens, idx, options, env, self)
+      }
+    }
   }
 })
