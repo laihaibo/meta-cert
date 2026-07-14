@@ -16,10 +16,10 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '软件设计师', link: '/softdesigner/' },
       { text: '人工智能训练师', link: '/ai-trainer/' },
+      { text: '学习进度', link: '/progress' },
       {
         text: '更多考试',
         items: [
-          { text: '学习进度', link: '/progress' },
           {
             text: '证券从业',
             items: [
