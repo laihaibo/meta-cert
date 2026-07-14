@@ -14,64 +14,41 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: [
       { text: '首页', link: '/' },
-      { text: '学习进度', link: '/progress' },
+      { text: '软件设计师', link: '/softdesigner/' },
+      { text: '人工智能训练师', link: '/ai-trainer/' },
       {
-        text: '证券从业',
+        text: '更多考试',
         items: [
-          { text: '证券市场基本法律法规', link: '/securities/laws/' },
-          { text: '金融市场基础知识', link: '/securities/fundamentals/' },
-        ]
-      },
-      {
-        text: '基金从业',
-        items: [
-          { text: '基金法律法规', link: '/fund/laws/' },
-          { text: '证券投资基金基础知识', link: '/fund/basics/' },
-          { text: '私募股权投资基金', link: '/fund/pe/' },
-        ]
-      },
-      {
-        text: '法考',
-        items: [
+          { text: '学习进度', link: '/progress' },
           {
-            text: '卷一·公法',
+            text: '证券从业',
+            items: [
+              { text: '证券市场基本法律法规', link: '/securities/laws/' },
+              { text: '金融市场基础知识', link: '/securities/fundamentals/' },
+            ]
+          },
+          {
+            text: '基金从业',
+            items: [
+              { text: '基金法律法规', link: '/fund/laws/' },
+              { text: '证券投资基金基础知识', link: '/fund/basics/' },
+              { text: '私募股权投资基金', link: '/fund/pe/' },
+            ]
+          },
+          {
+            text: '法考',
             items: [
               { text: '法治思想', link: '/law/public/rule-of-law/' },
               { text: '法理学', link: '/law/public/jurisprudence/' },
               { text: '宪法', link: '/law/public/constitution/' },
-              { text: '中国法律史', link: '/law/public/legal-history/' },
               { text: '国际法', link: '/law/public/international/' },
-              { text: '司法制度和法律职业道德', link: '/law/public/judicial-ethics/' },
               { text: '刑法', link: '/law/public/criminal/' },
-              { text: '刑事诉讼法', link: '/law/public/criminal-procedure/' },
-              { text: '行政法与行政诉讼法', link: '/law/public/administrative/' },
-            ]
-          },
-          {
-            text: '卷二·私法',
-            items: [
+              { text: '行政法', link: '/law/public/administrative/' },
               { text: '民法', link: '/law/private/civil/' },
-              { text: '知识产权法', link: '/law/private/ip/' },
-              { text: '商法', link: '/law/private/commercial/' },
-              { text: '经济法', link: '/law/private/economic/' },
-              { text: '环境资源法', link: '/law/private/environment/' },
-              { text: '劳动与社会保障法', link: '/law/private/labor/' },
-              { text: '国际私法', link: '/law/private/private-international/' },
-              { text: '国际经济法', link: '/law/private/economic-international/' },
               { text: '民事诉讼法', link: '/law/private/civil-procedure/' },
             ]
           },
         ]
-      },
-      {
-        text: '软考',
-        items: [
-          { text: '软件设计师', link: '/softdesigner/' },
-        ]
-      },
-      {
-        text: '人工智能训练师',
-        link: '/ai-trainer/',
       },
     ],
     sidebar: {

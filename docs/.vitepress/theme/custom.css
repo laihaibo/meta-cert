@@ -1,132 +1,601 @@
 /* ============================================
-   Meta Cert - 金融从业资格考试备考平台
-   现代、简洁、专业的学习平台风格
+   Meta Cert · 清新学识风
+   设计哲学：留白·圆角·柔和·呼吸感
    ============================================ */
 
 :root {
-  /* 品牌色系 - 专业蓝 */
-  --vp-c-brand-1: #1a73e8;
-  --vp-c-brand-2: #1557b0;
-  --vp-c-brand-3: #0d47a1;
-  --vp-c-brand-soft: rgba(26, 115, 232, 0.14);
+  /* === 主品牌色（蓝绿清新调）=== */
+  --cert-primary: #2563eb;
+  --cert-primary-light: #3b82f6;
+  --cert-primary-dark: #1d4ed8;
+  --cert-accent: #10b981;
+  --cert-accent-light: #34d399;
 
-  /* 正确/错误色系 */
-  --correct-color: #34a853;
-  --correct-bg: rgba(52, 168, 83, 0.08);
-  --correct-border: rgba(52, 168, 83, 0.3);
-  --wrong-color: #ea4335;
-  --wrong-bg: rgba(234, 67, 53, 0.08);
-  --wrong-border: rgba(234, 67, 53, 0.3);
+  /* === VitePress 桥接（覆盖内置变量）=== */
+  --vp-c-brand-1: var(--cert-primary);
+  --vp-c-brand-2: var(--cert-primary-light);
+  --vp-c-brand-3: var(--cert-primary-dark);
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.10);
 
-  /* 标记色系 */
-  --badge-key-bg: #fef7e0;
-  --badge-key-color: #f9a825;
-  --badge-key-border: #f9a825;
-  --badge-hot-bg: #fce4ec;
-  --badge-hot-color: #e53935;
-  --badge-hot-border: #e53935;
+  /* === 背景色 === */
+  --cert-bg: #ffffff;
+  --cert-bg-soft: #f8fafc;
+  --cert-bg-elevated: #ffffff;
+  --cert-bg-hover: #f1f5f9;
 
-  /* 布局 */
-  --quiz-radius: 12px;
-  --quiz-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  /* === 文字色 === */
+  --cert-text-1: #0f172a;
+  --cert-text-2: #475569;
+  --cert-text-3: #94a3b8;
 
-  /* 首页 Hero */
+  /* === 边框/分隔线 === */
+  --cert-border: #e2e8f0;
+  --cert-border-light: #f1f5f9;
+
+  /* === 圆角系统 === */
+  --cert-radius-sm: 8px;
+  --cert-radius-md: 12px;
+  --cert-radius-lg: 16px;
+  --cert-radius-xl: 24px;
+
+  /* === 阴影系统 === */
+  --cert-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --cert-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --cert-shadow-lg: 0 10px 32px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
+  --cert-shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.10), 0 8px 16px rgba(0, 0, 0, 0.04);
+
+  /* === 反馈色 === */
+  --cert-success: #10b981;
+  --cert-success-bg: rgba(16, 185, 129, 0.08);
+  --cert-success-border: rgba(16, 185, 129, 0.3);
+  --cert-error: #ef4444;
+  --cert-error-bg: rgba(239, 68, 68, 0.08);
+  --cert-error-border: rgba(239, 68, 68, 0.3);
+  --cert-warning: #f59e0b;
+  --cert-warning-bg: rgba(245, 158, 11, 0.08);
+
+  /* === 徽章色 === */
+  --badge-key-bg: #fef3c7;
+  --badge-key-color: #d97706;
+  --badge-key-border: #fbbf24;
+  --badge-hot-bg: #fee2e2;
+  --badge-hot-color: #dc2626;
+  --badge-hot-border: #f87171;
+
+  /* === 排版 === */
+  --cert-font-sans: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  --cert-font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
+  --cert-font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+
+  /* === 过渡 === */
+  --cert-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* === Quiz 桥接 === */
+  --correct-color: var(--cert-success);
+  --correct-bg: var(--cert-success-bg);
+  --correct-border: var(--cert-success-border);
+  --wrong-color: var(--cert-error);
+  --wrong-bg: var(--cert-error-bg);
+  --wrong-border: var(--cert-error-border);
+  --quiz-radius: var(--cert-radius-md);
+  --quiz-shadow: var(--cert-shadow-md);
+
+  /* === Hero === */
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #1a73e8 30%, #6dd5fa);
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, #1a73e8 50%, #6dd5fa 50%);
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--cert-primary) 30%, var(--cert-accent));
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--cert-primary) 50%, var(--cert-accent) 50%);
   --vp-home-hero-image-filter: blur(44px);
 }
 
+/* === 深色模式 === */
 .dark {
-  --correct-color: #81c995;
-  --correct-bg: rgba(129, 201, 149, 0.12);
-  --correct-border: rgba(129, 201, 149, 0.3);
-  --wrong-color: #f28b82;
-  --wrong-bg: rgba(242, 139, 130, 0.12);
-  --wrong-border: rgba(242, 139, 130, 0.3);
-  --badge-key-bg: rgba(249, 168, 37, 0.15);
-  --badge-hot-bg: rgba(229, 57, 53, 0.15);
+  --cert-bg: #0f172a;
+  --cert-bg-soft: #1e293b;
+  --cert-bg-elevated: #1e293b;
+  --cert-bg-hover: #334155;
+  --cert-text-1: #f1f5f9;
+  --cert-text-2: #cbd5e1;
+  --cert-text-3: #64748b;
+  --cert-border: #334155;
+  --cert-border-light: #1e293b;
+
+  --badge-key-bg: rgba(251, 191, 36, 0.15);
+  --badge-hot-bg: rgba(248, 113, 113, 0.15);
 }
 
 /* ============================================
-   全局排版优化
+   全局排版
    ============================================ */
 
+body {
+  font-family: var(--cert-font-sans);
+  color: var(--cert-text-1);
+  background: var(--cert-bg);
+}
+
 .vp-doc h1 {
+  font-family: var(--cert-font-serif);
   font-weight: 700;
   letter-spacing: -0.02em;
+  font-size: 2rem;
+  line-height: 1.3;
+  border-bottom: 2px solid var(--cert-border-light);
+  padding-bottom: 0.75rem;
 }
 
 .vp-doc h2 {
+  font-family: var(--cert-font-serif);
   font-weight: 600;
+  font-size: 1.5rem;
   border-top: none;
   padding-top: 0;
-  margin-top: 2em;
+  margin-top: 2.5rem;
+  color: var(--cert-text-1);
+}
+
+.vp-doc h3 {
+  font-weight: 600;
+  color: var(--cert-primary-dark);
+  font-size: 1.15rem;
 }
 
 .vp-doc p {
-  line-height: 1.8;
+  line-height: 1.85;
+  color: var(--cert-text-2);
+}
+
+.vp-doc a {
+  color: var(--cert-primary);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--cert-transition);
+}
+
+.vp-doc a:hover {
+  border-bottom-color: var(--cert-primary);
 }
 
 /* ============================================
-   首页卡片样式
+   顶栏导航美化
    ============================================ */
 
-.VPFeatures .item {
-  border-radius: var(--quiz-radius) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.VPNav {
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid var(--cert-border-light) !important;
 }
 
-.VPFeatures .item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+.dark .VPNav {
+  background: rgba(15, 23, 42, 0.85) !important;
+}
+
+.VPNavBarMenuLink {
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color var(--cert-transition);
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--cert-primary) !important;
+  font-weight: 600;
+}
+
+/* 当前选中项下划线 */
+.VPNavBarMenuLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: var(--cert-primary);
+  border-radius: 2px;
 }
 
 /* ============================================
-   科目入口卡片
+   侧边栏 Sidebar
+   ============================================ */
+
+.VPSidebar {
+  background: var(--cert-bg-soft) !important;
+  border-right: 1px solid var(--cert-border-light) !important;
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--cert-text-1);
+  letter-spacing: 0.01em;
+}
+
+.VPSidebarItem .text {
+  transition: color var(--cert-transition);
+}
+
+/* 当前激活项 */
+.VPSidebarItem.is-active > .item > .text {
+  color: var(--cert-primary) !important;
+  font-weight: 600;
+}
+
+.VPSidebarItem.is-active > .item > .indicator {
+  background: var(--cert-primary) !important;
+  width: 3px !important;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ============================================
+   首页科目入口卡片
    ============================================ */
 
 .subject-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin: 2rem 0;
 }
 
 .subject-card {
   position: relative;
-  padding: 1.5rem;
-  border-radius: var(--quiz-radius);
-  border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-  transition: all 0.2s ease;
+  padding: 1.75rem;
+  border-radius: var(--cert-radius-lg);
+  border: 1px solid var(--cert-border);
+  background: var(--cert-bg-soft);
+  transition: all var(--cert-transition);
   text-decoration: none;
   color: inherit;
   display: block;
+  overflow: hidden;
+}
+
+.subject-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cert-primary), var(--cert-accent));
+  opacity: 0;
+  transition: opacity var(--cert-transition);
 }
 
 .subject-card:hover {
-  border-color: var(--vp-c-brand-1);
-  box-shadow: var(--quiz-shadow);
-  transform: translateY(-2px);
+  border-color: var(--cert-primary-light);
+  box-shadow: var(--cert-shadow-lg);
+  transform: translateY(-3px);
+  background: var(--cert-bg-elevated);
+}
+
+.subject-card:hover::before {
+  opacity: 1;
 }
 
 .subject-card .icon {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .subject-card h3 {
   margin: 0 0 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
+  color: var(--cert-text-1) !important;
 }
 
 .subject-card p {
   margin: 0;
   font-size: 0.9rem;
-  color: var(--vp-c-text-2);
-  line-height: 1.5;
+  color: var(--cert-text-2);
+  line-height: 1.6;
+}
+
+/* ============================================
+   首页 Features 卡片
+   ============================================ */
+
+.VPFeatures .item {
+  border-radius: var(--cert-radius-lg) !important;
+  border: 1px solid var(--cert-border) !important;
+  background: var(--cert-bg-soft) !important;
+  transition: all var(--cert-transition) !important;
+}
+
+.VPFeatures .item:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--cert-shadow-lg) !important;
+  border-color: var(--cert-primary-light) !important;
+}
+
+/* ============================================
+   题库 Quiz 组件
+   ============================================ */
+
+.quiz-container {
+  margin: 1.5rem 0;
+  padding: 1.75rem;
+  border-radius: var(--cert-radius-lg);
+  border: 1px solid var(--cert-border);
+  background: var(--cert-bg-soft);
+  box-shadow: var(--cert-shadow-sm);
+}
+
+.quiz-header {
+  margin-bottom: 1rem;
+}
+
+.quiz-progress {
+  font-weight: 600;
+  color: var(--cert-text-1);
+}
+
+.quiz-score {
+  font-weight: 600;
+  color: var(--cert-primary);
+}
+
+.quiz-accuracy {
+  font-weight: 600;
+  color: var(--cert-accent);
+}
+
+.quiz-progress-bar {
+  height: 4px;
+  background: var(--cert-border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-progress-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cert-primary), var(--cert-accent));
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.question-card {
+  margin-bottom: 1rem;
+}
+
+.question-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.question-stem {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  color: var(--cert-text-1);
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option-item {
+  padding: 0.875rem 1.125rem;
+  border-radius: var(--cert-radius-md);
+  border: 1.5px solid var(--cert-border);
+  background: var(--cert-bg-elevated);
+  transition: all var(--cert-transition);
+  color: var(--cert-text-1);
+  font-size: 0.95rem;
+}
+
+.option-item:hover:not(.correct):not(.wrong) {
+  border-color: var(--cert-primary);
+  background: var(--cert-bg-hover);
+}
+
+.option-item.selected {
+  border-color: var(--cert-primary);
+  background: var(--cert-bg-hover);
+  box-shadow: var(--cert-shadow-sm);
+}
+
+.option-item.correct {
+  border-color: var(--cert-success-border);
+  background: var(--cert-success-bg);
+  color: var(--cert-success);
+  font-weight: 500;
+}
+
+.option-item.wrong {
+  border-color: var(--cert-error-border);
+  background: var(--cert-error-bg);
+  color: var(--cert-error);
+}
+
+.analysis-box {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border-radius: var(--cert-radius-md);
+  border: 1px solid var(--cert-border);
+  background: var(--cert-bg-elevated);
+  border-left: 3px solid var(--cert-primary);
+}
+
+.analysis-title {
+  font-weight: 600;
+  color: var(--cert-primary);
+  margin-bottom: 0.5rem;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--cert-radius-sm);
+  border: 1px solid var(--cert-border);
+  font-weight: 500;
+  transition: all var(--cert-transition);
+}
+
+.btn-primary {
+  background: var(--cert-primary);
+  color: #fff;
+  border-color: var(--cert-primary);
+}
+
+.btn-primary:hover {
+  background: var(--cert-primary-dark);
+}
+
+.btn-secondary:hover {
+  border-color: var(--cert-primary);
+  color: var(--cert-primary);
+}
+
+.btn-success {
+  background: var(--cert-accent);
+  border-color: var(--cert-accent);
+}
+
+.btn-ghost {
+  color: var(--cert-text-3);
+  border: none;
+  font-size: 0.85rem;
+}
+
+.btn-ghost:hover {
+  color: var(--cert-text-2);
+}
+
+/* 题目导航器 */
+.quiz-navigator {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--cert-border-light);
+}
+
+.navigator-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.nav-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--cert-radius-sm);
+  border: 1px solid var(--cert-border);
+  background: var(--cert-bg-elevated);
+  color: var(--cert-text-2);
+  font-size: 0.7rem;
+  font-weight: 600;
+  transition: all var(--cert-transition);
+}
+
+.nav-dot:hover {
+  border-color: var(--cert-primary);
+  transform: scale(1.1);
+}
+
+.nav-dot.current {
+  background: var(--cert-primary);
+  color: #fff;
+  border-color: var(--cert-primary);
+}
+
+.nav-dot.answered.correct {
+  background: var(--cert-success-bg);
+  border-color: var(--cert-success-border);
+  color: var(--cert-success);
+}
+
+.nav-dot.answered.wrong {
+  background: var(--cert-error-bg);
+  border-color: var(--cert-error-border);
+  color: var(--cert-error);
+}
+
+/* ============================================
+   表格 / Mermaid / 代码块
+   ============================================ */
+
+.vp-doc table {
+  border-radius: var(--cert-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--cert-border);
+}
+
+.vp-doc th {
+  background: var(--cert-bg-soft);
+  font-weight: 600;
+  color: var(--cert-text-1);
+}
+
+.vp-doc td {
+  border-top: 1px solid var(--cert-border-light);
+}
+
+/* Mermaid 图表容器 */
+pre.mermaid {
+  border-radius: var(--cert-radius-lg);
+  background: var(--cert-bg-soft);
+  border: 1px solid var(--cert-border);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--cert-shadow-sm);
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+pre.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   Tip / Warning / Details
+   ============================================ */
+
+.vp-doc .tip {
+  border-radius: var(--cert-radius-md);
+  border-left: 3px solid var(--cert-accent);
+  background: var(--cert-success-bg);
+}
+
+.vp-doc .warning {
+  border-radius: var(--cert-radius-md);
+  border-left: 3px solid var(--cert-warning);
+  background: var(--cert-warning-bg);
+}
+
+.vp-doc details {
+  border-radius: var(--cert-radius-md);
+  border: 1px solid var(--cert-border);
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  transition: all var(--cert-transition);
+}
+
+.vp-doc details[open] {
+  box-shadow: var(--cert-shadow-sm);
+}
+
+.vp-doc summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--cert-text-1);
 }
 
 /* ============================================
@@ -135,7 +604,7 @@
 
 .progress-bar {
   height: 6px;
-  background: var(--vp-c-divider);
+  background: var(--cert-border);
   border-radius: 3px;
   overflow: hidden;
   margin-top: 1rem;
@@ -143,32 +612,27 @@
 
 .progress-bar .fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  background: linear-gradient(90deg, var(--cert-primary), var(--cert-accent));
   border-radius: 3px;
   transition: width 0.3s ease;
 }
 
 /* ============================================
-   响应式调整
-   ============================================ */
-
-/* ============================================
-   移动端优化
+   响应式
    ============================================ */
 
 @media (max-width: 768px) {
   .subject-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  /* 移动端导航优化 */
-  .VPNavBar .VPNavBarMenuLink {
-    font-size: 0.85rem;
+  .subject-card {
+    padding: 1.25rem;
   }
 
-  /* 移动端内容区域 */
-  .vp-doc {
-    padding: 0 1rem;
+  .quiz-container {
+    padding: 1.25rem;
   }
 
   .vp-doc h1 {
@@ -177,57 +641,5 @@
 
   .vp-doc h2 {
     font-size: 1.25rem;
-  }
-
-  .vp-doc table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    font-size: 0.85rem;
-  }
-
-  .vp-doc th,
-  .vp-doc td {
-    padding: 0.5rem 0.75rem;
-    white-space: nowrap;
-  }
-
-  /* 移动端 Mermaid 图表 */
-  .mermaid {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* 移动端按钮触摸区域 */
-  .VPButton {
-    min-height: 44px;
-    padding: 0.65rem 1.25rem;
-  }
-
-  /* 移动端侧边栏 */
-  .VPSidebar {
-    padding: 1rem 0.75rem;
-  }
-
-  .VPSidebarItem .text {
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-}
-
-/* 触摸设备优化 */
-@media (hover: none) and (pointer: coarse) {
-  .option-item:hover {
-    border-color: var(--vp-c-divider);
-    background: var(--vp-c-bg);
-  }
-
-  .option-item:active {
-    border-color: var(--vp-c-brand-1);
-    background: var(--vp-c-brand-soft);
-  }
-
-  .btn:active {
-    opacity: 0.8;
   }
 }
