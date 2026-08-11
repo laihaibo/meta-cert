@@ -3,16 +3,26 @@
 [![Deploy to GitHub Pages](https://github.com/laihaibo/meta-cert/actions/workflows/deploy.yml/badge.svg)](https://github.com/laihaibo/meta-cert/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> 多元从业资格学习平台 — 基于 VitePress 构建的系统化备考站点，覆盖证券从业、基金从业、法律职业资格考试。
+> 多元从业资格学习平台 — 基于 VitePress 构建的系统化备考站点，覆盖软件设计师（软考）、人工智能训练师、证券从业、基金从业、法律职业资格考试。
 
 ## ✨ 功能特性
 
 - 📖 **系统学习** — 按章节组织知识点，覆盖考试大纲全部内容
 - 📝 **智能题库** — 按章节练习，高频考点标记，答题后即时解析
 - 📊 **学习进度** — 可视化学习进度追踪，掌握薄弱环节
-- 🧠 **思维导图** — 各科总结页提供思维导图和速查表
+- 🧠 **思维导图** — 各科总结页提供高频考点速查表，绝大多数科目附知识框架思维导图
 
 ## 📚 考试科目
+
+### 软件设计师（软考·中级）
+| 科目 | 说明 |
+|------|------|
+| [软件设计师](https://laihaibo.github.io/meta-cert/softdesigner/) | 计算机系统、数据结构、软件工程、数据库系统、信息安全 |
+
+### 人工智能训练师（三级/高级工）
+| 科目 | 说明 |
+|------|------|
+| [人工智能训练师](https://laihaibo.github.io/meta-cert/ai-trainer/) | 数据库管理、算法参数设置、人机交互设计、性能测试跟踪 |
 
 ### 证券从业资格
 | 科目 | 说明 |
@@ -80,6 +90,8 @@ docs/
 │   ├── laws/                   # 基金法律法规
 │   ├── basics/                 # 证券投资基金基础知识
 │   └── pe/                     # 私募股权投资基金
+├── softdesigner/               # 软件设计师（软考·中级）
+├── ai-trainer/                 # 人工智能训练师（三级/高级工）
 └── law/                        # 法律职业资格考试
     ├── public/                 # 卷一·公法（9 科）
     └── private/                # 卷二·私法（9 科）
