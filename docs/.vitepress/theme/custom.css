@@ -599,6 +599,51 @@ pre.mermaid svg {
 }
 
 /* ============================================
+   Guide 容器 + 补充 custom-block 配色
+   ============================================ */
+
+/* 蓝色 info（--cert-primary 家族） */
+.vp-doc .custom-block.info {
+  border-radius: var(--cert-radius-md);
+  border-left: 3px solid var(--cert-primary);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+/* 红色 danger（--cert-error 家族） */
+.vp-doc .custom-block.danger {
+  border-radius: var(--cert-radius-md);
+  border-left: 3px solid var(--cert-error);
+  background: var(--cert-error-bg);
+}
+
+/* guide 渐变卡片（markdown-it-container 渲染为裸 <div class="guide">，无 custom-block 类） */
+.vp-doc .guide {
+  margin: 1rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--cert-radius-lg);
+  border: 1px solid var(--cert-border);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(16, 185, 129, 0.06));
+  box-shadow: var(--cert-shadow-sm);
+}
+
+.vp-doc .guide .guide-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* details 折叠块 summary（叠加选择器，不改动上方 .vp-doc details 规则） */
+.vp-doc .custom-block.details summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--cert-text-1);
+  transition: color var(--cert-transition);
+}
+
+.vp-doc .custom-block.details summary:hover {
+  color: var(--cert-primary);
+}
+
+/* ============================================
    进度条
    ============================================ */
 

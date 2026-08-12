@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import container from 'markdown-it-container'
 
 export default defineConfig({
   title: 'Meta Cert',
@@ -248,6 +249,23 @@ export default defineConfig({
         }
         return defaultRender(tokens, idx, options, env, self)
       }
+
+      // Guide container: `::: guide 标题` → <div class="guide"><p class="guide-title">标题</p>
+      // Default validate matches only the exact `guide` name so built-in
+      // tip/warning/danger/details keep priority.
+      md.use(container, 'guide', {
+        render(tokens, idx) {
+          const token = tokens[idx]
+          if (token.nesting === 1) {
+            // token.info = ' guide 标题'（含容器名），去掉 'guide' 前缀取标题
+            const title = token.info.trim().replace(/^guide\s*/, '')
+            return title
+              ? `<div class="guide"><p class="guide-title">${title}</p>`
+              : `<div class="guide">`
+          }
+          return `</div>`
+        }
+      })
     }
   }
 })
