@@ -154,9 +154,20 @@ export default defineConfig({
       ],
       '/softdesigner/': [
         {
-          text: '软件设计师',
+          text: '零基础入门',
           items: [
             { text: '概述', link: '/softdesigner/' },
+            { text: '学习路线', link: '/softdesigner/learning-path' },
+            { text: '零基础预备篇 P1 · 二进制与数制', link: '/softdesigner/prep/p1' },
+            { text: '零基础预备篇 P2 · 计算机长什么样', link: '/softdesigner/prep/p2' },
+            { text: '零基础预备篇 P3 · 数学小工具', link: '/softdesigner/prep/p3' },
+            { text: '零基础预备篇 P4 · 编程思维入门', link: '/softdesigner/prep/p4' },
+            { text: '零基础预备篇 P5 · 领域常识', link: '/softdesigner/prep/p5' },
+          ]
+        },
+        {
+          text: '主体章节',
+          items: [
             { text: '第一章 计算机系统基础知识', link: '/softdesigner/ch01' },
             { text: '第二章 程序设计语言基础', link: '/softdesigner/ch02' },
             { text: '第三章 数据结构', link: '/softdesigner/ch03' },
@@ -165,8 +176,14 @@ export default defineConfig({
             { text: '第六章 面向对象分析与设计', link: '/softdesigner/ch06' },
             { text: '第七章 数据库系统', link: '/softdesigner/ch07' },
             { text: '第八章 信息安全知识', link: '/softdesigner/ch08' },
+          ]
+        },
+        {
+          text: '复习收尾',
+          items: [
             { text: '总结与速查', link: '/softdesigner/summary' },
             { text: '题库练习', link: '/softdesigner/quiz' },
+            { text: '零基础答疑 FAQ', link: '/softdesigner/faq' },
           ]
         }
       ],
