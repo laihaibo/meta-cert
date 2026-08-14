@@ -14,6 +14,8 @@ const subjectNames: Record<string, string> = {
   'fund-laws': '基金法律法规',
   'fund-basics': '证券投资基金基础知识',
   'fund-pe': '私募股权投资基金',
+  'softdesigner': '软件设计师',
+  'ai-trainer': '人工智能训练师',
 }
 
 // Subject stats

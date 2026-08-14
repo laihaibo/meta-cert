@@ -2398,5 +2398,1205 @@
     "analysis": "PDR(Protection-Detection-Response)模型：防护(防火墙/ACL/加密)、检测(IDS/审计/异常检测)、响应(应急处理/恢复/取证)。PDR强调：安全是动态过程，Detection是关键(防护不可能100%)。PPDR增加Policy(策略)和恢复(Recovery)。",
     "isKey": false,
     "type": "single"
+  },
+  {
+    "id": "softdesigner-161",
+    "chapter": 9,
+    "stem": "下列 IP 地址中，属于 B 类地址的是：",
+    "options": [
+      "A. 10.10.10.10",
+      "B. 126.0.0.1",
+      "C. 172.20.5.8",
+      "D. 192.168.1.1"
+    ],
+    "answer": "C",
+    "analysis": "B 类首字节范围 128~191。172 开头属 B 类（172.16~31 是私有段，但不影响类别）；10 和 126 是 A 类，192 是 C 类。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-162",
+    "chapter": 9,
+    "stem": "下列 IP 地址中，属于私有地址的是：",
+    "options": [
+      "A. 8.8.8.8",
+      "B. 172.16.3.7",
+      "C. 202.96.134.133",
+      "D. 61.135.169.105"
+    ],
+    "answer": "B",
+    "analysis": "私有地址三大段：10.0.0.0/8、172.16.0.0~172.31.255.255、192.168.0.0/16。172.16.3.7 在 172.16~31 段内属私有地址；其余为公网地址。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-163",
+    "chapter": 9,
+    "stem": "IP 地址 202.112.10.5 属于：",
+    "options": [
+      "A. A 类地址",
+      "B. B 类地址",
+      "C. C 类地址",
+      "D. D 类地址"
+    ],
+    "answer": "C",
+    "analysis": "C 类地址首字节范围 192~223。202 在该范围内，属 C 类地址，默认掩码 255.255.255.0。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-164",
+    "chapter": 9,
+    "stem": "某 C 类网络 200.16.5.0/24，需划分 6 个子网且每个子网至少 12 台主机，子网掩码应设为：",
+    "options": [
+      "A. 255.255.255.192",
+      "B. 255.255.255.224",
+      "C. 255.255.255.240",
+      "D. 255.255.255.248"
+    ],
+    "answer": "B",
+    "analysis": "子网数 2ⁿ≥6 取 n=3；主机数 2ᵐ−2≥12 取 m=5（n+m=8 满足）。掩码为 24+3=27 位，即 255.255.255.224（11100000）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-165",
+    "chapter": 9,
+    "stem": "某网络使用 192.168.1.0/27 网段，每个子网最多可容纳的主机数为：",
+    "options": [
+      "A. 30",
+      "B. 32",
+      "C. 62",
+      "D. 64"
+    ],
+    "answer": "A",
+    "analysis": "/27 表示网络位 27 位，主机位 32−27=5 位，主机数 2⁵−2=30（去掉网络号和广播号）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-166",
+    "chapter": 9,
+    "stem": "在 OSI 参考模型中，路由器工作在：",
+    "options": [
+      "A. 物理层",
+      "B. 数据链路层",
+      "C. 网络层",
+      "D. 传输层"
+    ],
+    "answer": "C",
+    "analysis": "路由器依据 IP 地址（逻辑地址）选路转发，IP 是网络层概念，故路由器工作在网络层。集线器中继器=物理层、交换机=数据链路层。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-167",
+    "chapter": 9,
+    "stem": "OSI 模型中，数据链路层的数据传输单位是：",
+    "options": [
+      "A. 比特",
+      "B. 帧",
+      "C. 分组",
+      "D. 报文段"
+    ],
+    "answer": "B",
+    "analysis": "各层数据单位：物理层比特、数据链路层帧、网络层分组、传输层报文段（TCP）/数据报（UDP）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-168",
+    "chapter": 9,
+    "stem": "TCP 三次握手中，第二次握手报文携带的标志位是：",
+    "options": [
+      "A. 仅 SYN",
+      "B. 仅 ACK",
+      "C. SYN+ACK",
+      "D. FIN"
+    ],
+    "answer": "C",
+    "analysis": "三次握手：① Client→Server 发 SYN；② Server→Client 回 SYN+ACK（确认收到同时请求建立）；③ Client→Server 回 ACK，连接建立。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-169",
+    "chapter": 9,
+    "stem": "下列协议中，默认使用 UDP 的是：",
+    "options": [
+      "A. FTP",
+      "B. SMTP",
+      "C. DNS",
+      "D. HTTP"
+    ],
+    "answer": "C",
+    "analysis": "DNS 查询默认使用 UDP 53 端口（区域传送才用 TCP）；FTP、SMTP、HTTP 都基于 TCP 保证可靠传输。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-170",
+    "chapter": 9,
+    "stem": "HTTPS 协议默认使用的端口号是：",
+    "options": [
+      "A. 80",
+      "B. 443",
+      "C. 8080",
+      "D. 8443"
+    ],
+    "answer": "B",
+    "analysis": "HTTPS（HTTP+SSL/TLS）默认端口 443；HTTP 是 80；8080/8443 是开发环境常用的备用端口。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-171",
+    "chapter": 9,
+    "stem": "IP 地址 127.0.0.1 用于：",
+    "options": [
+      "A. 组播通信",
+      "B. 本机回环测试",
+      "C. 全网广播",
+      "D. 私有网络地址"
+    ],
+    "answer": "B",
+    "analysis": "127.x.x.x 是回环地址（localhost），用于本机自测，不属于任何类的可用主机地址；224 开头才是组播。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-172",
+    "chapter": 9,
+    "stem": "子网掩码 255.255.255.192 表示从 C 类网络借用了多少位作为子网号：",
+    "options": [
+      "A. 1 位",
+      "B. 2 位",
+      "C. 3 位",
+      "D. 4 位"
+    ],
+    "answer": "B",
+    "analysis": "C 类默认掩码 255.255.255.0（24 位）。192=11000000，多了 2 个 1，即借用 2 位主机位作子网号，可划 2²=4 个子网。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-173",
+    "chapter": 9,
+    "stem": "CIDR 地址 192.168.1.0/26 对应的子网掩码是：",
+    "options": [
+      "A. 255.255.255.128",
+      "B. 255.255.255.192",
+      "C. 255.255.255.224",
+      "D. 255.255.255.240"
+    ],
+    "answer": "B",
+    "analysis": "/26 表示前 26 位为网络位。26−24=2，C 类基础上多 2 位：11000000=192，即 255.255.255.192。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-174",
+    "chapter": 9,
+    "stem": "OSI 模型中，传输层的主要功能是：",
+    "options": [
+      "A. 物理信号传输",
+      "B. 端到端的可靠传输与流量控制",
+      "C. 路由选择",
+      "D. 数据格式转换"
+    ],
+    "answer": "B",
+    "analysis": "传输层提供端到端（进程到进程）的可靠传输、差错控制和流量控制，核心协议是 TCP/UDP；路由选择是网络层，格式转换是表示层。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-175",
+    "chapter": 9,
+    "stem": "视频直播、语音通话等实时应用更适合采用 UDP 是因为：",
+    "options": [
+      "A. UDP 可靠但慢",
+      "B. UDP 传输开销小、延迟低，少量丢包可容忍",
+      "C. UDP 有重传机制",
+      "D. UDP 面向连接更安全"
+    ],
+    "answer": "B",
+    "analysis": "UDP 无连接、开销小、延迟低，丢包不会重传——实时场景宁可丢几帧也不等重传；TCP 的重传机制反而造成卡顿。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-176",
+    "chapter": 9,
+    "stem": "关于 TCP 三次握手的作用，下列说法正确的是：",
+    "options": [
+      "A. 确保双方都确认收发能力正常后建立连接",
+      "B. 防止数据包在传输中被篡改",
+      "C. 用于数据加密协商",
+      "D. 用于域名解析"
+    ],
+    "answer": "A",
+    "analysis": "三次握手的目的：客户端与服务器互相确认对方的收发能力正常，避免因旧 SYN 滞留造成无效连接；加密是 TLS 的事，域名解析是 DNS。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-177",
+    "chapter": 9,
+    "stem": "FTP 协议的控制连接默认使用端口：",
+    "options": [
+      "A. 20",
+      "B. 21",
+      "C. 22",
+      "D. 23"
+    ],
+    "answer": "B",
+    "analysis": "FTP 使用两个端口：21 为控制连接（传命令），20 为数据连接（传文件）；22 是 SSH，23 是 Telnet。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-178",
+    "chapter": 9,
+    "stem": "DNS 协议的作用是：",
+    "options": [
+      "A. 自动分配 IP 地址",
+      "B. 将域名解析为 IP 地址",
+      "C. 加密网络传输",
+      "D. 检测网络连通性"
+    ],
+    "answer": "B",
+    "analysis": "DNS（域名系统）负责把 www.example.com 这类域名翻译成 IP 地址；自动分配 IP 是 DHCP，加密是 TLS，连通性检测是 ping（ICMP）。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-179",
+    "chapter": 9,
+    "stem": "下列网络设备中，能够隔离广播域的是：",
+    "options": [
+      "A. 集线器",
+      "B. 交换机",
+      "C. 路由器",
+      "D. 中继器"
+    ],
+    "answer": "C",
+    "analysis": "交换机只能隔离冲突域不能隔离广播域；路由器按 IP 地址转发，可以隔离广播域，是三层设备。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-180",
+    "chapter": 9,
+    "stem": "IPv6 地址的长度是：",
+    "options": [
+      "A. 32 位",
+      "B. 64 位",
+      "C. 128 位",
+      "D. 256 位"
+    ],
+    "answer": "C",
+    "analysis": "IPv6 地址长度为 128 位，采用 8 组十六进制数表示，可用 :: 压缩连续 0；IPv4 是 32 位。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-181",
+    "chapter": 10,
+    "stem": "我国发明专利权的保护期限为：",
+    "options": [
+      "A. 10 年",
+      "B. 15 年",
+      "C. 20 年",
+      "D. 50 年"
+    ],
+    "answer": "C",
+    "analysis": "发明专利 20 年、实用新型 10 年、外观设计 15 年（2021 新专利法），均自申请日起算；50 年是著作权期限。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-182",
+    "chapter": 10,
+    "stem": "我国注册商标的有效期为 10 年，期满后：",
+    "options": [
+      "A. 自动续展",
+      "B. 可续展，每次续展 10 年，次数不限",
+      "C. 可续展，但只能续展一次",
+      "D. 期满后进入公有领域"
+    ],
+    "answer": "B",
+    "analysis": "商标权期满前可申请续展注册，每次续展有效期 10 年，续展次数不限；不续展才失效。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-183",
+    "chapter": 10,
+    "stem": "推荐性国家标准的标准代号是：",
+    "options": [
+      "A. GB",
+      "B. GB/T",
+      "C. ISO",
+      "D. DB"
+    ],
+    "answer": "B",
+    "analysis": "GB 是强制性国家标准，GB/T 是推荐性国家标准（T 即推荐）；ISO 是国际标准，DB 是地方标准。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-184",
+    "chapter": 10,
+    "stem": "国际标准化组织的英文缩写是：",
+    "options": [
+      "A. IEC",
+      "B. ITU",
+      "C. ISO",
+      "D. IEEE"
+    ],
+    "answer": "C",
+    "analysis": "ISO 是国际标准化组织，IEC 是国际电工委员会，ITU 是国际电信联盟；IEEE 是美国电气电子工程师学会。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-185",
+    "chapter": 10,
+    "stem": "知识产权的时间性是指：",
+    "options": [
+      "A. 知识产权只在注册国境内有效",
+      "B. 知识产权有法定的保护期限",
+      "C. 知识产权的客体是无形智力成果",
+      "D. 未经权利人许可不得使用"
+    ],
+    "answer": "B",
+    "analysis": "四大特性：无形性（客体无形）、专有性（独占）、地域性（只在本国有效）、时间性（有法定保护期，过期进入公有领域）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-186",
+    "chapter": 10,
+    "stem": "关于软件著作权，下列说法正确的是：",
+    "options": [
+      "A. 必须登记后才受法律保护",
+      "B. 保护期自登记之日起算",
+      "C. 自软件开发完成之日起自动产生",
+      "D. 保护期为 25 年"
+    ],
+    "answer": "C",
+    "analysis": "软件著作权采用自动取得原则，开发完成即产生，登记不是取得要件只是维权证据；保护期 50 年（单位）或终生+50 年（个人）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-187",
+    "chapter": 10,
+    "stem": "甲单位委托乙公司开发一套软件，双方未约定著作权归属，则该软件的著作权属于：",
+    "options": [
+      "A. 甲单位",
+      "B. 乙公司",
+      "C. 甲、乙双方共有",
+      "D. 归国家所有"
+    ],
+    "answer": "B",
+    "analysis": "委托开发的作品，著作权归属有约定从约定；无约定时归受托人（开发者）乙公司。注意与职务作品（归单位）区分。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-188",
+    "chapter": 10,
+    "stem": "程序员在本职工作中开发的软件，除署名权外，其著作权一般归：",
+    "options": [
+      "A. 程序员个人",
+      "B. 所在单位",
+      "C. 国家和单位共有",
+      "D. 软件使用者"
+    ],
+    "answer": "B",
+    "analysis": "职务作品的著作权（除署名权外）归单位所有；职务发明同理归单位，发明人享有署名权和获得报酬的权利。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-189",
+    "chapter": 10,
+    "stem": "我国实用新型专利权的保护期限是：",
+    "options": [
+      "A. 5 年",
+      "B. 10 年",
+      "C. 15 年",
+      "D. 20 年"
+    ],
+    "answer": "B",
+    "analysis": "专利三期限：发明 20 年、实用新型 10 年、外观设计 15 年（新专利法），均自申请日起算。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-190",
+    "chapter": 10,
+    "stem": "关于 GPL 开源协议，下列说法正确的是：",
+    "options": [
+      "A. 允许闭源商用衍生作品",
+      "B. 修改后的衍生作品必须同样以 GPL 开源",
+      "C. 只适用于文档不适用于代码",
+      "D. 使用 GPL 软件无需保留版权声明"
+    ],
+    "answer": "B",
+    "analysis": "GPL 具有强传染性（Copyleft）：基于 GPL 代码的修改/衍生作品必须同样以 GPL 发布；MIT/BSD 才允许闭源商用衍生品。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-191",
+    "chapter": 10,
+    "stem": "法人或其他组织开发的软件，其软件著作权保护期为：",
+    "options": [
+      "A. 25 年",
+      "B. 50 年",
+      "C. 70 年",
+      "D. 永久"
+    ],
+    "answer": "B",
+    "analysis": "单位开发的软件，著作权保护期为自首次发表之日起 50 年（未发表则自开发完成起 50 年）；自然人软件为终生+死后 50 年。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-192",
+    "chapter": 10,
+    "stem": "下列著作权权利中，不受保护期限限制（永久）的是：",
+    "options": [
+      "A. 发表权",
+      "B. 复制权",
+      "C. 署名权",
+      "D. 发行权"
+    ],
+    "answer": "C",
+    "analysis": "署名权、修改权、保护作品完整权等精神权利永久受保护；发表权（50 年）和复制权、发行权等财产权都有期限。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-193",
+    "chapter": 10,
+    "stem": "由省级标准化行政主管部门制定、在省内适用的标准属于：",
+    "options": [
+      "A. 国家标准",
+      "B. 行业标准",
+      "C. 地方标准",
+      "D. 企业标准"
+    ],
+    "answer": "C",
+    "analysis": "地方标准由省级标准化主管部门制定，代号以 DB 开头；国家标准 GB、行业标准由行业主管部门制定、企业标准 Q 开头。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-194",
+    "chapter": 10,
+    "stem": "甲公司在中国申请并获得专利，若乙公司在美国实施相同技术方案，通常：",
+    "options": [
+      "A. 构成侵权，因为专利全球有效",
+      "B. 不构成侵权，因为知识产权具有地域性",
+      "C. 构成侵权，需要支付使用费",
+      "D. 需经中国法院判决才确定"
+    ],
+    "answer": "B",
+    "analysis": "知识产权具有地域性：专利只在授予国境内有效。中国专利只在中国境内受保护，在美国实施不侵犯该中国专利。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-195",
+    "chapter": 10,
+    "stem": "著作权保护软件的范围不包括：",
+    "options": [
+      "A. 源程序",
+      "B. 目标程序",
+      "C. 相关文档",
+      "D. 算法思想本身"
+    ],
+    "answer": "D",
+    "analysis": "著作权保护软件的表达（源程序、目标程序、文档），不保护思想、算法、处理过程等——这些可申请专利保护。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-196",
+    "chapter": 10,
+    "stem": "关于软件著作权登记，正确的说法是：",
+    "options": [
+      "A. 登记是取得著作权的必要条件",
+      "B. 登记证书是权利归属的初步证明",
+      "C. 登记后保护期重新起算",
+      "D. 只有登记后的软件才能销售"
+    ],
+    "answer": "B",
+    "analysis": "著作权自动产生，登记不是必要条件；但登记证书可作为权属的初步证据，便于诉讼维权。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-197",
+    "chapter": 10,
+    "stem": "执行本单位任务所完成的发明创造属于：",
+    "options": [
+      "A. 非职务发明，归发明人",
+      "B. 职务发明，申请权归单位",
+      "C. 职务发明，申请权归发明人",
+      "D. 单位和发明人各享一半"
+    ],
+    "answer": "B",
+    "analysis": "职务发明（执行本单位任务或主要利用本单位物质条件完成）的专利申请权归单位，发明人享有署名权和获得奖励报酬的权利。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-198",
+    "chapter": 10,
+    "stem": "根据 2021 年施行的新《专利法》，外观设计专利权的保护期限为：",
+    "options": [
+      "A. 10 年",
+      "B. 12 年",
+      "C. 15 年",
+      "D. 20 年"
+    ],
+    "answer": "C",
+    "analysis": "新《专利法》将外观设计保护期由 10 年延长至 15 年（与《海牙协定》接轨）；发明仍为 20 年、实用新型 10 年。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-199",
+    "chapter": 10,
+    "stem": "MIT 协议的特点是：",
+    "options": [
+      "A. 衍生作品必须开源",
+      "B. 允许自由使用、修改和闭源商用，但需保留版权声明",
+      "C. 只允许非商业使用",
+      "D. 禁止再分发"
+    ],
+    "answer": "B",
+    "analysis": "MIT 是最宽松的开源协议之一：允许任意使用、修改、再分发甚至闭源商用，仅要求保留原版权声明；GPL 才要求衍生作品开源。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-200",
+    "chapter": 10,
+    "stem": "关于商业秘密，下列说法正确的是：",
+    "options": [
+      "A. 有法定保护期限 20 年",
+      "B. 需向主管部门登记后才受保护",
+      "C. 保密状态下可无限期受保护，公开即失效",
+      "D. 商业秘密不受法律保护"
+    ],
+    "answer": "C",
+    "analysis": "商业秘密依靠保密措施维持，保密状态下无限期受保护（时间性例外）；一旦公开即丧失秘密性，不再受商业秘密保护。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-201",
+    "chapter": 1,
+    "stem": "某流水线分为 4 段，每段耗时 Δt，连续执行 100 条指令（无停顿），所需时间约为：",
+    "options": [
+      "A. 100Δt",
+      "B. 103Δt",
+      "C. 104Δt",
+      "D. 400Δt"
+    ],
+    "answer": "B",
+    "analysis": "流水线执行时间 = 第一条指令完整时间 + (n−1)×流水线周期 = 4Δt + 99Δt = 103Δt（各段等长时）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-202",
+    "chapter": 1,
+    "stem": "操作数直接包含在指令中的寻址方式是：",
+    "options": [
+      "A. 立即寻址",
+      "B. 直接寻址",
+      "C. 间接寻址",
+      "D. 寄存器寻址"
+    ],
+    "answer": "A",
+    "analysis": "立即寻址：操作数直接放在指令中，取指即得数，速度最快；直接寻址给出操作数地址，间接寻址给出地址的地址。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-203",
+    "chapter": 1,
+    "stem": "下列校验码中，既能检错又能纠错的是：",
+    "options": [
+      "A. 奇偶校验码",
+      "B. 海明码",
+      "C. CRC 校验码",
+      "D. 校验和"
+    ],
+    "answer": "B",
+    "analysis": "奇偶校验只能检错（且只能检奇数位错）、CRC 只能检错；海明码通过冗余位定位出错位，既能检错又能纠错。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-204",
+    "chapter": 1,
+    "stem": "一个完整的指令周期通常由哪两个阶段组成：",
+    "options": [
+      "A. 取指周期和执行周期",
+      "B. 译码周期和写回周期",
+      "C. 读周期和写周期",
+      "D. 中断周期和响应周期"
+    ],
+    "answer": "A",
+    "analysis": "指令周期 = 取指周期（从内存取指令）+ 执行周期（译码并执行）；更细分还有间址周期、中断周期。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-205",
+    "chapter": 1,
+    "stem": "按 Flynn 分类法，阵列处理机属于：",
+    "options": [
+      "A. SISD",
+      "B. SIMD",
+      "C. MISD",
+      "D. MIMD"
+    ],
+    "answer": "B",
+    "analysis": "Flynn 分类：SISD 单指令单数据（传统单核）、SIMD 单指令多数据（阵列机/向量机）、MISD 罕见、MIMD 多指令多数据（多核/多机）。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-206",
+    "chapter": 2,
+    "stem": "编译过程中，词法分析阶段的主要输出是：",
+    "options": [
+      "A. 语法树",
+      "B. 记号（Token）序列",
+      "C. 中间代码",
+      "D. 目标代码"
+    ],
+    "answer": "B",
+    "analysis": "词法分析将源程序字符流切分为记号（Token）序列；语法分析生成语法树，语义分析后生成中间代码。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-207",
+    "chapter": 2,
+    "stem": "语法分析阶段的主要输出是：",
+    "options": [
+      "A. Token 序列",
+      "B. 语法树",
+      "C. 四元式",
+      "D. 汇编代码"
+    ],
+    "answer": "B",
+    "analysis": "语法分析根据文法对 Token 序列做语法检查并构造语法树（推导树）；四元式是中间代码，汇编代码是目标代码。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-208",
+    "chapter": 2,
+    "stem": "正规式 (a|b)* 表示的语言是：",
+    "options": [
+      "A. 仅包含 a 和 b 各一个的串",
+      "B. 由 a、b 组成的任意串（含空串）",
+      "C. 至少一个 a 开头的串",
+      "D. 只含 a 的串"
+    ],
+    "answer": "B",
+    "analysis": "(a|b) 表示 a 或 b，* 表示任意次重复（含 0 次），故 (a|b)* 表示由 a、b 构成的任意长度的串（含空串 ε）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-209",
+    "chapter": 2,
+    "stem": "C 语言中函数按引用传递参数时，形参的变化：",
+    "options": [
+      "A. 不影响实参",
+      "B. 会改变实参的值",
+      "C. 只改变形参副本",
+      "D. 编译报错"
+    ],
+    "answer": "B",
+    "analysis": "引用（地址）传递时形参和实参指向同一存储单元，形参修改会反映到实参；按值传递则只操作副本，不影响实参。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-210",
+    "chapter": 2,
+    "stem": "下列属于中间代码表示的是：",
+    "options": [
+      "A. 逆波兰式",
+      "B. 源程序",
+      "C. 机器指令",
+      "D. 汇编指令"
+    ],
+    "answer": "A",
+    "analysis": "常见中间代码：逆波兰式（后缀式）、三元式、四元式、语法树等；介于源语言与目标语言之间，便于优化和移植。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-211",
+    "chapter": 3,
+    "stem": "深度为 k 的满二叉树共有节点数为：",
+    "options": [
+      "A. 2k−1",
+      "B. 2ᵏ−1",
+      "C. 2ᵏ",
+      "D. 2ᵏ+1"
+    ],
+    "answer": "B",
+    "analysis": "满二叉树第 i 层最多 2^(i−1) 个节点，深度 k 共 1+2+4+…+2^(k−1)=2ᵏ−1 个节点。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-212",
+    "chapter": 3,
+    "stem": "具有 n 个节点的完全二叉树的深度为：",
+    "options": [
+      "A. log₂n",
+      "B. ⌊log₂n⌋+1",
+      "C. ⌈log₂n⌉",
+      "D. n/2"
+    ],
+    "answer": "B",
+    "analysis": "完全二叉树深度 = ⌊log₂n⌋+1（下取整加一）。如 n=5：⌊log₂5⌋+1=2+1=3 层。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-213",
+    "chapter": 3,
+    "stem": "哈希表的装填因子 α 表示：",
+    "options": [
+      "A. 表中已填入的记录数/表的长度",
+      "B. 表的长度/记录数",
+      "C. 冲突次数",
+      "D. 查找次数"
+    ],
+    "answer": "A",
+    "analysis": "装填因子 α = 表中记录数 / 散列表长度。α 越大冲突越多、查找效率越低；α 越小越浪费空间。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-214",
+    "chapter": 3,
+    "stem": "大顶堆经过一次建堆后，堆顶元素是：",
+    "options": [
+      "A. 序列中的最大值",
+      "B. 序列中的最小值",
+      "C. 中间值",
+      "D. 最后一个元素"
+    ],
+    "answer": "A",
+    "analysis": "大顶堆满足父节点≥孩子节点，堆顶即整个序列的最大值；小顶堆堆顶是最小值。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-215",
+    "chapter": 3,
+    "stem": "对某有向图可以进行拓扑排序的前提是：",
+    "options": [
+      "A. 图是连通的",
+      "B. 图是有向无环图（DAG）",
+      "C. 图是带权图",
+      "D. 图是完全图"
+    ],
+    "answer": "B",
+    "analysis": "拓扑排序只能对有向无环图（DAG）进行；若图有环则不存在拓扑序列（可用拓扑排序检测环）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-216",
+    "chapter": 4,
+    "stem": "银行家算法的主要作用是：",
+    "options": [
+      "A. 预防死锁",
+      "B. 避免死锁",
+      "C. 检测死锁",
+      "D. 解除死锁"
+    ],
+    "answer": "B",
+    "analysis": "银行家算法在分配资源前进行安全性检查，只允许系统保持安全状态，属于死锁避免；破坏死锁四条件是预防。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-217",
+    "chapter": 4,
+    "stem": "破坏「循环等待」条件来防止死锁，属于死锁的：",
+    "options": [
+      "A. 预防",
+      "B. 避免",
+      "C. 检测",
+      "D. 解除"
+    ],
+    "answer": "A",
+    "analysis": "死锁预防通过破坏四个必要条件之一（互斥、请求保持、不可剥夺、循环等待）实现；避免是动态分配时安全性检查（银行家算法）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-218",
+    "chapter": 4,
+    "stem": "快表（TLB）的主要作用是：",
+    "options": [
+      "A. 扩大内存容量",
+      "B. 加速地址变换过程",
+      "C. 提高磁盘速度",
+      "D. 管理文件目录"
+    ],
+    "answer": "B",
+    "analysis": "TLB（快表）缓存最近使用的页表项，命中时免去多次访问内存查页表，显著加速逻辑地址到物理地址的变换。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-219",
+    "chapter": 4,
+    "stem": "文件系统采用多级索引结构的主要优点是：",
+    "options": [
+      "A. 支持大文件且存取效率较高",
+      "B. 节省全部索引空间",
+      "C. 避免一切磁盘碎片",
+      "D. 无需文件控制块"
+    ],
+    "answer": "A",
+    "analysis": "多级索引既能支持超大文件（二级/三级间接），又比纯顺序分配灵活；一级索引适合小文件，多级索引解决大文件寻址问题。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-220",
+    "chapter": 4,
+    "stem": "SSTF（最短寻道时间优先）磁盘调度算法选择的是：",
+    "options": [
+      "A. 距离当前磁头位置最近的磁道",
+      "B. 最早到达的请求",
+      "C. 最远端的请求",
+      "D. 优先级最高的请求"
+    ],
+    "answer": "A",
+    "analysis": "SSTF 每次选择距当前磁头最近的请求，寻道时间短但可能造成「饥饿」；FCFS 按到达顺序，SCAN 单向扫描。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-221",
+    "chapter": 5,
+    "stem": "数据流图（DFD）的四个基本要素不包括：",
+    "options": [
+      "A. 数据流",
+      "B. 加工",
+      "C. 控制流",
+      "D. 数据存储"
+    ],
+    "answer": "C",
+    "analysis": "DFD 四要素：数据流、加工（处理）、数据存储、外部实体（源/宿）；DFD 只描述数据流，不描述控制流。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-222",
+    "chapter": 5,
+    "stem": "下列内聚类型中，内聚程度最高的是：",
+    "options": [
+      "A. 逻辑内聚",
+      "B. 过程内聚",
+      "C. 功能内聚",
+      "D. 时间内聚"
+    ],
+    "answer": "C",
+    "analysis": "内聚由弱到强：偶然<逻辑<时间<过程<通信<顺序<功能。功能内聚（一个模块只完成一个功能）内聚性最强。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-223",
+    "chapter": 5,
+    "stem": "下列耦合类型中，耦合程度最低的是：",
+    "options": [
+      "A. 数据耦合",
+      "B. 控制耦合",
+      "C. 内容耦合",
+      "D. 非直接耦合"
+    ],
+    "answer": "D",
+    "analysis": "耦合由弱到强：非直接<数据<标记<控制<外部<公共<内容。非直接耦合（模块间无直接联系）最弱，内容耦合（直接访问内部数据）最强。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-224",
+    "chapter": 5,
+    "stem": "等价类划分和边界值分析属于：",
+    "options": [
+      "A. 白盒测试方法",
+      "B. 黑盒测试方法",
+      "C. 静态测试方法",
+      "D. 性能测试方法"
+    ],
+    "answer": "B",
+    "analysis": "等价类划分、边界值分析、因果图、错误推测均属黑盒（功能）测试；语句/分支/路径覆盖属于白盒测试。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-225",
+    "chapter": 5,
+    "stem": "CMMI 的量化管理级是第几级：",
+    "options": [
+      "A. 第 2 级",
+      "B. 第 3 级",
+      "C. 第 4 级",
+      "D. 第 5 级"
+    ],
+    "answer": "C",
+    "analysis": "CMMI 五级：1 初始→2 已管理→3 已定义→4 量化管理→5 优化。第 4 级用统计方法量化管理过程。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-226",
+    "chapter": 6,
+    "stem": "开闭原则（OCP）的核心含义是：",
+    "options": [
+      "A. 对修改开放、对扩展关闭",
+      "B. 对扩展开放、对修改关闭",
+      "C. 类之间尽量不通信",
+      "D. 接口必须精简"
+    ],
+    "answer": "B",
+    "analysis": "开闭原则：对扩展开放（可通过新增代码扩展功能）、对修改关闭（尽量不修改已有代码），通常借助抽象和多态实现。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-227",
+    "chapter": 6,
+    "stem": "抽象工厂模式与工厂方法模式的主要区别是：",
+    "options": [
+      "A. 抽象工厂创建单个对象",
+      "B. 抽象工厂创建一组相关的产品族对象",
+      "C. 工厂方法使用原型克隆",
+      "D. 两者没有区别"
+    ],
+    "answer": "B",
+    "analysis": "工厂方法创建单一产品；抽象工厂创建相互关联的“产品族”（多个产品），保证配套产品的一致性。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-228",
+    "chapter": 6,
+    "stem": "UML 状态图中，状态转换的触发条件称为：",
+    "options": [
+      "A. 事件",
+      "B. 生命线",
+      "C. 泳道",
+      "D. 参与者"
+    ],
+    "answer": "A",
+    "analysis": "状态图描述对象状态变化，转换由事件触发（带 [条件] 守卫）；生命线是序列图元素，泳道是活动图元素。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-229",
+    "chapter": 6,
+    "stem": "UML 类图中，依赖关系用哪种符号表示：",
+    "options": [
+      "A. 带空心三角的实线",
+      "B. 带实心菱形的实线",
+      "C. 带箭头的虚线",
+      "D. 无箭头的实线"
+    ],
+    "answer": "C",
+    "analysis": "依赖=带箭头的虚线（最弱）；关联=实线；聚合=空心菱形实线；组合=实心菱形实线；泛化/实现=空心三角（实线/虚线）。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-230",
+    "chapter": 6,
+    "stem": "以数据为中心、各处理组件共享中心数据的架构风格是：",
+    "options": [
+      "A. 管道-过滤器",
+      "B. 仓库风格",
+      "C. 事件驱动",
+      "D. 微服务"
+    ],
+    "answer": "B",
+    "analysis": "仓库（数据共享）风格以中心数据为核心，如数据库系统、黑板系统；管道-过滤器是数据流风格，微服务是分布式风格。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-231",
+    "chapter": 7,
+    "stem": "关系代数中，选择运算（σ）的作用是：",
+    "options": [
+      "A. 选取指定列（垂直方向）",
+      "B. 选取满足条件的行（水平方向）",
+      "C. 连接两个关系",
+      "D. 对结果排序"
+    ],
+    "answer": "B",
+    "analysis": "选择 σ 按条件选取行（水平方向）；投影 π 选取列（垂直方向）；连接（⋈）合并两个关系的行。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-232",
+    "chapter": 7,
+    "stem": "SQL 中，GROUP BY 子句通常与下列哪类函数配合使用：",
+    "options": [
+      "A. 聚合函数（COUNT/SUM/AVG 等）",
+      "B. 字符串函数",
+      "C. 日期函数",
+      "D. 数学函数"
+    ],
+    "answer": "A",
+    "analysis": "GROUP BY 按字段分组，常配合聚合函数 COUNT、SUM、AVG、MAX、MIN 统计每组数据；WHERE 在分组前过滤，HAVING 在分组后过滤。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-233",
+    "chapter": 7,
+    "stem": "ER 模型中，1:n 联系转换为关系模式时，通常：",
+    "options": [
+      "A. 将 1 端主码作为外键加入 n 端",
+      "B. 新建独立关系并含双方主码",
+      "C. 将 n 端主码加入 1 端",
+      "D. 不进行任何转换"
+    ],
+    "answer": "A",
+    "analysis": "1:n 联系：把 1 端的主码并入 n 端实体作为外键（合并到 n 端）；m:n 联系必须新建关系，含双方主码和联系属性。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-234",
+    "chapter": 7,
+    "stem": "如果一个并发调度的执行结果与某个串行调度的执行结果等价，则该调度是：",
+    "options": [
+      "A. 可串行化的",
+      "B. 不可恢复的",
+      "C. 死锁的",
+      "D. 冲突的"
+    ],
+    "answer": "A",
+    "analysis": "可串行化调度：与某个串行调度结果等价，是并发事务正确性的标准；可通过冲突可串行化判断。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-235",
+    "chapter": 7,
+    "stem": "数据字典中一般不包括：",
+    "options": [
+      "A. 数据项",
+      "B. 数据结构",
+      "C. 数据流与数据存储",
+      "D. 具体的数据库表记录"
+    ],
+    "answer": "D",
+    "analysis": "数据字典是结构化分析（SA）工具，描述数据项、数据结构、数据流、数据存储和加工逻辑，不包括具体数据记录。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-236",
+    "chapter": 8,
+    "stem": "DES、3DES、AES 等算法属于：",
+    "options": [
+      "A. 对称加密算法",
+      "B. 非对称加密算法",
+      "C. 哈希算法",
+      "D. 数字签名算法"
+    ],
+    "answer": "A",
+    "analysis": "DES/3DES/AES 加解密使用同一把密钥，属对称加密；RSA/ECC 是非对称，MD5/SHA 是哈希。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-237",
+    "chapter": 8,
+    "stem": "数字证书中一般不包含：",
+    "options": [
+      "A. 持有者公钥",
+      "B. 持有者身份信息",
+      "C. 证书有效期",
+      "D. 持有者的私钥"
+    ],
+    "answer": "D",
+    "analysis": "数字证书由 CA 签发，包含持有者公钥、身份信息、有效期和 CA 签名等；私钥由持有者自己保管，绝不出现在证书中。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-238",
+    "chapter": 8,
+    "stem": "下列协议中，常用于构建 VPN 隧道的是：",
+    "options": [
+      "A. IPSec",
+      "B. SNMP",
+      "C. ARP",
+      "D. DHCP"
+    ],
+    "answer": "A",
+    "analysis": "IPSec 是常用的 VPN 隧道协议（还有 L2TP、PPTP 等），提供加密与认证；SNMP 是网络管理、ARP 是地址解析、DHCP 是地址分配。",
+    "isKey": true,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-239",
+    "chapter": 8,
+    "stem": "我国网络安全等级保护共分为几个等级：",
+    "options": [
+      "A. 3 级",
+      "B. 4 级",
+      "C. 5 级",
+      "D. 6 级"
+    ],
+    "answer": "C",
+    "analysis": "网络安全等级保护分为五级，从第一级（自主保护）到第五级（专控保护），级别越高安全要求越高。",
+    "isKey": false,
+    "type": "single"
+  },
+  {
+    "id": "softdesigner-240",
+    "chapter": 8,
+    "stem": "针对 DDoS 攻击，下列防护措施最有效的是：",
+    "options": [
+      "A. 流量清洗与限速",
+      "B. 关闭防火墙",
+      "C. 使用明文传输",
+      "D. 删除日志"
+    ],
+    "answer": "A",
+    "analysis": "DDoS 用海量流量耗尽资源，防护手段包括流量清洗（识别并丢弃攻击流量）、限速、负载均衡扩容等；关闭防火墙反而更危险。",
+    "isKey": true,
+    "type": "single"
   }
 ]

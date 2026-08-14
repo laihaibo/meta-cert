@@ -26,6 +26,14 @@ features:
     title: 法律职业资格考试（客观题）
     details: 卷一·公法（9科）+ 卷二·私法（9科），覆盖法考全部客观题科目
     link: /law/
+  - icon: 💻
+    title: 软件设计师（软考·中级）
+    details: 零基础预备篇 + 八大章节系统精讲 + 160 题智能题库
+    link: /softdesigner/
+  - icon: 🤖
+    title: 人工智能训练师
+    details: 三级/高级工 · 模型训练与调优 · 职业道德 · 智能训练基础
+    link: /ai-trainer/
   - icon: 📝
     title: 智能题库
     details: 按章节练习、高频考点标记、错题解析

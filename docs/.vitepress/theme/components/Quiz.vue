@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { useProgress } from '../composables/useProgress'
 
 interface QuizQuestion {
   id?: string
@@ -15,6 +16,7 @@ interface QuizQuestion {
 const props = defineProps<{
   questions?: QuizQuestion[]
   dataUrl?: string
+  initialChapter?: string | number
 }>()
 
 const allQuestions = ref<QuizQuestion[]>([])
@@ -22,12 +24,13 @@ const currentIndex = ref(0)
 const selected = ref<number | null>(null)
 const showResult = ref(false)
 const score = ref(0)
-const answers = ref<Map<number, number | null>>(new Map())  // user's answers
-const filterChapter = ref<string>('')
+const answers = ref<Map<string, number | null>>(new Map())  // question id -> user's answer index
+const filterChapter = ref<string>(props.initialChapter ? String(props.initialChapter) : '')
 const chapters = ref<string[]>([])
 const bookmarks = ref<Set<string>>(new Set())  // bookmarked question IDs
 const showBookmarkOnly = ref(false)
 const storageKey = 'quiz_progress_' + (props.dataUrl || 'inline')
+const containerRef = ref<HTMLElement | null>(null)
 
 // ---- localStorage helpers ----
 function loadProgress() {
@@ -39,6 +42,20 @@ function loadProgress() {
       currentIndex.value = data.currentIndex || 0
       if (data.answers) answers.value = new Map(data.answers)
       if (data.bookmarks) bookmarks.value = new Set(data.bookmarks)
+      // Migrate legacy data keyed by view index -> question id
+      const ids = allQuestions.value.map(q => getQuestionId(q))
+      let migrated = false
+      answers.value.forEach((ans, key) => {
+        if (/^\d+$/.test(String(key))) {
+          const idx = Number(key)
+          if (idx < ids.length) {
+            answers.value.set(ids[idx], ans)
+          }
+          answers.value.delete(key)
+          migrated = true
+        }
+      })
+      if (migrated) saveProgress()
     }
   } catch { /* ignore corrupt data */ }
 }
@@ -76,13 +93,54 @@ onMounted(async () => {
   chapters.value = Array.from(chapterSet)
   // Restore progress from localStorage
   loadProgress()
+  // Jump to question referenced by URL hash (e.g. #softdesigner-001)
+  const hashId = getHashQuestionId()
+  if (hashId) {
+    jumpToQuestionId(hashId)
+  } else {
+    restoreStateForCurrent()
+  }
+  window.addEventListener('hashchange', onHashChange)
 })
+
+onUnmounted(() => {
+  window.removeEventListener('hashchange', onHashChange)
+})
+
+function getHashQuestionId(): string | null {
+  const m = window.location.hash.match(/#([A-Za-z0-9_-]+-\d+)/)
+  return m ? m[1] : null
+}
+
+function onHashChange() {
+  const hashId = getHashQuestionId()
+  if (hashId) {
+    jumpToQuestionId(hashId)
+  }
+}
+
+function jumpToQuestionId(id: string) {
+  const q = allQuestions.value.find(item => getQuestionId(item) === id)
+  if (!q) return
+  // Apply chapter filter first, then jump after the filter watch resets the index
+  if (q.chapter) filterChapter.value = String(q.chapter)
+  nextTick(() => {
+    const fIdx = filteredQuestions.value.findIndex(item => getQuestionId(item) === id)
+    if (fIdx !== -1) {
+      currentIndex.value = fIdx
+      restoreStateForCurrent()
+      saveProgress()
+      containerRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
+}
 
 // ---- Filtering ----
 const filteredQuestions = computed(() => {
   let qs = allQuestions.value
   if (filterChapter.value) {
-    qs = qs.filter(q => String(q.chapter) === filterChapter.value)
+    const filterNum = Number(filterChapter.value)
+    qs = qs.filter(q => Number(q.chapter) === filterNum)
   }
   if (showBookmarkOnly.value) {
     qs = qs.filter(q => bookmarks.value.has(getQuestionId(q)))
@@ -99,6 +157,25 @@ function getQuestionId(q: QuizQuestion, idx?: number): string {
 
 const optionLabels = ['A', 'B', 'C', 'D', 'E', 'F']
 
+// ---- Progress integration (global learning-progress dashboard) ----
+const { recordAnswer } = useProgress()
+
+function deriveSubjectId(): string | null {
+  // e.g. /softdesigner/ch01.html -> 'softdesigner'; /securities/laws/quiz.html -> 'securities-laws'
+  const path = window.location.pathname.replace(/\.html$/, '')
+  const segments = path.split('/').filter(Boolean)
+  segments.pop() // drop page filename
+  return segments.length > 0 ? segments.join('-') : null
+}
+
+function recordGlobalProgress(q: QuizQuestion, answerLetter: string, isCorrect: boolean) {
+  const subjectId = deriveSubjectId()
+  if (!subjectId || !q.chapter || !q.stem) return
+  try {
+    recordAnswer(subjectId, String(q.chapter), q.stem, answerLetter, isCorrect)
+  } catch { /* progress persistence is best-effort */ }
+}
+
 // ---- Interaction ----
 function selectOption(index: number) {
   if (showResult.value) return
@@ -108,10 +185,14 @@ function selectOption(index: number) {
 function submitAnswer() {
   if (selected.value === null) return
   showResult.value = true
-  answers.value.set(currentIndex.value, selected.value)
-  if (optionLabels[selected.value] === currentQuestion.value.answer) {
+  const q = currentQuestion.value
+  const answerLetter = optionLabels[selected.value]
+  const isCorrect = answerLetter === q.answer
+  answers.value.set(getQuestionId(q), selected.value)
+  if (isCorrect) {
     score.value++
   }
+  recordGlobalProgress(q, answerLetter, isCorrect)
   saveProgress()
 }
 
@@ -138,7 +219,9 @@ function jumpToQuestion(idx: number) {
 }
 
 function restoreStateForCurrent() {
-  const prev = answers.value.get(currentIndex.value)
+  const q = currentQuestion.value
+  if (!q) return
+  const prev = answers.value.get(getQuestionId(q))
   if (prev !== undefined && prev !== null) {
     selected.value = prev
     showResult.value = true
@@ -184,12 +267,26 @@ const answeredCount = computed(() => answers.value.size)
 const accuracy = computed(() => {
   if (answeredCount.value === 0) return 0
   let correct = 0
-  answers.value.forEach((ans, idx) => {
-    const q = filteredQuestions.value[idx]
-    if (q && optionLabels[ans!] === q.answer) correct++
+  answers.value.forEach((ans, qid) => {
+    const q = allQuestions.value.find(item => getQuestionId(item) === qid)
+    if (q && ans !== null && ans !== undefined && optionLabels[ans] === q.answer) correct++
   })
   return Math.round((correct / answeredCount.value) * 100)
 })
+
+function getAnswerForQuestion(q: QuizQuestion): number | null | undefined {
+  return answers.value.get(getQuestionId(q))
+}
+
+function isQuestionAnswered(q: QuizQuestion): boolean {
+  const ans = getAnswerForQuestion(q)
+  return ans !== undefined && ans !== null
+}
+
+function isQuestionCorrect(q: QuizQuestion): boolean {
+  const ans = getAnswerForQuestion(q)
+  return ans !== undefined && ans !== null && optionLabels[ans] === q.answer
+}
 
 // Reset index when filter changes
 watch([filterChapter, showBookmarkOnly], () => {
@@ -205,7 +302,7 @@ watch(allQuestions, () => {
 </script>
 
 <template>
-  <div class="quiz-container" v-if="allQuestions.length > 0">
+  <div class="quiz-container" ref="containerRef" v-if="allQuestions.length > 0">
     <!-- Header -->
     <div class="quiz-header">
       <div class="quiz-info">
@@ -242,7 +339,7 @@ watch(allQuestions, () => {
         <div class="question-badges">
           <span v-if="currentQuestion.isKey" class="badge badge-key">重点</span>
           <span v-if="currentQuestion.isHot" class="badge badge-hot">高频</span>
-          <span v-if="currentQuestion.chapter" class="badge badge-chapter">{{ currentQuestion.chapter }}</span>
+          <span v-if="currentQuestion.chapter" class="badge badge-chapter">第 {{ currentQuestion.chapter }} 章</span>
         </div>
         <button class="btn-bookmark" :class="{ active: isBookmarked() }" @click="toggleBookmark" :title="isBookmarked() ? '取消收藏' : '收藏本题'">
           {{ isBookmarked() ? '★' : '☆' }}
@@ -317,10 +414,10 @@ watch(allQuestions, () => {
           class="nav-dot"
           :class="{
             current: idx === currentIndex,
-            answered: answers.value.has(idx),
-            correct: answers.value.has(idx) && optionLabels[answers.value.get(idx)!] === q.answer,
-            wrong: answers.value.has(idx) && optionLabels[answers.value.get(idx)!] !== q.answer,
-            bookmarked: bookmarks.value.has(getQuestionId(q, idx))
+            answered: isQuestionAnswered(q),
+            correct: isQuestionCorrect(q),
+            wrong: isQuestionAnswered(q) && !isQuestionCorrect(q),
+            bookmarked: bookmarks.has(getQuestionId(q, idx))
           }"
           @click="jumpToQuestion(idx)"
           :title="`第 ${idx + 1} 题`"

@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 import container from 'markdown-it-container'
+import { copyFileSync, mkdirSync, readdirSync, statSync } from 'node:fs'
+import { dirname, join, relative } from 'node:path'
 
 export default defineConfig({
   title: 'Meta Cert',
@@ -177,6 +179,8 @@ export default defineConfig({
             { text: '第六章 面向对象分析与设计', link: '/softdesigner/ch06' },
             { text: '第七章 数据库系统', link: '/softdesigner/ch07' },
             { text: '第八章 信息安全知识', link: '/softdesigner/ch08' },
+            { text: '第九章 计算机网络基础', link: '/softdesigner/ch09' },
+            { text: '第十章 标准化与知识产权', link: '/softdesigner/ch10' },
           ]
         },
         {
@@ -232,6 +236,23 @@ export default defineConfig({
     search: {
       provider: 'local'
     }
+  },
+  // Copy quiz.json files into the built output so <Quiz dataUrl="./quiz.json" />
+  // works on static hosting (VitePress does not copy them automatically).
+  buildEnd(siteConfig) {
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir)) {
+        const full = join(dir, entry)
+        if (statSync(full).isDirectory()) {
+          walk(full)
+        } else if (entry === 'quiz.json') {
+          const dest = join(siteConfig.outDir, relative(siteConfig.srcDir, full))
+          mkdirSync(dirname(dest), { recursive: true })
+          copyFileSync(full, dest)
+        }
+      }
+    }
+    walk(siteConfig.srcDir)
   },
   markdown: {
     math: true,
