@@ -3,26 +3,18 @@
 [![Deploy to GitHub Pages](https://github.com/laihaibo/meta-cert/actions/workflows/deploy.yml/badge.svg)](https://github.com/laihaibo/meta-cert/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> 多元从业资格学习平台 — 基于 VitePress 构建的系统化备考站点，覆盖软件设计师（软考）、人工智能训练师、证券从业、基金从业、法律职业资格考试。
+> 多元从业资格学习平台 — 基于 Next.js 的系统化备考站点，覆盖证券从业、基金从业、法律职业资格考试。Apple 风格设计 + Liquid Glass 视觉语言。
 
 ## ✨ 功能特性
 
-- 📖 **系统学习** — 按章节组织知识点，覆盖考试大纲全部内容
-- 📝 **智能题库** — 按章节练习，高频考点标记，答题后即时解析
-- 📊 **学习进度** — 可视化学习进度追踪，掌握薄弱环节
-- 🧠 **思维导图** — 各科总结页提供高频考点速查表，绝大多数科目附知识框架思维导图
+- 📖 **系统学习** — 按章节组织知识点，分值占比与重点标记，侧栏目录 + 页内 TOC 跟随高亮
+- 📝 **智能题库** — 章节筛选、收藏、错题本回顾、键盘作答（A–D 选择 / ↵ 提交 / ←→ 切题）、答题即时解析
+- 📊 **学习进度** — 答题记录自动汇总，各科正确率环形图、薄弱章节提示，数据保存在本机
+- 🔍 **全文检索** — Pagefind 构建期索引，⌘K 唤起，支持中文检索全部页面
+- 🌗 **明暗双主题** — 跟随系统并可手动切换，图表按主题重绘
+- ⚡ **静态导出** — 构建期预渲染全部 HTML，正文零运行时解析；每页独立 meta/OG、sitemap、JSON-LD
 
 ## 📚 考试科目
-
-### 软件设计师（软考·中级）
-| 科目 | 说明 |
-|------|------|
-| [软件设计师](https://laihaibo.github.io/meta-cert/softdesigner/) | 计算机系统、数据结构、软件工程、数据库系统、信息安全 |
-
-### 人工智能训练师（三级/高级工）
-| 科目 | 说明 |
-|------|------|
-| [人工智能训练师](https://laihaibo.github.io/meta-cert/ai-trainer/) | 数据库管理、算法参数设置、人机交互设计、性能测试跟踪 |
 
 ### 证券从业资格
 | 科目 | 说明 |
@@ -58,44 +50,46 @@ cd meta-cert
 # 安装依赖
 pnpm install
 
-# 启动开发服务器（http://localhost:5173）
+# 启动开发服务器（自动先跑内容管线）
 pnpm run dev
 
-# 构建生产版本
+# 构建生产版本（内容管线 + Next.js 静态导出 + Pagefind 搜索索引）
 pnpm run build
-
-# 预览构建结果
-pnpm run preview
 ```
 
 ## 📁 项目结构
 
 ```
-docs/
-├── index.md                    # 首页
-├── progress.md                 # 学习进度页
-├── .vitepress/
-│   ├── config.ts               # VitePress 配置
-│   └── theme/
-│       ├── index.ts            # 主题入口
-│       ├── custom.css          # 自定义样式
-│       └── components/
-│           └── Quiz.vue        # 题库组件
-├── shared/
-│   └── quiz-schema.json        # 题库 JSON Schema
-├── securities/                 # 证券从业
-│   ├── laws/                   # 证券市场基本法律法规
-│   └── fundamentals/           # 金融市场基础知识
-├── fund/                       # 基金从业
-│   ├── laws/                   # 基金法律法规
-│   ├── basics/                 # 证券投资基金基础知识
-│   └── pe/                     # 私募股权投资基金
-├── softdesigner/               # 软件设计师（软考·中级）
-├── ai-trainer/                 # 人工智能训练师（三级/高级工）
-└── law/                        # 法律职业资格考试
-    ├── public/                 # 卷一·公法（9 科）
-    └── private/                # 卷二·私法（9 科）
+app/                        # Next.js App Router
+├── layout.tsx              # 全局外壳（导航/页脚/主题/环境光）
+├── page.tsx                # 首页
+├── progress/page.tsx       # 学习进度页
+├── [[...slug]]/page.tsx    # 内容页路由（章节/题库/总结/概述）
+├── not-found.tsx           # 404
+├── sitemap.ts / robots.ts  # SEO
+└── globals.css             # 设计系统（Apple 风格 tokens + Liquid Glass）
+
+content/                    # markdown 内容源
+├── shared/quiz-schema.json # 题库 JSON Schema
+├── securities/             # 证券从业
+├── fund/                   # 基金从业
+└── law/                    # 法律职业资格考试（public 卷一 / private 卷二）
+
+components/                 # Quiz、ProgressDashboard、GlassNav、SearchDialog、Toc 等
+lib/                        # 内容加载、学习进度 store、站点常量
+scripts/build-content.mjs   # 内容管线：markdown → JSON（HTML/TOC/元数据）+ manifest
+content-data/               # 管线产物（构建时生成，已 gitignore）
 ```
+
+### 内容管线
+
+`scripts/build-content.mjs` 在构建期把全部 markdown 编译为 JSON：
+
+- `::: tip / warning / danger` 容器 → 玻璃样式 callout
+- ` ```mermaid ` 围栏 → 客户端水合占位（仅图表页动态加载 mermaid）
+- LaTeX 公式 → KaTeX HTML
+- 内链统一改写为带 `/meta-cert` 前缀的站点绝对路径
+- 产出每页 HTML + TOC + 摘要 + 上下篇，及全站 manifest（导航/sitemap/静态化参数共用）
 
 ## 🌐 部署
 
@@ -107,15 +101,15 @@ docs/
 
 ```bash
 pnpm run build
-# 产出目录：docs/.vitepress/dist/
+# 产出目录：out/（含 pagefind 搜索索引，.nojekyll 已内置）
 ```
 
 ### 其他平台
 
 | 平台 | 构建命令 | 输出目录 |
 |------|----------|----------|
-| Vercel | `pnpm run build` | `docs/.vitepress/dist` |
-| Netlify | `pnpm run build` | `docs/.vitepress/dist` |
+| Vercel | `pnpm run build` | `out`（注意按需调整 `next.config.ts` 中的 `basePath`） |
+| Netlify | `pnpm run build` | `out` |
 
 ## 🤝 贡献
 
@@ -129,13 +123,11 @@ pnpm run build
 
 ### 添加新科目
 
-1. 创建目录：`docs/{exam}/{subject}/`
-2. 创建章节文件：`index.md`、`ch01.md` ~ `chNN.md`
-3. 创建题库：`quiz.json`（遵循 `docs/shared/quiz-schema.json`）
-4. 创建题库页面：`quiz.md`（使用 `<Quiz>` 组件）
-5. 更新 `docs/.vitepress/config.ts`：添加 sidebar 和导航配置
-6. 更新 `docs/index.md`：添加入口卡片
-7. 运行 `pnpm run build` 验证
+1. 在 `scripts/build-content.mjs` 的 `EXAMS` 中登记科目（目录路径与名称）
+2. 创建目录：`content/{exam}/{subject}/`，章节文件 `index.md`、`ch01.md` ~ `chNN.md`、`summary.md`、`quiz.md`
+3. 创建题库：`quiz.json`（遵循 `content/shared/quiz-schema.json`）
+4. 运行 `pnpm run dev` 验证 —— 导航、侧栏、首页卡片、sitemap 均由 manifest 自动生成
+5. 可选 frontmatter：`title`（默认取首个 h1）、`weight`（分值占比）、`is_key`（重点章节）
 
 ### 报告问题
 

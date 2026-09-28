@@ -37,13 +37,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build with VitePress
+      # pnpm build = 内容管线(markdown→JSON) + next build(静态导出) + pagefind(搜索索引)
+      - name: Build (content pipeline + Next.js export + pagefind)
         run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: out
 
   deploy:
     environment:

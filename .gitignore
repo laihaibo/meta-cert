@@ -2,9 +2,14 @@
 node_modules/
 .pnpm-store/
 
-# VitePress
-docs/.vitepress/dist/
-docs/.vitepress/cache/
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Content pipeline output
+content-data/
 
 # IDE
 .vscode/
@@ -21,6 +26,7 @@ Thumbs.db
 *.log
 npm-debug.log*
 pnpm-debug.log*
+yarn-debug.log*
 
 # Environment
 .env
@@ -32,3 +38,5 @@ dist/
 
 # ai
 .omc
+.mimosa
+.zcode
